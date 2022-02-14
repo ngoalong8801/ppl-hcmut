@@ -23,7 +23,7 @@ class BinExp(Exp):
         return self.oper + ' ' + self.left.printPrefix() + ' ' + self.right.printPrefix()
 
     def printPostfix(self):
-        return self.left.printPrefix() + ' ' + self.right.printPrefix() + ' ' + self.oper
+        return self.left.printPostfix() + ' ' + self.right.printPostfix() + ' ' + self.oper
 
 
 class UnExp(Exp):
@@ -41,7 +41,7 @@ class UnExp(Exp):
         return self.oper + '. ' + self.arg.printPrefix()
     
     def printPostfix(self):
-        return self.arg.printPrefix() + '. ' + self.oper
+        return self.arg.printPostfix()+ ' ' + self.oper + '.' 
 
 
 class IntLit(Exp):
@@ -81,11 +81,11 @@ class PrintPrefix(Visitor):
 
 class Eval(Visitor):
     def visit(self, cl):
-        return cl.Eval()
+        return cl.eval()
 
 class PrintPostfix(Visitor):
     def visit(self, cl):
-        cl.printPostfix()
+        return cl.printPostfix()
 
 
 
