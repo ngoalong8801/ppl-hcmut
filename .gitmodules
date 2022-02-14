@@ -1,3 +1,6 @@
 [submodule "Assignment/Assignment1"]
 	path = Assignment/Assignment1
 	url = https://github.com/PhuMinh08082001/ASSIGNMENT1_PPL
+[submodule "Assignment/ASSIGNMENT1_PPL"]
+	path = Assignment/ASSIGNMENT1_PPL
+	url = https://github.com/PhuMinh08082001/ASSIGNMENT1_PPL
