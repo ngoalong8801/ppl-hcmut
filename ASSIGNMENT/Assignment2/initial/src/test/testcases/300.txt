@@ -1,1 +1,18 @@
-int main() {}
+
+                  Class Program{
+                    main(){
+                        {
+                            {
+
+                            Var a : Int = 4;
+                            }
+                          }
+                          {
+                           {
+
+                            Var b: Int = 5;
+                            }
+                          }
+                    }
+                }
+            

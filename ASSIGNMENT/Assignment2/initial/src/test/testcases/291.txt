@@ -1,0 +1,13 @@
+
+                Class Test{
+                    Var $a,  b : Int;
+
+                }
+                 Class MethodInvo{
+
+                      Test(){
+                        Test::$a;
+                      }
+                }
+
+            

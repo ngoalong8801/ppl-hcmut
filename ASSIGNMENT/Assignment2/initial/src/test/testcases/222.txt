@@ -1,0 +1,19 @@
+
+                 Class Shape {
+                     Val height : Int = 0;
+                     Var weight : Float = 0;
+                     Var color, length: Int = 0, 0;
+
+                    ##Here is comment-line
+                    Here is comment-line
+                    Here is comment-line##
+
+                    getWeight(a, c, d : Int ; b: Float){
+
+                    }
+                Constructor(a, c, d : Int ; b: Float){
+
+                }
+            }
+
+            

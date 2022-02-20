@@ -1,0 +1,16 @@
+
+                 Class TestString{
+                     Val str1, str2: String;
+                      Test(){
+                            str1 = "@@";
+                            str2 = "!@@";
+                            If(str1 ==. str2){
+                                Return "Equivalent";
+                            }
+                            Else{
+                                Return "Not Equivalent";
+                            }
+                      }
+                }
+
+            

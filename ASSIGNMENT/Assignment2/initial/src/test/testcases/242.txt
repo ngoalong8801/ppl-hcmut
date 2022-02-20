@@ -1,0 +1,11 @@
+
+                 Class Shape{
+                     getHeight(){
+                             Foreach( i In 1 .. 100 By 2){
+                                 Var a : Int;
+                                 a = a + 3;
+                          }
+                     }
+            }
+
+            

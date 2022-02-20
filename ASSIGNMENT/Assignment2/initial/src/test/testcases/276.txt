@@ -1,0 +1,19 @@
+
+                 Class Shape{
+                     Val height: Int;
+                      $getHeight(){
+
+                      }
+                }
+            Class Program{
+                Var a,b,c: Int = 3,5,6,7;
+                getRandom(){
+
+                }
+                main(){
+
+                }
+
+            }
+
+            

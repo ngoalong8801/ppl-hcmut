@@ -1,0 +1,23 @@
+
+                 Class Shape{
+                     Val height: Int;
+                      $getHeight(){
+
+                      }
+                }
+            Class Circle:Shape{
+
+            }
+            Class Program{
+                main(){
+                    Var arr : Array[Int, 5];
+                    Out.printString("Hello World \n \b \f");
+                   {
+                       {
+                           Out.printString("Test Block Statement \n");
+                       }
+                   }
+                }
+            }
+
+            

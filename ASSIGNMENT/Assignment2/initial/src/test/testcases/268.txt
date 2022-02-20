@@ -1,0 +1,17 @@
+
+                 Class Shape{
+                     Val height: Int;
+                      $getHeight(){
+
+                      }
+                }
+            Class Circle:Shape{
+
+            }
+            Class Program{
+                main(){
+                    Out.printString("Hello World \n \b \f");
+                }
+            }
+
+            

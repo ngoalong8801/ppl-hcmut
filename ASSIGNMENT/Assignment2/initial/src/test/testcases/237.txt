@@ -1,0 +1,22 @@
+
+                 Class Shape:People {
+                     Val result: Boolean;
+                     getHeight(){
+                         If(((a >= b) && (b < c)) || (a  % 2  == 0 || a != 999) ){
+                             result = True;
+                         }
+                         Elseif(a % 3 == 0 ){
+                              result = False;
+                          }
+                           Else{
+                                If( a > 100){
+
+                                }
+                               Else{
+
+                                }
+                         }
+                    }
+            }
+
+            

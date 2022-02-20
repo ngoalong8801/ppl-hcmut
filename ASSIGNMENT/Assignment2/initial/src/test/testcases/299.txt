@@ -1,0 +1,12 @@
+
+                Class Program{
+                    main(){
+                        {
+                            {
+                                {{{
+                            Var a : Int = 4;
+                            }
+                            }}}}}
+                    }
+                }
+            

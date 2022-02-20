@@ -1,0 +1,17 @@
+
+                Class Test{
+                    Var a,b: Int;
+                    random(){
+
+                    }
+
+                }
+                 Class MethodInvo{
+                     Var a, b : Int;
+                      Test(){
+                         Self.a = 8;
+                         Self.b = 9;
+                      }
+                }
+
+            
