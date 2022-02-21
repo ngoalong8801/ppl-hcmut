@@ -1,4 +1,4 @@
-# Generated from d:\BK COURSE\HK212\PPL\Assignment\Assignment2\initial\src\main\d96\parser\D96.g4 by ANTLR 4.8
+# Generated from d:\BK COURSE\HK212\PPL\Assignment\Assignment2\initial\src\main\d96\parser\D96.g4 by ANTLR 4.7.1
 from antlr4 import *
 from io import StringIO
 from typing.io import TextIO
@@ -6,7 +6,6 @@ import sys
 
 
 from lexererr import *
-
 
 
 def serializedATN():
@@ -404,7 +403,7 @@ class D96Lexer(Lexer):
 
     def __init__(self, input=None, output:TextIO = sys.stdout):
         super().__init__(input, output)
-        self.checkVersion("4.8")
+        self.checkVersion("4.7.1")
         self._interp = LexerATNSimulator(self, self.atn, self.decisionsToDFA, PredictionContextCache())
         self._actions = None
         self._predicates = None
@@ -425,7 +424,6 @@ class D96Lexer(Lexer):
             action(localctx, actionIndex)
         else:
             raise Exception("No registered action for:" + str(ruleIndex))
-
 
     def FLOAT_LITERAL_action(self, localctx:RuleContext , actionIndex:int):
         if actionIndex == 0:

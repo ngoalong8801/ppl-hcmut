@@ -15,28 +15,29 @@ class_decl:
 	| CLASS IDEN LP mem_decl+ RP
 	| CLASS IDEN COL IDEN LP RP
 	| CLASS IDEN COL IDEN LP mem_decl+ RP;
-mem_decl: attr_decl | func_decl | constr_decl | destr_decl;
+mem_decl: attr_decl | method_decl;
 
 // att_decl: ATTR (para_list_eq | para_list_nor) SEMI; //val $a, b, c : Int = 4,5,6;
 attr_decl: immutable_attr SEMI | mutable_attr SEMI;
-func_decl:
-	iden_dol LB RB block_stmt
-	| iden_dol LB params_list RB block_stmt;
+method_decl 
+			: constr_decl | destr_decl
+			| iden_dol LB RB block_stmt
+			| iden_dol LB params_list RB block_stmt;
 constr_decl:
 	CONSTRUCTOR LB RB block_stmt
 	| CONSTRUCTOR LB params_list RB block_stmt;
 destr_decl: DESTRUCTOR LB RB block_stmt;
 
 immutable_attr:
-	VAL id_list COL data_types OP_AS expr_list
-	| VAL id_list COL data_types;
+	VAL id_list_type OP_AS expr_list
+	| VAL id_list_type;
 mutable_attr:
 	VAR id_list_type OP_AS expr_list
 	| VAR id_list_type;
 
 params_list: id_list_type (SEMI id_list_type)*;
 
-id_list_type: id_list COL data_types;
+id_list_type: id_list COL data_type;
 id_list: iden_dol (COM iden_dol)*;
 
 expr_list: expr (COM expr)*;
@@ -58,7 +59,7 @@ assign_stmt: assign_lhs SEMI;
 assign_lhs: lhs OP_AS expr;
 lhs: IDEN | array_operator | field_access;
 
-data_types: INT | FLOAT | STRING | BOOLEAN | array_type;
+data_type: INT | FLOAT | STRING | BOOLEAN | array_type;
 
 if_stmt:
 	IF LB expr RB block_stmt (ELSEIF LB expr RB block_stmt)* (
@@ -117,7 +118,7 @@ muldi_arr: ARRAY LB array_list RB;
 array_list: indx_arr COM array_list | indx_arr;
 indx_arr: ARRAY LB expr_list RB;
 
-array_type: ARRAY LSB data_types COM literal RSB;
+array_type: ARRAY LSB data_type COM literal RSB;
 
 //Declare Literals
 list_literal: (literal COM)* literal;
