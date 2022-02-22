@@ -80,25 +80,26 @@ forin_stmt:
 
 // Expressions expr_stmt: expr SEMI;
 
-expr: expr ( OP_EQ_STR | OP_ADD_STR) expr1 | expr1;
+expr: expr1 ( OP_EQ_STR | OP_ADD_STR) expr1 | expr1;
 expr1:
-	expr1 (OP_LTE | OP_GTE | OP_NEQ | OP_LT | OP_GT | OP_EQ) expr2
+	expr2 (OP_LTE | OP_GTE | OP_NEQ | OP_LT | OP_GT | OP_EQ) expr2
 	| expr2;
 expr2: expr2 (OP_AND | OP_OR) expr3 | expr3;
 expr3: expr3 (OP_ADD | OP_SUB) expr4 | expr4;
 expr4: expr4 (OP_MUL | OP_DIV | OP_MOD) expr5 | expr5;
 expr5: OP_NOT expr5 | expr6;
 expr6: OP_SUB expr6 | expr7;
-expr7: expr8 LSB expr RSB | expr8;
+expr7: expr8 index_operators| expr8;
+index_operators: LSB expr RSB index_operators | LSB expr RSB;
 expr8 
 	: expr8 DOT IDEN
 	| expr8 DOT IDEN LB RB
 	| expr8 DOT IDEN LB expr_list RB
 	| expr9;
 expr9
-	 : expr9 DCOL DOL_IDEN
-	 | expr9 DCOL DOL_IDEN LB RB
-	 | expr9 DCOL DOL_IDEN LB expr_list RB
+	 : expr10 DCOL DOL_IDEN
+	 | expr10 DCOL DOL_IDEN LB RB
+	 | expr10 DCOL DOL_IDEN LB expr_list RB
 	 | expr10;
 expr10: NEW IDEN LB RB | NEW IDEN LB expr_list RB | expr11;
 expr11: LB expr RB | operands;
