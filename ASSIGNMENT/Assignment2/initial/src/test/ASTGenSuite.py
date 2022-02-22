@@ -10,7 +10,7 @@ class ASTGenSuite(unittest.TestCase):
         self.assertTrue(TestAST.test(input,expect,300))
     
     def test_class_declare_abstract(self):
-        """Test 1 """
+        """Test 2 """
         input = """Class Square : Shape{}"""
         expect = str(Program([ClassDecl(Id("Square"), [], Id("Shape"))]))
         self.assertTrue(TestAST.test(input, expect, 301))
@@ -18,10 +18,27 @@ class ASTGenSuite(unittest.TestCase):
     def test_att_decl(self):
         """Test 3"""
         input = """Class Shape{
-                Val a, b: Int;
+                Val a: Int;
              }"""
-        expect = str(Program([ClassDecl(Id("Shape"), [AttributeDecl(Static(),ConstDecl(Id("a"),IntType(),None))])]))
+        expect = str(Program([ClassDecl(Id("Shape"), [AttributeDecl(Instance(),ConstDecl(Id("a"),IntType(),None))])]))
         self.assertTrue(TestAST.test(input, expect, 302))
+    
+    def test_att_decl_opas(self):
+        """Test 4"""
+        input = """Class Shape{
+                Val a: Int = 4;
+             }"""
+        expect = str(Program([ClassDecl(Id("Shape"), [AttributeDecl(
+            Instance(), ConstDecl(Id("a"), IntType(), IntLiteral(4)))])]))
+        self.assertTrue(TestAST.test(input, expect, 303))
+    
+    def test_mutable_clr(self):
+        """Test 5"""
+        input = """Class Square{
+                Var abc : Float;
+             }"""
+        expect = str(Program([ClassDecl(Id("Square"), [AttributeDecl(Instance(), VarDecl(Id("abc"), FloatType()))])]))
+        self.assertTrue(TestAST.test(input, expect, 304))
 
 
     # def test_more_complex_program(self):

@@ -103,7 +103,14 @@ expr9
 	 | expr10;
 expr10: NEW IDEN LB RB | NEW IDEN LB expr_list RB | expr11;
 expr11: LB expr RB | operands;
-operands: IDEN | literal | SELF DOT IDEN | SELF DCOL IDEN;
+operands: IDEN | literal | SELF | NULL;
+list_literal: (literal COM)* literal;
+literal:
+	INTEGER_LITERAL
+	| FLOAT_LITERAL
+	| BOOLEAN_LITERAL
+	| STRING_LITERAL
+	| array;
 array_operator: expr8 LSB expr RSB;
 field_access: expr DOT IDEN | expr DCOL IDEN;
 
@@ -122,14 +129,7 @@ indx_arr: ARRAY LB expr_list RB;
 array_type: ARRAY LSB data_type COM literal RSB;
 
 //Declare Literals
-list_literal: (literal COM)* literal;
 
-literal:
-	INTEGER_LITERAL
-	| FLOAT_LITERAL
-	| BOOLEAN_LITERAL
-	| STRING_LITERAL
-	| array;
 
 FLOAT_LITERAL:
 	(
