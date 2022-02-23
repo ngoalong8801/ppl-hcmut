@@ -17,16 +17,9 @@ class_decl:
 	| CLASS IDEN COL IDEN LP mem_decl+ RP;
 mem_decl: attr_decl | method_decl;
 
+/*** Attribute Declare ***/
 // att_decl: ATTR (para_list_eq | para_list_nor) SEMI; //val $a, b, c : Int = 4,5,6;
 attr_decl: immutable_attr SEMI | mutable_attr SEMI;
-method_decl 
-			: constr_decl | destr_decl
-			| iden_dol LB RB block_stmt
-			| iden_dol LB params_list RB block_stmt;
-constr_decl:
-	CONSTRUCTOR LB RB block_stmt
-	| CONSTRUCTOR LB params_list RB block_stmt;
-destr_decl: DESTRUCTOR LB RB block_stmt;
 
 immutable_attr:
 	VAL id_list_type OP_AS expr_list
@@ -35,38 +28,54 @@ mutable_attr:
 	VAR id_list_type OP_AS expr_list
 	| VAR id_list_type;
 
-params_list: id_list_type (SEMI id_list_type)*;
-
 id_list_type: id_list COL data_type;
 id_list: iden_dol (COM iden_dol)*;
-
-expr_list: expr (COM expr)*;
 iden_dol: IDEN | DOL_IDEN;
+expr_list: expr (COM expr)*;
+data_type: INT | FLOAT | STRING | BOOLEAN | array_type;
+/*** Method Declare ***/
+method_decl 
+			: constr_decl | destr_decl
+			| iden_dol LB RB block_stmt
+			| iden_dol LB params_list RB block_stmt;
 
-block_stmt: LP (block_items | block_stmt)* RP;
+constr_decl:
+	CONSTRUCTOR LB RB block_stmt
+	| CONSTRUCTOR LB params_list RB block_stmt;
+destr_decl: DESTRUCTOR LB RB block_stmt;
 
-block_items:
-	assign_stmt
-	| if_stmt
-	| attr_decl
-	| break_stmt
-	| continue_stmt
-	| forin_stmt
-	| return_stmt
-	| method_invocation_stmt;
+params_list: id_list_type (SEMI id_list_type)*;
+
+
+block_stmt : LP block_item+ RP | LP RP;
+block_item
+			: assign_stmt
+			| if_stmt
+			| attr_decl
+			| break_stmt
+			| continue_stmt
+			| forin_stmt
+			| return_stmt
+			| method_invocation_stmt
+			| block_stmt;
 
 assign_stmt: assign_lhs SEMI;
 assign_lhs: lhs OP_AS expr;
 lhs: IDEN | array_operator | field_access;
+array_operator: expr8 index_operators;
 
-data_type: INT | FLOAT | STRING | BOOLEAN | array_type;
+field_access: expr DOT IDEN | expr DCOL DOL_IDEN;
 
-if_stmt:
-	IF LB expr RB block_stmt (ELSEIF LB expr RB block_stmt)* (
-		ELSE block_stmt
-	)?;
 
-return_stmt: RETURN expr? SEMI;
+if_stmt	
+		: if_element elif_elements else_element
+		| if_element elif_elements
+		| if_element else_element
+		| if_element;
+if_element: IF LB expr RB block_stmt;
+elif_elements:elif_element elif_elements | elif_element;
+elif_element: ELSEIF LB expr RB block_stmt;
+else_element: ELSE block_stmt;
 
 break_stmt: BREAK SEMI;
 
@@ -77,6 +86,16 @@ forin_stmt:
 	FOREACH LB IDEN IN INTEGER_LITERAL DDOT INTEGER_LITERAL (
 		BY INTEGER_LITERAL
 	)? RB block_stmt;
+
+return_stmt: RETURN expr? SEMI;
+
+method_invocation_stmt: method_invocation SEMI;
+method_invocation
+					: expr DOT IDEN LB RB
+					| expr DOT IDEN LB expr_list RB
+					| expr DCOL DOL_IDEN LB RB
+					| expr DCOL DOL_IDEN LB expr_list RB;
+
 
 // Expressions expr_stmt: expr SEMI;
 
@@ -111,22 +130,15 @@ literal:
 	| BOOLEAN_LITERAL
 	| STRING_LITERAL
 	| array;
-array_operator: expr8 LSB expr RSB;
-field_access: expr DOT IDEN | expr DCOL IDEN;
 
-method_invocation_stmt: method_invocation SEMI;
-method_invocation
-					: expr DOT IDEN LB RB
-					| expr DOT IDEN LB expr_list RB
-					| expr DCOL DOL_IDEN LB RB
-					| expr DCOL DOL_IDEN LB expr_list RB;
+
 
 array: muldi_arr | indx_arr;
 muldi_arr: ARRAY LB array_list RB;
 array_list: indx_arr COM array_list | indx_arr;
 indx_arr: ARRAY LB expr_list RB;
 
-array_type: ARRAY LSB data_type COM literal RSB;
+array_type: ARRAY LSB data_type COM INTEGER_LITERAL RSB;
 
 //Declare Literals
 

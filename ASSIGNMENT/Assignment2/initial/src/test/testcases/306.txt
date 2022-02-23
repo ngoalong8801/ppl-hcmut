@@ -1,0 +1,5 @@
+Class assign_test{
+                getTest(){
+                    res = 7;
+                }
+             }

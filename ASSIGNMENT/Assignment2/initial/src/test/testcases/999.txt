@@ -1,5 +1,12 @@
 
                      Class Shape{
-                         Val a : Int ;
+                         test(){
+                             {
+                                a = 4;
+                                 {
+                                }
+
+                             }
+                         }
                   }
             

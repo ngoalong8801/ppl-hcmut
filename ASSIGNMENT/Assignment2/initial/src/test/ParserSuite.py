@@ -1895,7 +1895,14 @@ class ParserSuite(unittest.TestCase):
         """Class declare"""
         input = """
                      Class Shape{
-                         Val a : Int ;
+                         test(){
+                             {
+                                a = 4;
+                                 {
+                                }
+
+                             }
+                         }
                   }
             """
         expect = "successful"

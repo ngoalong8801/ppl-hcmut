@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(assign_test),[MethodDecl(Id(getTest),Instance,[],Block([AssignStmt(Id(res),IntLit(7))]))])])

@@ -1,0 +1,13 @@
+Class assign_test{
+                getTest(){
+                    If(a){
+
+                    }
+                    Elseif(b){
+
+                    }
+                    Elseif(c){
+                        
+                    }
+                }
+             }
