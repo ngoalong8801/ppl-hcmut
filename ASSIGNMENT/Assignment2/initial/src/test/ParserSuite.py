@@ -1896,12 +1896,13 @@ class ParserSuite(unittest.TestCase):
         input = """
                      Class Shape{
                          test(){
-                             {
-                                a = 4;
-                                 {
-                                }
+                            If(a){
 
-                             }
+                            }
+                            Else{}
+                           
+                           
+                       
                          }
                   }
             """

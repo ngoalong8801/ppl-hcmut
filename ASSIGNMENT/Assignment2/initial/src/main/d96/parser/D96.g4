@@ -66,14 +66,12 @@ array_operator: expr8 index_operators;
 
 field_access: expr DOT IDEN | expr DCOL DOL_IDEN;
 
-
-if_stmt	
-		: if_element elif_elements else_element
-		| if_element elif_elements
-		| if_element else_element
+if_stmt	: if_element else_stmt
 		| if_element;
 if_element: IF LB expr RB block_stmt;
-elif_elements:elif_element elif_elements | elif_element;
+else_stmt : elif_element else_stmt
+		  | elif_element
+		  | else_element;
 elif_element: ELSEIF LB expr RB block_stmt;
 else_element: ELSE block_stmt;
 

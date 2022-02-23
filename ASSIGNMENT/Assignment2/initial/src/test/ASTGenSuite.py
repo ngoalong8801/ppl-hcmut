@@ -68,11 +68,9 @@ class ASTGenSuite(unittest.TestCase):
                     If(a){
 
                     }
-                    Elseif(b){
-
-                    }
-                    Elseif(c){
-                        
+                   
+                    Else{
+                        a = 4;
                     }
                 }
              }"""

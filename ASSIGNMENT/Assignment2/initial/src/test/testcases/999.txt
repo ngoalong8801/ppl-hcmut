@@ -1,12 +1,13 @@
 
                      Class Shape{
                          test(){
-                             {
-                                a = 4;
-                                 {
-                                }
+                            If(a){
 
-                             }
+                            }
+                            Else{}
+                           
+                           
+                       
                          }
                   }
             

@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(assign_test),[MethodDecl(Id(getTest),Instance,[],Block([If(a,None,If(b,None,If(c,None)))]))])])
+Program([ClassDecl(Id(assign_test),[MethodDecl(Id(getTest),Instance,[],Block([If(Id(a),None,Block([AssignStmt(Id(a),IntLit(4))]))]))])])

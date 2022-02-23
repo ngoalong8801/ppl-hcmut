@@ -1,8 +1,6 @@
-from dataclasses import Field
-from AST import *
-from D96Parser import D96Parser
 from D96Visitor import D96Visitor
-from StaticError import Variable
+from D96Parser import D96Parser
+from AST import *
 
 
 class ASTGeneration(D96Visitor):
@@ -62,7 +60,9 @@ class ASTGeneration(D96Visitor):
         return [self.visit(iden_dol) for iden_dol in ctx.iden_dol()]
     
     def visitIden_dol(self, ctx: D96Parser.Iden_dolContext):
-            return Id(ctx.IDEN().getText())
+            if ctx.IDEN():
+                return Id(ctx.IDEN().getText())
+            return Id(ctx.DOL_IDEN().getText())
 
     def visitExpr_list(self, ctx: D96Parser.Expr_listContext):
         return [self.visit(x) for x in ctx.expr()]
@@ -123,29 +123,28 @@ class ASTGeneration(D96Visitor):
     """                  If Statement                      """
     def visitIf_stmt(self, ctx: D96Parser.If_stmtContext):
         expr_thenStmt = self.visit(ctx.getChild(0))
-        if ctx.getChildCount() == 3:
-            return
-        elif(ctx.getChildCount() == 2 ):
-            if ctx.elif_elements():
-                return If(expr_thenStmt[0], expr_thenStmt[1] , self.visit(ctx.getChild(1)))
+        if(ctx.getChildCount() == 2 ):
+            return If(expr_thenStmt[0], expr_thenStmt[1] , self.visit(ctx.getChild(1)))
         else:
             return If(expr_thenStmt[0], expr_thenStmt[1])
 
-    def visitIf_element(self, ctx: D96Parser.If_stmtContext):
+    def visitIf_element(self, ctx: D96Parser.If_elementContext):
         return (self.visit(ctx.expr()), self.visit(ctx.block_stmt()))
-
-    def visitElif_elements(self, ctx: D96Parser.Elif_elementsContext):
+    
+    def visitElse_stmt(self, ctx: D96Parser.Else_stmtContext):
         expr_thenStmt = self.visit(ctx.getChild(0))
-        if ctx.getChildCount() == 2:
+        if(ctx.getChildCount() == 2):
             return If(expr_thenStmt[0], expr_thenStmt[1], self.visit(ctx.getChild(1)))
-        return If(expr_thenStmt[0], expr_thenStmt[1])
-        
+        elif ctx.elif_element():
+            return If(expr_thenStmt[0], expr_thenStmt[1])
+        return self.visit(ctx.getChild(0))
+    
     def visitElif_element(self, ctx: D96Parser.Elif_elementContext):
         return (self.visit(ctx.expr()), self.visit(ctx.block_stmt()))
-
+    
     def visitElse_element(self, ctx: D96Parser.Else_elementContext):
         return self.visit(ctx.block_stmt())
-
+ 
     """                  Break Statement                      """
     def visitBreak_stmt(self, ctx: D96Parser.Break_stmtContext):
         return Break()
@@ -262,7 +261,7 @@ class ASTGeneration(D96Visitor):
     
     def visitOperands(self, ctx: D96Parser.OperandsContext):
         if ctx.IDEN():
-            return ctx.IDEN().getText()
+            return Id(ctx.IDEN().getText())
         elif ctx.literal():
             return self.visit(ctx.getChild(0))
         elif ctx.SELF():

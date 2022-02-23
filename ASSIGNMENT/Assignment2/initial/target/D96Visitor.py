@@ -129,8 +129,8 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#elif_elements.
-    def visitElif_elements(self, ctx:D96Parser.Elif_elementsContext):
+    # Visit a parse tree produced by D96Parser#else_stmt.
+    def visitElse_stmt(self, ctx:D96Parser.Else_stmtContext):
         return self.visitChildren(ctx)
 
 

@@ -3,11 +3,9 @@ Class assign_test{
                     If(a){
 
                     }
-                    Elseif(b){
-
-                    }
-                    Elseif(c){
-                        
+                   
+                    Else{
+                        a = 4;
                     }
                 }
              }
