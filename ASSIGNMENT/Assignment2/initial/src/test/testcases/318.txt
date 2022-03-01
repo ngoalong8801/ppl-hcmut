@@ -1,0 +1,7 @@
+
+        Class Program {
+            testFun() {
+                obj.getName(12, 3);
+            }
+        }
+        

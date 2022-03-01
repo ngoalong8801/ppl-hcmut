@@ -1,0 +1,4 @@
+Class Program {
+            Val a: Int = 3 + 4 * 5;
+            Val b: Int = (1 + 2) * 6;
+        }

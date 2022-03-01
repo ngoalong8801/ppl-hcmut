@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(A),[MethodDecl(Id(MyTest),Instance,[],Block([AttributeDecl(Instance,VarDecl(Id(myArray),ArrayType(IntLit(5),IntType),[IntLit(1),IntLit(3),IntLit(5),IntLit(7),IntLit(9)]))]))])])

@@ -1,0 +1,7 @@
+
+        Class Program {
+            testFun() {
+                Var a: Int = 12;
+            }
+        }
+        

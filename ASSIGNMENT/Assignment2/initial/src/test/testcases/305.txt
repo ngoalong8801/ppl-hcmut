@@ -1,3 +1,5 @@
-Class Square{
-                Var a, b: Float;
-             }
+
+        Class Program {
+            Var a, b: Int = 12, 13;
+        }
+        

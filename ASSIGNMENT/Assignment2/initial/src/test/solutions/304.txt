@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Square),[AttributeDecl(Instance,VarDecl(Id(abc),FloatType))])])
+Program([ClassDecl(Id(Program),[AttributeDecl(Instance,VarDecl(Id(a),IntType)),AttributeDecl(Static,VarDecl(Id($b),IntType))])])

@@ -1,0 +1,7 @@
+Class A {
+            MyTest() {
+                Var a: Int;
+                Var b: Float = 0.2;
+            }
+            Destructor() {}
+        }

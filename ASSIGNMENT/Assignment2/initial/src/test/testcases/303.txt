@@ -1,3 +1,5 @@
-Class Shape{
-                Val a: Int = 4;
-             }
+
+        Class Program {
+            testFunc(My1stCons, My2ndCons: Int; MyFloat: Float) {}
+        }
+        

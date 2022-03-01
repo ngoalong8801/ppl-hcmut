@@ -1,0 +1,8 @@
+Class A {
+            MyTest() {
+                Var a: Int = 5;
+                Var b: Float = 3.5;
+                Var c: String = "Hello";
+                Var d: Boolean = True;
+            }
+        }

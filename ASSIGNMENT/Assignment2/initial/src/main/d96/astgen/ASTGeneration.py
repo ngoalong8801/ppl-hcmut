@@ -1,14 +1,17 @@
+from functools import reduce
 from D96Visitor import D96Visitor
 from D96Parser import D96Parser
 from AST import *
 
-
 class ASTGeneration(D96Visitor):
+    className = None
     def visitProgram(self, ctx: D96Parser.ProgramContext):
         return Program([self.visit(x) for x in ctx.class_decl()])
     
     def visitClass_decl(self, ctx: D96Parser.Class_declContext):
         mem_decl_list = []
+        global className 
+        className = ctx.IDEN(0).getText()
         if ctx.COL(): 
             if ctx.mem_decl():
                return ClassDecl(Id(ctx.IDEN(0).getText()), [self.visit(x) for x in ctx.mem_decl()]), Id(ctx.IDEN(1).getText())
@@ -65,7 +68,9 @@ class ASTGeneration(D96Visitor):
             return Id(ctx.DOL_IDEN().getText())
 
     def visitExpr_list(self, ctx: D96Parser.Expr_listContext):
-        return [self.visit(x) for x in ctx.expr()]
+        if ctx.getChildCount() == 3:
+            return [self.visit(ctx.expr())] + self.visit(ctx.expr_list())
+        return [self.visit(ctx.expr())] 
 
     def visitData_type(self, ctx: D96Parser.Data_typeContext):
         if ctx.INT():
@@ -80,30 +85,50 @@ class ASTGeneration(D96Visitor):
             return self.visit(ctx.getChild(0))
     
     def visitMethod_decl(self, ctx: D96Parser.Method_declContext):
-        if ctx.constr_decl():
-            return [self.visit(ctx.getChild(0))]
-        elif ctx.destr_decl():
+        global className
+        if ctx.getChildCount() == 1:
             return [self.visit(ctx.getChild(0))]
         else:
-            iden_dol = self.visit(ctx.getChild(0))
-            kind = lambda x: Static() if x.name[0] == '$' else Instance()
-            if ctx.getChildCount() == 4:
-                return [MethodDecl(kind(iden_dol), iden_dol, [], self.visit(ctx.getChild(3)))] 
+            iden_dol = self.visit(ctx.iden_dol())
+            if(className == 'Program' and iden_dol == Id("main") and not ctx.params_list()):
+                 kind = lambda x: Static()
+                 className = None
             else:
-                return [MethodDecl(kind(iden_dol), iden_dol, self.visit(ctx.getChild(2)), self.visit(ctx.getChild(4)))]
+                 kind = lambda x: Static() if x.name[0] == '$' else Instance()
+            if ctx.getChildCount() == 4:
+                return [MethodDecl(kind(iden_dol), iden_dol, [], self.visit(ctx.block_stmt()))] 
+            else:
+                return [MethodDecl(kind(iden_dol), iden_dol, self.visit(ctx.params_list()), self.visit(ctx.block_stmt()))]
     
+    def visitConstr_decl(self, ctx: D96Parser.Constr_declContext):
+        if ctx.getChildCount() == 5:
+            return MethodDecl(Instance(), Id(ctx.CONSTRUCTOR().getText()), self.visit(ctx.params_list()), self.visit(ctx.block_stmt()))
+        return MethodDecl(Instance(), Id(ctx.CONSTRUCTOR().getText()), [], self.visit(ctx.block_stmt()))
+
+    def visitDestr_decl(self, ctx: D96Parser.Destr_declContext):
+        return MethodDecl(Instance(), Id(ctx.DESTRUCTOR().getText()), [], self.visit(ctx.block_stmt()))
+
+    def visitParams_list(self, ctx: D96Parser.Params_listContext):
+        if ctx.getChildCount() == 3 :
+            return self.visit(ctx.param_decl()) + self.visit(ctx.params_list())
+        return self.visit(ctx.param_decl())
+
+    def visitParam_decl(self, ctx: D96Parser.Param_declContext):
+        return [VarDecl(id, varType) for(id, varType) in self.visit(ctx.id_list_type())]
+
     def visitBlock_stmt(self, ctx: D96Parser.Block_stmtContext):
-        if ctx.getChildCount() == 3:
-            return Block([self.visit(x) for x in ctx.block_item()])
-        else:
-            return None;
+        if ctx.getChildCount() != 2:
+            listItem = reduce(lambda x, y : x + self.visit(y) if isinstance(self.visit(y), list) 
+                                else x + [self.visit(y)], ctx.block_item(), [])
+            return Block(listItem)
+        return Block([]);
     
     def visitBlock_item(self, ctx: D96Parser.Block_itemContext):
         return self.visit(ctx.getChild(0))
     
     """                  Assign Statement                      """
     def visitAssign_stmt(self, ctx: D96Parser.Assign_stmtContext):
-        return self.visit(ctx.getChild(0))
+        return self.visit(ctx.assign_lhs())
     
     def visitAssign_lhs(self, ctx: D96Parser.Assign_lhsContext):
         return Assign(self.visit(ctx.lhs()), self.visit(ctx.expr()))
@@ -115,16 +140,16 @@ class ASTGeneration(D96Visitor):
             return self.visit(ctx.getChild(0))
     
     def visitArray_operator(self, ctx: D96Parser.Array_operatorContext):
-        return ArrayCell(self.visit(ctx.getChild(0)), self.visit(ctx.getChild(1)))
+        return ArrayCell(self.visit(ctx.expr8()), self.visit(ctx.index_operators()))
     
     def visitField_access(self, ctx: D96Parser.Field_accessContext):
-        return FieldAccess(self.visit(ctx.getChild(0), Id(ctx.getChild(2).getText())))
+        return FieldAccess(self.visit(ctx.expr(), Id(ctx.getChild(2).getText())))
 
     """                  If Statement                      """
     def visitIf_stmt(self, ctx: D96Parser.If_stmtContext):
-        expr_thenStmt = self.visit(ctx.getChild(0))
+        expr_thenStmt = self.visit(ctx.if_element())
         if(ctx.getChildCount() == 2 ):
-            return If(expr_thenStmt[0], expr_thenStmt[1] , self.visit(ctx.getChild(1)))
+            return If(expr_thenStmt[0], expr_thenStmt[1] , self.visit(ctx.else_stmt()))
         else:
             return If(expr_thenStmt[0], expr_thenStmt[1])
 
@@ -132,12 +157,12 @@ class ASTGeneration(D96Visitor):
         return (self.visit(ctx.expr()), self.visit(ctx.block_stmt()))
     
     def visitElse_stmt(self, ctx: D96Parser.Else_stmtContext):
-        expr_thenStmt = self.visit(ctx.getChild(0))
-        if(ctx.getChildCount() == 2):
-            return If(expr_thenStmt[0], expr_thenStmt[1], self.visit(ctx.getChild(1)))
-        elif ctx.elif_element():
+        if ctx.elif_element():
+            expr_thenStmt = self.visit(ctx.elif_element())
+            if(ctx.getChildCount() == 2):
+                return If(expr_thenStmt[0], expr_thenStmt[1], self.visit(ctx.else_stmt()))
             return If(expr_thenStmt[0], expr_thenStmt[1])
-        return self.visit(ctx.getChild(0))
+        return self.visit(ctx.else_element())
     
     def visitElif_element(self, ctx: D96Parser.Elif_elementContext):
         return (self.visit(ctx.expr()), self.visit(ctx.block_stmt()))
@@ -154,9 +179,9 @@ class ASTGeneration(D96Visitor):
     
     def visitForin_stmt(self, ctx: D96Parser.Forin_stmtContext):
         if ctx.BY():
-            return For(Id(ctx.IDEN().getText()), IntLiteral(ctx.INTEGER_LITERAL(0)), IntLiteral(ctx.INTEGER_LITERAL(1)), self.visit(ctx.block_stmt()), IntLiteral(ctx.INTEGER_LITERAL(2)))
+            return For(Id(ctx.IDEN().getText()), IntLiteral(int(ctx.INTEGER_LITERAL(0).getText())), IntLiteral(int(ctx.INTEGER_LITERAL(1).getText())), self.visit(ctx.block_stmt()), IntLiteral(int(ctx.INTEGER_LITERAL(2).getText())))
         else:
-            return For(Id(ctx.IDEN().getText()), IntLiteral(ctx.INTEGER_LITERAL(0)), IntLiteral(ctx.INTEGER_LITERAL(1)), self.visit(ctx.block_stmt()))
+            return For(Id(ctx.IDEN().getText()), IntLiteral(int(ctx.INTEGER_LITERAL(0).getText())), IntLiteral(int(ctx.INTEGER_LITERAL(1).getText())), self.visit(ctx.block_stmt()), IntLiteral(1))
 
     def visitReturn_stmt(self, ctx: D96Parser.Return_stmtContext):
         if ctx.expr():
@@ -164,86 +189,84 @@ class ASTGeneration(D96Visitor):
         return Return()
 
     def visitMethod_invocation_stmt(self, ctx: D96Parser.Method_invocation_stmtContext):
-        return self.visit(ctx.getChild(0))
+        return self.visit(ctx.method_invocation())
     
     def visitMethod_invocation(self, ctx: D96Parser.Method_invocationContext):
         if ctx.expr_list():
-            return CallExpr(self.visit(ctx.getChild(0)), self.visit(ctx.getChild(2)), self.visit(ctx.getChild(4)))
-        return CallExpr(self.visit(ctx.getChild(0)), self.visit(ctx.getChild(2)), [])
+            return CallStmt(self.visit(ctx.expr()), Id(ctx.getChild(2).getText()), self.visit(ctx.expr_list()))
+        return CallStmt(self.visit(ctx.expr()), Id(ctx.getChild(2).getText()), [])
     "                                                         "
     def visitExpr(self, ctx: D96Parser.ExprContext):
         if ctx.getChildCount() == 3:
-            return BinaryOp(ctx.getChild(1).getText(), self.visit(ctx.getChild(0)), self.visit(ctx.getChild(2)))
-        else: 
-            return self.visit(ctx.getChild(0))
+            return BinaryOp(ctx.getChild(1).getText(), self.visit(ctx.expr1(0)), self.visit(ctx.expr1(1)))
+        return self.visit(ctx.expr1(0))
         
     def visitExpr1(self, ctx: D96Parser.Expr1Context):
         if ctx.getChildCount() == 3:
-            return BinaryOp(ctx.getChild(1).getText(), self.visit(ctx.getChild(0)), self.visit(ctx.getChild(2)))
-        else: 
-            return self.visit(ctx.getChild(0))
+            return BinaryOp(ctx.getChild(1).getText(), self.visit(ctx.expr2(0)), self.visit(ctx.expr2(1)))
+        return self.visit(ctx.expr2(0))
     
     def visitExpr2(self, ctx: D96Parser.Expr2Context):
         if ctx.getChildCount() == 3:
-            return BinaryOp(ctx.getChild(1).getText(), self.visit(ctx.getChild(0)), self.visit(ctx.getChild(2)))
+            return BinaryOp(ctx.getChild(1).getText(), self.visit(ctx.expr2()), self.visit(ctx.expr3()))
         else:
-            return self.visit(ctx.getChild(0))
+            return self.visit(ctx.expr3())
     
     def visitExpr3(self, ctx: D96Parser.Expr3Context):
         if ctx.getChildCount() == 3:
-            return BinaryOp(ctx.getChild(1).getText(), self.visit(ctx.getChild(0)), self.visit(ctx.getChild(2)))
+            return BinaryOp(ctx.getChild(1).getText(), self.visit(ctx.expr3()), self.visit(ctx.expr4()))
         else:
-            return self.visit(ctx.getChild(0))
+            return self.visit(ctx.expr4())
     
     def visitExpr4(self, ctx: D96Parser.Expr4Context):
         if ctx.getChildCount() == 3:
-            return BinaryOp(ctx.getChild(1).getText(), self.visit(ctx.getChild(0)), self.visit(ctx.getChild(2)))
+            return BinaryOp(ctx.getChild(1).getText(), self.visit(ctx.expr4()), self.visit(ctx.expr5()))
         else:
-            return self.visit(ctx.getChild(0))
+            return self.visit(ctx.expr5())
 
     def visitExpr5(self, ctx: D96Parser.Expr5Context):
         if ctx.getChildCount() == 2:
-            return UnaryOp(ctx.getChild(0).getText(), self.visit(ctx.getChild(1)))
+            return UnaryOp(ctx.getChild(0).getText(), self.visit(ctx.expr5()))
         else:
-            return self.visit(ctx.getChild(0))
+            return self.visit(ctx.expr6())
 
     def visitExpr6(self, ctx: D96Parser.Expr6Context):
         if ctx.getChildCount() == 2:
-            return UnaryOp(ctx.getChild(0).getText(), self.visit(ctx.getChild(1)))
+            return UnaryOp(ctx.getChild(0).getText(), self.visit(ctx.expr6()))
         else:
-            return self.visit(ctx.getChild(0))
+            return self.visit(ctx.expr7())
     
     def visitExpr7(self, ctx: D96Parser.Expr7Context):
         if ctx.getChildCount() == 2:
-            return ArrayCell(self.visit(ctx.getChild(0)), self.visit(ctx.getChild(1)))
+            return ArrayCell(self.visit(ctx.expr8()), self.visit(ctx.index_operators()))
         else:
-            return self.visit(ctx.getChild(0))
+            return self.visit(ctx.expr8())
     
     def visitIndex_operators(self, ctx: D96Parser.Index_operatorsContext):
         if ctx.getChildCount() == 4:
-            return [self.visit(ctx.getChild(1))] + self.visit(ctx.getChild(3))
+            return [self.visit(ctx.expr())] + self.visit(ctx.index_operators())
         else: 
-            return [self.visit(ctx.getChild(1))]
+            return [self.visit(ctx.expr())]
 
     def visitExpr8(self, ctx: D96Parser.Expr8Context):
         if ctx.getChildCount() == 3:
-            return FieldAccess(self.visit(ctx.getChild(0)), Id(ctx.IDEN().getText()))
-        elif ctx.getChildCount() == 4:
-            return CallExpr(self.visit(ctx.getChild(0)), Id(ctx.IDEN().getText()), [])
+            return FieldAccess(self.visit(ctx.expr8()), Id(ctx.IDEN().getText()))
         elif ctx.getChildCount() == 5:
-            return CallExpr(self.visit(ctx.getChild(0)), Id(ctx.IDEN().getText()), self.visit(ctx.expr_list()))
+            return CallExpr(self.visit(ctx.expr8()), Id(ctx.IDEN().getText()), [])
+        elif ctx.getChildCount() == 6:
+            return CallExpr(self.visit(ctx.expr8()), Id(ctx.IDEN().getText()), self.visit(ctx.expr_list()))
         else:
-            return self.visit(ctx.getChild(0))
+            return self.visit(ctx.expr9())
         
     def visitExpr9(self, ctx: D96Parser.Expr9Context):
         if ctx.getChildCount() == 3:
-            return FieldAccess(self.visit(ctx.getChild(0)), Id(ctx.IDEN().getText()))
-        elif ctx.getChildCount() == 4:
-            return CallExpr(self.visit(ctx.getChild(0)), Id(ctx.IDEN().getText()), [])
+            return FieldAccess(self.visit(ctx.expr10()), Id(ctx.DOL_IDEN().getText()))
         elif ctx.getChildCount() == 5:
-            return CallExpr(self.visit(ctx.getChild(0)), Id(ctx.IDEN().getText()), self.visit(ctx.expr_list()))
+            return CallExpr(self.visit(ctx.expr10()), Id(ctx.DOL_IDEN().getText()), [])
+        elif ctx.getChildCount() == 6:
+            return CallExpr(self.visit(ctx.expr10()), Id(ctx.DOL_IDEN().getText()), self.visit(ctx.expr_list()))
         else:
-            return self.visit(ctx.getChild(0))
+            return self.visit(ctx.expr10())
         
     def visitExpr10(self, ctx: D96Parser.Expr10Context):
         if ctx.getChildCount() == 4:
@@ -251,13 +274,13 @@ class ASTGeneration(D96Visitor):
         elif ctx.getChildCount() == 5:
             return NewExpr(Id(ctx.IDEN().getText()), self.visit(ctx.expr_list()))
         else:
-            return self.visit(ctx.getChild(0))
+            return self.visit(ctx.expr11())
     
     def visitExpr11(self, ctx: D96Parser.Expr11Context):
         if ctx.getChildCount() == 3:
-            return self.visit(ctx.getChild(1))
+            return self.visit(ctx.expr())
         else:
-            return self.visit(ctx.getChild(0))
+            return self.visit(ctx.operands())
     
     def visitOperands(self, ctx: D96Parser.OperandsContext):
         if ctx.IDEN():
@@ -268,17 +291,22 @@ class ASTGeneration(D96Visitor):
             return SelfLiteral()
         else:
             return NullLiteral()
-    
+    def visitList_literal(self, ctx: D96Parser.List_literalContext):
+        if ctx.getChildCount() == 3:
+            return [self.visit(ctx.literal())] + self.visit(ctx.list_literal())
+        return [self.visit(ctx.literal())]
+
     def visitLiteral(self, ctx: D96Parser.LiteralContext):
         if ctx.INTEGER_LITERAL():
             return IntLiteral(int(ctx.INTEGER_LITERAL().getText()))
         elif ctx.FLOAT_LITERAL():
+            
             return FloatLiteral(float(ctx.FLOAT_LITERAL().getText()))
         elif ctx.BOOLEAN_LITERAL():
-            return BooleanLiteral(bool(ctx.BOOLEAN_LITERAL().getText()))
+            return BooleanLiteral(ctx.BOOLEAN_LITERAL().getText() == 'True')
         elif ctx.STRING_LITERAL():
             return StringLiteral(ctx.STRING_LITERAL().getText())
-        return self.visit(ctx.getChild(0))
+        return self.visit(ctx.array())
     
     def visitArray(self, ctx: D96Parser.ArrayContext):
         return self.visit(ctx.getChild(0))
@@ -288,40 +316,16 @@ class ASTGeneration(D96Visitor):
     
     def visitArray_list(self, ctx: D96Parser.Array_listContext):
         if ctx.getChildCount() == 3:
-            return [self.visit(ctx.getChild(0))] + self.visit(ctx.getChild(2))
-        return [self.visit(ctx.getChild(0))]
+            return [self.visit(ctx.indx_arr())] + self.visit(ctx.array_list())
+        return [self.visit(ctx.indx_arr())]
     
     def visitIndx_arr(self, ctx: D96Parser.Indx_arrContext):
         return ArrayLiteral(self.visit(ctx.expr_list()))
 
     def visitArray_type(self, ctx: D96Parser.Array_typeContext):
-        return ArrayType(IntLiteral(int(ctx.INTEGER_LITERAL().getText())), self.visit(ctx.getChild(2)))
+        return ArrayType(IntLiteral(int(ctx.INTEGER_LITERAL().getText())), self.visit(ctx.data_type()))
         
     
 
     
     
-
-    # def visitProgram(self, ctx: D96Parser.ProgramContext):
-    #     return Program([FuncDecl(Id("main"),
-    #                              [],
-    #                              self.visit(ctx.mptype()),
-    #                              Block([], [self.visit(ctx.body())] if ctx.body() else []))])
-
-    # def visitMptype(self, ctx: D96Parser.MptypeContext):
-    #     if ctx.INTTYPE():
-    #         return IntType()
-    #     else:
-    #         return VoidType()
-
-    # def visitBody(self, ctx: D96Parser.BodyContext):
-    #     return self.visit(ctx.funcall())
-
-    # def visitFuncall(self, ctx: D96Parser.FuncallContext):
-    #     return CallExpr(Id(ctx.ID().getText()), [self.visit(ctx.exp())] if ctx.exp() else [])
-
-    # def visitExp(self, ctx: D96Parser.ExpContext):
-    #     if (ctx.funcall()):
-    #         return self.visit(ctx.funcall())
-    #     else:
-    #         return IntLiteral(int(ctx.INTLIT().getText()))

@@ -84,6 +84,11 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by D96Parser#param_decl.
+    def visitParam_decl(self, ctx:D96Parser.Param_declContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by D96Parser#block_stmt.
     def visitBlock_stmt(self, ctx:D96Parser.Block_stmtContext):
         return self.visitChildren(ctx)

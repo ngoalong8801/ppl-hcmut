@@ -1,0 +1,9 @@
+
+        Class Program {
+            testFun() {
+                c = a.b;
+                c = self.b;
+                c = a::$b;
+            }
+        }
+        

@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Shape),[])])
+Program([ClassDecl(Id(Program),[])])

@@ -1,0 +1,14 @@
+Class Shape {
+                    testFunc() {
+                        If (a > b) {
+                            a = b;
+                        }
+                        Elseif (a < b) {
+                            c = d;
+                        }
+                        Elseif (a == b) {
+                            e = f;
+                        }
+                    }
+                }
+            

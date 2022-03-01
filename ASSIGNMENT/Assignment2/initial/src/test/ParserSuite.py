@@ -1894,17 +1894,14 @@ class ParserSuite(unittest.TestCase):
     def test1(self):
         """Class declare"""
         input = """
-                     Class Shape{
-                         test(){
-                            If(a){
-
-                            }
-                            Else{}
-                           
-                           
-                       
-                         }
-                  }
+                     Class Program {
+            testFun() {
+                Foreach (a In 1 .. 100 By 2) {
+                        a = a + 3;
+                        Break;
+                }
+            }
+        }
             """
         expect = "successful"
         self.assertTrue(TestParser.test(input, expect, 999))

@@ -1,11 +1,5 @@
-Class assign_test{
-                getTest(){
-                    If(a){
 
-                    }
-                   
-                    Else{
-                        a = 4;
-                    }
-                }
-             }
+        Class Program {
+            Val c, d, e: Int = 12, 13, 10;
+        }
+        

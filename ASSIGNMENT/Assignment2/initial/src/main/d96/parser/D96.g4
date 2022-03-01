@@ -31,7 +31,7 @@ mutable_attr:
 id_list_type: id_list COL data_type;
 id_list: iden_dol (COM iden_dol)*;
 iden_dol: IDEN | DOL_IDEN;
-expr_list: expr (COM expr)*;
+expr_list: expr  COM expr_list | expr;
 data_type: INT | FLOAT | STRING | BOOLEAN | array_type;
 /*** Method Declare ***/
 method_decl 
@@ -44,14 +44,16 @@ constr_decl:
 	| CONSTRUCTOR LB params_list RB block_stmt;
 destr_decl: DESTRUCTOR LB RB block_stmt;
 
-params_list: id_list_type (SEMI id_list_type)*;
+params_list: param_decl SEMI params_list
+			| param_decl;
+param_decl: id_list_type;
 
 
 block_stmt : LP block_item+ RP | LP RP;
 block_item
 			: assign_stmt
-			| if_stmt
 			| attr_decl
+			| if_stmt
 			| break_stmt
 			| continue_stmt
 			| forin_stmt
@@ -65,6 +67,7 @@ lhs: IDEN | array_operator | field_access;
 array_operator: expr8 index_operators;
 
 field_access: expr DOT IDEN | expr DCOL DOL_IDEN;
+
 
 if_stmt	: if_element else_stmt
 		| if_element;
@@ -121,9 +124,9 @@ expr9
 expr10: NEW IDEN LB RB | NEW IDEN LB expr_list RB | expr11;
 expr11: LB expr RB | operands;
 operands: IDEN | literal | SELF | NULL;
-list_literal: (literal COM)* literal;
-literal:
-	INTEGER_LITERAL
+list_literal: literal COM list_literal | literal;
+literal
+	: INTEGER_LITERAL
 	| FLOAT_LITERAL
 	| BOOLEAN_LITERAL
 	| STRING_LITERAL

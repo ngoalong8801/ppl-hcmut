@@ -1,0 +1,7 @@
+Class Program {
+            main() {
+                Foreach (var1 In 0 .. 10) {
+                    Val myStr: String = "Hello World";
+                }
+            }
+        }

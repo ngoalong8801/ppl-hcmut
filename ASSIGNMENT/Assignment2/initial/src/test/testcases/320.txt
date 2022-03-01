@@ -1,0 +1,10 @@
+
+        Class Program {
+            testFun() {
+                c = a::$b();
+                c = a.b();
+                a.b(3, 4);
+                a::$b();
+            }
+        }
+        
