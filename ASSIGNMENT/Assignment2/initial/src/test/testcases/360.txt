@@ -1,0 +1,14 @@
+
+        Class Shape {
+            testFunc() { }
+        }
+        Class Circle: Shape {
+
+        }
+        Class Rectangle: Shape {
+        
+        }
+        Class myChild: Circle {
+
+        }
+        

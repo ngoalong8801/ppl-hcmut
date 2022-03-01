@@ -1,0 +1,6 @@
+Class Shape {
+                    testFunc() {
+                        a = arr[1][2][3];
+                    }
+                }
+            

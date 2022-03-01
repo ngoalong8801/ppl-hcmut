@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Shape),[MethodDecl(Id(testFunc),Instance,[],Block([AttributeDecl(Instance,VarDecl(Id(a),IntType)),AssignStmt(Id(a),BinaryOp(*,IntLit(1),BinaryOp(/,IntLit(2),IntLit(3)))),AssignStmt(Id(a),BinaryOp(/,BinaryOp(*,IntLit(5),IntLit(6)),IntLit(7))),AssignStmt(Id(a),BinaryOp(%,IntLit(12),IntLit(4))),Return(Id(a))]))])])

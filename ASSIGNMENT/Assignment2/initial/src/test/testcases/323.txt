@@ -1,15 +1,8 @@
 
-        Class Program {
-            testFun() {
-                If (a > b) {
-                    a = a + 1;
-                }
-                Elseif (a < b) {
-                    a = a - 1;
-                }
-                Else {
-                    a = a * 2;
-                }
-            }
-        }
-        
+        Class Program{
+                   
+                   main(Instan: Int; astPro: Boolean){
+
+                   }
+                    
+              }

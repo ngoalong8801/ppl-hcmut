@@ -1,9 +1,17 @@
-Class Program {
-                    main(){
+Class TestIf_Stmt{
+                If_stmt(){
+                    
+                        If(ma == 0){
+                            ma = 9999;
+                        }
+                        Else{
+                        }
 
-                    }
+                        If(Ukrai ==. ("Ukraina will be peaceful")){
+                            result = "I don't know";
+                        }
+                        Else{
+                        }
+                    
                 }
-                Class testClass {
-                    main() { }
-                }
-            
+              }

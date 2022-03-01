@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([]))]),ClassDecl(Id(testClass),[MethodDecl(Id(main),Instance,[],Block([]))])])
+Program([ClassDecl(Id(TestIf_Stmt),[MethodDecl(Id(If_stmt),Instance,[],Block([If(BinaryOp(==,Id(ma),IntLit(0)),Block([AssignStmt(Id(ma),IntLit(9999))]),Block([])),If(BinaryOp(==.,Id(Ukrai),StringLit(Ukraina will be peaceful)),Block([AssignStmt(Id(result),StringLit(I don't know))]),Block([]))]))])])

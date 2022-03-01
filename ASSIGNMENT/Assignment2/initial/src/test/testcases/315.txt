@@ -1,7 +1,8 @@
+Class TestMethoddecl{
+                    $staticMethodTest(){
 
-        Class Program {
-            testFun() {
-                Return 5;
-            }
-        }
-        
+                    }
+                    methodNormal(){
+
+                    }
+              }

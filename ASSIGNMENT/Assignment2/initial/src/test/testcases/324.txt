@@ -1,4 +1,10 @@
-Class Program {
-            Constructor() {}
-        }
-        
+
+        Class Program{
+             test(paramm: Int){
+                        
+                    }
+                   main(){
+
+                   }
+                    
+              }

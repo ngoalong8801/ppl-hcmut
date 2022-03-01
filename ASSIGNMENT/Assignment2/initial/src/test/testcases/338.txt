@@ -1,17 +1,11 @@
-Class Shape {
-                    testFunc() {
-                        If (a > b) {
-                            a = b;
+Class TestIf_Stmt{
+                TestIf_assign_stmt(){
+                        Ukrai = "";
+                        If(Ukrai ==. ("Ukraina will be peaceful")){
+                            result = "I don't know";
                         }
-                        Elseif (a < b) {
-                            c = d;
+                        Else{
                         }
-                        Elseif (a == b) {
-                            e = f;
-                        }
-                        Else {
-                            g = h;
-                        }
-                    }
+                    
                 }
-            
+              }

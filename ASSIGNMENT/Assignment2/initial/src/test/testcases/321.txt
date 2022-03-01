@@ -1,7 +1,6 @@
+Class TestMethoddecl{
+                   
+                    Destructor(){
 
-        Class Program {
-            testFun() {
-                Var a: Int = 12;
-            }
-        }
-        
+                    }
+              }

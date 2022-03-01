@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([Block([Block([AttributeDecl(Instance,ConstDecl(Id(a),IntType,None)),AttributeDecl(Instance,ConstDecl(Id(b),IntType,None))])])]))])])
+Program([ClassDecl(Id(TestIf_Stmt),[MethodDecl(Id(If_stmt),Instance,[],Block([If(BinaryOp(==,Id(ma),IntLit(0)),Block([AssignStmt(Id(ma),IntLit(9999))])),If(BinaryOp(==.,Id(helloword),BinaryOp(+.,StringLit(Hello),StringLit(World))),Block([AssignStmt(Id(result),BooleanLit(True))]))]))])])

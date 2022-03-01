@@ -1,10 +1,6 @@
+Class TestMethoddecl{
+                   
+                    $parammethod(a, b, c : Int){
 
-        Class Program {
-            testFun() {
-                Foreach (a In 1 .. 100 By 2) {
-                        a = a + 3;
-                        Continue;
-                }
-            }
-        }
-        
+                    }
+              }

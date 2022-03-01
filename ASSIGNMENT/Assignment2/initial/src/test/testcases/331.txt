@@ -1,7 +1,13 @@
-Class Program {
-            main() {
-                {
-                    { Val a, b: Int; }
+Class TestIf_Stmt{
+                If_stmt(){
+                    
+                        If(ma == 0){
+                            ma = 9999;
+                        }
+                        
+                         If(helloword ==. ("Hello" +. "World")){
+                            result = True;
+                        }
+                    
                 }
-            }
-        }
+              }

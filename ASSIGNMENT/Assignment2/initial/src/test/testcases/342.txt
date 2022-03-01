@@ -1,0 +1,8 @@
+Class Shape {
+                    testFunc() {
+                        Var a: Boolean;
+                        a = (1 == 2) || (3 == 4);
+                        Return a;
+                    }
+                }
+            

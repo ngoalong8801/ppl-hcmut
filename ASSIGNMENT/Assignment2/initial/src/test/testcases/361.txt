@@ -1,0 +1,20 @@
+
+        Class A {
+            func() {
+                If (a > b) {
+
+                }
+                Elseif (c <= d)
+                {
+
+                }
+                Elseif (e >= f)
+                {
+
+                }
+                Else {
+
+                }
+            }
+        }
+        

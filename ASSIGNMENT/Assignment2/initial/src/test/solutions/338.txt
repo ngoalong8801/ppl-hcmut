@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Shape),[MethodDecl(Id(testFunc),Instance,[],Block([If(BinaryOp(>,Id(a),Id(b)),Block([AssignStmt(Id(a),Id(b))]),If(BinaryOp(<,Id(a),Id(b)),Block([AssignStmt(Id(c),Id(d))]),If(BinaryOp(==,Id(a),Id(b)),Block([AssignStmt(Id(e),Id(f))]),Block([AssignStmt(Id(g),Id(h))]))))]))])])
+Program([ClassDecl(Id(TestIf_Stmt),[MethodDecl(Id(TestIf_assign_stmt),Instance,[],Block([AssignStmt(Id(Ukrai),StringLit()),If(BinaryOp(==.,Id(Ukrai),StringLit(Ukraina will be peaceful)),Block([AssignStmt(Id(result),StringLit(I don't know))]),Block([]))]))])])

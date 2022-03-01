@@ -1,0 +1,15 @@
+
+        Class Shape {
+            Var a, b, c: Int = 1, 2 ,3;
+            $testFunc() {
+                Foreach (i In 0 .. 12 By 3)
+                {
+                    x = i + 1;
+                    Break;
+                }
+            }
+        }
+        ## Class Program {
+            main () { }
+        } ##
+        

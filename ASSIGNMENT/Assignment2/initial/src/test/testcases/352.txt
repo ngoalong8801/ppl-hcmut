@@ -1,0 +1,9 @@
+Class Test {
+            testFunc() { }
+            main() { }
+        }
+        Class Program {
+            testFunc2() { }
+            main() { }
+        }
+            

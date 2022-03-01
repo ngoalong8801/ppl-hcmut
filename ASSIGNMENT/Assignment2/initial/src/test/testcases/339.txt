@@ -1,0 +1,6 @@
+Class Shape {
+                    testFunc() {
+                        Return Circle::$getArea();
+                    }
+                }
+            

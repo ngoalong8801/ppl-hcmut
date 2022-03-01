@@ -1,8 +1,8 @@
-Class A {
-            MyTest() {
-                Var a: Int = 5;
-                Var b: Float = 3.5;
-                Var c: String = "Hello";
-                Var d: Boolean = True;
-            }
-        }
+Class TestBlock{
+                testAssign_stmt(){
+                    {
+                        lhs = expr + expr2 - expr3 * expr4;
+                        string = "abc" +. "das";
+                    }
+                }
+              }

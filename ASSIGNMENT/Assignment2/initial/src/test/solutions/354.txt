@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Test),[MethodDecl(Id($getNumOfShape),Static,[param(Id(My1stCons),IntType),param(Id(My2ndCons),IntType),param(Id(MyFloat),FloatType)],Block([If(BinaryOp(>,IntLit(3),IntLit(2)),Block([AssignStmt(Id(My1stCons),BinaryOp(+,IntLit(3),IntLit(6)))]),Block([AssignStmt(Id(My1stCons),IntLit(99))]))]))])])

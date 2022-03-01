@@ -1,0 +1,11 @@
+Class Program {
+            Var a, b, c: Int = 1, 2 ,3;
+            main() { }
+            testFunc() {
+                Foreach (i In 0 .. 12 By 3)
+                {
+                    x = x * x + (3/2)*x + 9;
+                }
+            }
+        }
+        

@@ -1,7 +1,5 @@
-Class A {
-            MyTest() {
-                Var a: Int;
-                Var b: Float = 0.2;
-            }
-            Destructor() {}
-        }
+Class TestBlock{
+                testAssign_stmt(){
+                        lhs = expr + expr2 - expr3 * expr4;
+                }
+              }

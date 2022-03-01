@@ -1,0 +1,7 @@
+Class Shape {
+                    testFunc() {
+                        Var a: String;
+                        Return (a ==. "hello");
+                    }
+                }
+            

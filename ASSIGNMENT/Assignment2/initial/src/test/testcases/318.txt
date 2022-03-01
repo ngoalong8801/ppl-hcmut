@@ -1,7 +1,6 @@
+Class TestMethoddecl{
+                   
+                    $parammethod(a, b, c : Int ; mulPa, Tripba: Float){
 
-        Class Program {
-            testFun() {
-                obj.getName(12, 3);
-            }
-        }
-        
+                    }
+              }

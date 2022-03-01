@@ -1,0 +1,4 @@
+Class Test {
+            Var myVar1: Shape = New Shape();
+        }
+            

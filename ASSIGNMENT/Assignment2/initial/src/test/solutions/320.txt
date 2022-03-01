@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Program),[MethodDecl(Id(testFun),Instance,[],Block([AssignStmt(Id(c),CallExpr(Id(a),Id($b),[])),AssignStmt(Id(c),CallExpr(Id(a),Id(b),[])),Call(Id(a),Id(b),[IntLit(3),IntLit(4)]),Call(Id(a),Id($b),[])]))])])
+Program([ClassDecl(Id(TestMethoddecl),[MethodDecl(Id(Constructor),Instance,[param(Id(par),IntType),param(Id(floatLi),FloatType),param(Id(floatLi2),FloatType)],Block([]))])])

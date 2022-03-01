@@ -1,10 +1,9 @@
 
                      Class Program {
             testFun() {
-                Foreach (a In 1 .. 100 By 2) {
-                        a = a + 3;
-                        Break;
-                }
+                 If(helloword ==. ("Hello" +. "World")){
+                            result = True;
+                        }
             }
         }
             
