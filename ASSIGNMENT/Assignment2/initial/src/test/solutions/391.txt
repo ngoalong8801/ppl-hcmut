@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([Block([Block([Block([Block([Block([Block([AttributeDecl(Instance,VarDecl(Id(a),IntType,IntLit(4)))])])])])])])]))])])

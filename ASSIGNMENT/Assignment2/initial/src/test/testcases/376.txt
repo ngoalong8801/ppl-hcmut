@@ -1,0 +1,11 @@
+Class Brk{
+            test(){
+                Foreach(x In 1 .. 10){
+                    If(x == 5){
+                        Continue;
+                    }Elseif(x == 9){
+                        re = 1;
+                    }
+                }
+            }
+        }

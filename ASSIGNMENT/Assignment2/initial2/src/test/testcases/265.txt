@@ -1,0 +1,19 @@
+
+                 Class Shape{
+                      $getHeight(){
+
+                      }
+                }
+
+            Class Program{
+                main(){
+                    Val arr: Array[Int, 3] = Array(1,2,3);
+                    Var r, s: Int;
+                    r = 2.0;
+                    Var a, b: Array[Int, 5];
+                    s = r * r * Self.myPI;
+                    a[0] = s;
+                }
+            }
+
+            

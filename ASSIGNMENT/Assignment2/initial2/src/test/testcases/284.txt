@@ -1,0 +1,11 @@
+
+                 Class TestString{
+                     Val color : Array[String, 5] = Array("Orange", "Black", "White", "Yellow", "Blue");
+                      Test(){
+                           Foreach(i In 1 .. 5){
+                               Out.printString(color[i]);
+                           }
+                      }
+                }
+
+            

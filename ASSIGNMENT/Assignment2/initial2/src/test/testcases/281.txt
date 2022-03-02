@@ -1,0 +1,9 @@
+
+                 Class TestString{
+                     Val str1: String;
+                      Test(){
+                            str1 = "@@" +. "SUcc$$$";
+                      }
+                }
+
+            

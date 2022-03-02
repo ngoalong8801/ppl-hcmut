@@ -1,0 +1,7 @@
+Class Area{
+            Var len, width : Float;
+            Destructor(){
+                Self.width = 0;
+                Self.len = 0;
+            }
+        }

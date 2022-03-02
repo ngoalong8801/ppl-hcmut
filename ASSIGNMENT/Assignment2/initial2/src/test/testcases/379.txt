@@ -1,0 +1,8 @@
+Class Res{
+            cal(a,b : Int){
+                Return a + b;
+            }
+            test(a, b : Int){
+                Return Self.cal(a, b);
+            }
+        } 

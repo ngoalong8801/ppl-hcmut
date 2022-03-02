@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(testMutableDecl),[AttributeDecl(Instance,VarDecl(Id(ast),FloatType))])])

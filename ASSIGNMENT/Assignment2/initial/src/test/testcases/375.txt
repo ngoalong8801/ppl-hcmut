@@ -1,0 +1,7 @@
+ Class Coun{
+            test(){
+                Foreach(x In 1 .. 10){
+                    Continue;
+                }
+            }
+        }

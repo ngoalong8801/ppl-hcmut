@@ -1,0 +1,6 @@
+
+                 Class Shape {
+                     Val height : Int = 0;
+                     Var weight : Float = 0;
+                 }
+            

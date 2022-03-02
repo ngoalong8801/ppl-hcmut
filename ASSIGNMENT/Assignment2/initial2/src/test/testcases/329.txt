@@ -1,0 +1,6 @@
+Class TestBlock{
+                testAssign_stmt(){
+                        Self.height = (4 + 67) % 2 * 56 / 10;
+                        Self.width = (1254 %2 + 5 *4);
+                }
+              }

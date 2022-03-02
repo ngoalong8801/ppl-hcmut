@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Geo),[MethodDecl(Id(location),Instance,[],Block([]))]),ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([AssignStmt(Id(a),CallExpr(Id(geo),Id(location),[]))]))])])

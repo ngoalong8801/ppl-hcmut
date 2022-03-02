@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Shape),[])])
+successful

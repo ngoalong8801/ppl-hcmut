@@ -1,0 +1,13 @@
+Class Program{
+                main(){
+                    If(a == 1){
+                        If(a ==2 ){
+                            If(a == 3){
+                                Foreach(i In 1 .. 5 By 1){
+
+                                }
+                            }Else{}
+                        }
+                    }
+                }
+            }

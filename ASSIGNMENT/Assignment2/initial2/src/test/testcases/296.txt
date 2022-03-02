@@ -1,0 +1,17 @@
+
+                Class Test{
+
+                    $staticFunc(a, b: Int , c : Float){
+
+                    }
+
+                }
+                 Class MethodInvo{
+                    Var a, b: Int;
+                    Var c: Float;
+                      Test(){
+                        Test::$staticFunc(a,b, c); ##miss $ character followed##
+                      }
+                }
+
+            

@@ -1,0 +1,8 @@
+
+        Class Program{
+                   
+                   main(Instan: Int; astPro: Boolean){
+
+                   }
+                    
+              }

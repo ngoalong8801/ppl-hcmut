@@ -1,0 +1,13 @@
+
+                 Class Shape{
+                      $getHeight(){
+
+                      }
+            }
+            Class Program{
+                main(){
+                    Shape::$getHeight();
+                }
+            }
+
+            

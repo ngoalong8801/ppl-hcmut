@@ -1,0 +1,8 @@
+Class Shape{
+                     getHeight(){
+                          Foreach( i In 1 .. 100 ){
+                          Continue;
+                          Continue;
+                        }
+                    }
+            }

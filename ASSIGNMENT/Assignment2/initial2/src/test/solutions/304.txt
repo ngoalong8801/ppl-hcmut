@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(testAttribute),[AttributeDecl(Instance,ConstDecl(Id(ast),IntType,None))])])

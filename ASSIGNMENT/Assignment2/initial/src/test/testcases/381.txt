@@ -1,0 +1,6 @@
+ Class Car{}
+        Class Res{
+            test(){
+                Return ;
+            }
+        }

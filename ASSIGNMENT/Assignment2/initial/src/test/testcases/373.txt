@@ -1,0 +1,8 @@
+
+        Class Brk{
+            test(){
+                Foreach(x In 1 .. 10){
+                    Break;
+                }
+            }
+        } 

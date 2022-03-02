@@ -1,0 +1,20 @@
+
+                 Class Shape{
+                     Val height: Int;
+                      $getHeight(){
+
+                      }
+                }
+            Class Circle:Shape{
+
+            }
+            Class Program{
+                main(){
+                    Out.printString("Hello World \n \b \f");
+                    Foreach (i In 1 .. 100 By 2) {
+                        Out.printInt(i);
+                    }
+                }
+            }
+
+            

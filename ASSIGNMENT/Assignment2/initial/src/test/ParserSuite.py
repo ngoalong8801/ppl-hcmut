@@ -89,17 +89,17 @@ class ParserSuite(unittest.TestCase):
         expect = "successful"
         self.assertTrue(TestParser.test(input, expect, 209))
 
-    def test10(self):
-        """ test """
-        input = """
-                 Class Shape {
-                     Val height : int = 0;
-                     Var weight : Float = 0;
-                     Var color, length: Int = 0, 0;
-                 }
-            """
-        expect = "Error on line 3 col 34: int"
-        self.assertTrue(TestParser.test(input, expect, 210))
+    # def test10(self):
+    #     """ test """
+    #     input = """
+    #              Class Shape {
+    #                  Val height : int = 0;
+    #                  Var weight : Float = 0;
+    #                  Var color, length: Int = 0, 0;
+    #              }
+    #         """
+    #     expect = "Error on line 3 col 34: int"
+    #     self.assertTrue(TestParser.test(input, expect, 210))
 
     def test11(self):
         """ test """
@@ -552,83 +552,83 @@ class ParserSuite(unittest.TestCase):
         expect = "successful"
         self.assertTrue(TestParser.test(input, expect, 233))
 
-    def test34(self):
-        """ test """
-        input = """
-                 Class Shape:People {
-                     Val result: Boolean;
-                     getHeight(){
-                    If(((a >= b) && (b < c)) || (a  % 2  == 0 || a != 999) ){
-                        result = True;
-                    }
-                }
-            }
+    # def test34(self):
+    #     """ test """
+    #     input = """
+    #              Class Shape:People {
+    #                  Val result: Boolean;
+    #                  getHeight(){
+    #                 If(((a >= b) && (b < c)) || (a  % 2  == 0 || a != 999) ){
+    #                     result = True;
+    #                 }
+    #             }
+    #         }
 
-            """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 234))
+    #         """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 234))
 
-    def test35(self):
-        """ test """
-        input = """
-                 Class Shape:People {
-                     Val result: Boolean;
-                     getHeight(){
-                        If((a >= b) && (b < c)) || (a  % 2  == 0 || a != 999)){
-                            result = True;
-                        }
-                    }
-            }
+    # def test35(self):
+    #     """ test """
+    #     input = """
+    #              Class Shape:People {
+    #                  Val result: Boolean;
+    #                  getHeight(){
+    #                     If((a >= b) && (b < c)) || (a  % 2  == 0 || a != 999)){
+    #                         result = True;
+    #                     }
+    #                 }
+    #         }
 
-            """
-        expect = "Error on line 5 col 48: ||"
-        self.assertTrue(TestParser.test(input, expect, 235))
+    #         """
+    #     expect = "Error on line 5 col 48: ||"
+    #     self.assertTrue(TestParser.test(input, expect, 235))
 
-    def test36(self):
-        """ test """
-        input = """
-                 Class Shape:People {
-                     Val result: Boolean;
-                     getHeight(){
-                         If(((a >= b) && (b < c)) || (a  % 2  == 0 || a != 999) ){
-                              result = True;
-                          }
-                          Elseif(a % 3 == 0 ){
-                              result = False;
-                          }
-                    }
-            }
+    # def test36(self):
+    #     """ test """
+    #     input = """
+    #              Class Shape:People {
+    #                  Val result: Boolean;
+    #                  getHeight(){
+    #                      If(((a >= b) && (b < c)) || (a  % 2  == 0 || a != 999) ){
+    #                           result = True;
+    #                       }
+    #                       Elseif(a % 3 == 0 ){
+    #                           result = False;
+    #                       }
+    #                 }
+    #         }
 
-            """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 236))
+    #         """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 236))
 
-    def test37(self):
-        """ test """
-        input = """
-                 Class Shape:People {
-                     Val result: Boolean;
-                     getHeight(){
-                         If(((a >= b) && (b < c)) || (a  % 2  == 0 || a != 999) ){
-                             result = True;
-                         }
-                         Elseif(a % 3 == 0 ){
-                              result = False;
-                          }
-                           Else{
-                                If( a > 100){
+    # def test37(self):
+    #     """ test """
+    #     input = """
+    #              Class Shape:People {
+    #                  Val result: Boolean;
+    #                  getHeight(){
+    #                      If(((a >= b) && (b < c)) || (a  % 2  == 0 || a != 999) ){
+    #                          result = True;
+    #                      }
+    #                      Elseif(a % 3 == 0 ){
+    #                           result = False;
+    #                       }
+    #                        Else{
+    #                             If( a > 100){
 
-                                }
-                               Else{
+    #                             }
+    #                            Else{
 
-                                }
-                         }
-                    }
-            }
+    #                             }
+    #                      }
+    #                 }
+    #         }
 
-            """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 237))
+    #         """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 237))
 
     def test38(self):
         """ test for in 38-45"""
@@ -1312,53 +1312,53 @@ class ParserSuite(unittest.TestCase):
         expect = "successful"
         self.assertTrue(TestParser.test(input, expect, 274))
 
-    def test75(self):
-        """ test resultstatement 53 - 57"""
-        input = """
-                 Class Shape{
-                     Val height: Int;
-                      $getHeight(){
+    # def test75(self):
+    #     """ test resultstatement 53 - 57"""
+    #     input = """
+    #              Class Shape{
+    #                  Val height: Int;
+    #                   $getHeight(){
 
-                      }
-                }
-            Class Program{
-                Var a,b,c: Int = 3,5;
-                getRandom(){
+    #                   }
+    #             }
+    #         Class Program{
+    #             Var a,b,c: Int = 3,5;
+    #             getRandom(){
 
-                }
-                main(){
+    #             }
+    #             main(){
 
-                }
+    #             }
 
-            }
+    #         }
 
-            """
-        expect = "Error on line 9 col 36: ;"
-        self.assertTrue(TestParser.test(input, expect, 275))
+    #         """
+    #     expect = "Error on line 9 col 36: ;"
+    #     self.assertTrue(TestParser.test(input, expect, 275))
 
-    def test76(self):
-        """ test resultstatement 53 - 57"""
-        input = """
-                 Class Shape{
-                     Val height: Int;
-                      $getHeight(){
+    # def test76(self):
+    #     """ test resultstatement 53 - 57"""
+    #     input = """
+    #              Class Shape{
+    #                  Val height: Int;
+    #                   $getHeight(){
 
-                      }
-                }
-            Class Program{
-                Var a,b,c: Int = 3,5,6,7;
-                getRandom(){
+    #                   }
+    #             }
+    #         Class Program{
+    #             Var a,b,c: Int = 3,5,6,7;
+    #             getRandom(){
 
-                }
-                main(){
+    #             }
+    #             main(){
 
-                }
+    #             }
 
-            }
+    #         }
 
-            """
-        expect = "Error on line 9 col 38: ,"
-        self.assertTrue(TestParser.test(input, expect, 276))
+    #         """
+    #     expect = "Error on line 9 col 38: ,"
+    #     self.assertTrue(TestParser.test(input, expect, 276))
 
     def test77(self):
         """ test resultstatement 53 - 57"""
@@ -1545,22 +1545,22 @@ class ParserSuite(unittest.TestCase):
         expect = "successful"
         self.assertTrue(TestParser.test(input, expect, 284))
 
-    def test85(self):
-        """ test resultstatement 53 - 57"""
-        input = """
-                 Class TestString{
-                     Val colorEG : Array[String, 5] = Array("Orange", "Black", "White", "Yellow", "Blue");
-                     Val colorVN : Array[String, 5] = Array("Cam", "Den", "Trang", "Vang", "Xanh");
-                      Test(){
-                           Foreach(i In 1 .. 5){
-                               colorEG[i] = colorEG[i] +. " :" +. colorVN[i];
-                           }
-                      }
-                }
+    # def test85(self):
+    #     """ test resultstatement 53 - 57"""
+    #     input = """
+    #              Class TestString{
+    #                  Val colorEG : Array[String, 5] = Array("Orange", "Black", "White", "Yellow", "Blue");
+    #                  Val colorVN : Array[String, 5] = Array("Cam", "Den", "Trang", "Vang", "Xanh");
+    #                   Test(){
+    #                        Foreach(i In 1 .. 5){
+    #                            colorEG[i] = colorEG[i] +. " :" +. colorVN[i];
+    #                        }
+    #                   }
+    #             }
 
-            """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 285))
+    #         """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 285))
 
     def test86(self):
         """ test resultstatement 53 - 57"""
@@ -1672,45 +1672,45 @@ class ParserSuite(unittest.TestCase):
         expect = "successful"
         self.assertTrue(TestParser.test(input, expect, 290))
 
-    def test91(self):
-        """ test resultstatement 53 - 57"""
-        input = """
-                Class Test{
-                    Var $a,  b : Int;
+    # def test91(self):
+    #     """ test resultstatement 53 - 57"""
+    #     input = """
+    #             Class Test{
+    #                 Var $a,  b : Int;
 
-                }
-                 Class MethodInvo{
+    #             }
+    #              Class MethodInvo{
 
-                      Test(){
-                        Test::$a;
-                      }
-                }
+    #                   Test(){
+    #                     Test::$a;
+    #                   }
+    #             }
 
-            """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 291))
+    #         """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 291))
 
-    def test92(self):
-        """ test resultstatement 53 - 57"""
-        input = """
-                Class Test{
-                     Var $a,  b : Int;
-                    $staticFunc(){
+    # def test92(self):
+    #     """ test resultstatement 53 - 57"""
+    #     input = """
+    #             Class Test{
+    #                  Var $a,  b : Int;
+    #                 $staticFunc(){
 
-                    }
+    #                 }
 
-                }
-                 Class MethodInvo{
+    #             }
+    #              Class MethodInvo{
 
-                      Test(){
-                          Test::$a;
-                        Test::$staticFunc();
-                      }
-                }
+    #                   Test(){
+    #                       Test::$a;
+    #                     Test::$staticFunc();
+    #                   }
+    #             }
 
-            """
-        expect = "successful"
-        self.assertTrue(TestParser.test(input, expect, 292))
+    #         """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 292))
 
     def test93(self):
         """ test resultstatement 53 - 57"""
@@ -1734,27 +1734,27 @@ class ParserSuite(unittest.TestCase):
         expect = "Error on line 12 col 30: a"
         self.assertTrue(TestParser.test(input, expect, 293))
 
-    def test94(self):
-        """ test resultstatement 53 - 57"""
-        input = """
-                Class Test{
-                     Var $a,  b : Int;
-                    $staticFunc(){
+    # def test94(self):
+    #     """ test resultstatement 53 - 57"""
+    #     input = """
+    #             Class Test{
+    #                  Var $a,  b : Int;
+    #                 $staticFunc(){
 
-                    }
+    #                 }
 
-                }
-                 Class MethodInvo{
+    #             }
+    #              Class MethodInvo{
 
-                      Test(){
-                        Test::$a;
-                        Test::staticFunc(); ##miss $ character followed##
-                      }
-                }
+    #                   Test(){
+    #                     Test::$a;
+    #                     Test::staticFunc(); ##miss $ character followed##
+    #                   }
+    #             }
 
-            """
-        expect = "Error on line 13 col 30: staticFunc"
-        self.assertTrue(TestParser.test(input, expect, 294))
+    #         """
+    #     expect = "Error on line 13 col 30: staticFunc"
+    #     self.assertTrue(TestParser.test(input, expect, 294))
 
     def test95(self):
         """ test resultstatement 53 - 57"""
@@ -1872,23 +1872,33 @@ class ParserSuite(unittest.TestCase):
         """ test resultstatement 53 - 57"""
         input = """
                   Class Program{
-                    main(){
-                        {
-                            {
-
-                            Var a : Int = 4;
-                            }
-                          }
-                          {
-                           {
-
-                            Var b: Int = 5;
-                            }
-                          }
-                    }
+                    main(){  colorEG[i] = colorEG[i] +. " " + colorEG[i] ;  }
+                    
                 }
             """
         expect = "successful"
         self.assertTrue(TestParser.test(input, expect, 300))
 
- 
+    # def test100(self):
+    #     """ test resultstatement 53 - 57"""
+    #     input = """
+    #               Class Program{
+    #                 main(){
+    #                     {
+    #                         {
+
+    #                         Var a : Int = 4;
+    #                         }
+    #                       }
+    #                       {
+    #                        {
+
+    #                         Var b: Int = 5;
+    #                         }
+    #                       }
+    #                 }
+    #             }
+    #         """
+    #     expect = "successful"
+    #     self.assertTrue(TestParser.test(input, expect, 300))
+

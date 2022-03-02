@@ -236,7 +236,7 @@ def serializedATN():
         buf.write("\7j\2\2\u01cdL\3\2\2\2\u01ce\u01cf\7T\2\2\u01cf\u01d0")
         buf.write("\7g\2\2\u01d0\u01d1\7v\2\2\u01d1\u01d2\7w\2\2\u01d2\u01d3")
         buf.write("\7t\2\2\u01d3\u01d4\7p\2\2\u01d4N\3\2\2\2\u01d5\u01d6")
-        buf.write("\7u\2\2\u01d6\u01d7\7g\2\2\u01d7\u01d8\7n\2\2\u01d8\u01d9")
+        buf.write("\7U\2\2\u01d6\u01d7\7g\2\2\u01d7\u01d8\7n\2\2\u01d8\u01d9")
         buf.write("\7h\2\2\u01d9P\3\2\2\2\u01da\u01db\7P\2\2\u01db\u01dc")
         buf.write("\7g\2\2\u01dc\u01dd\7y\2\2\u01ddR\3\2\2\2\u01de\u01df")
         buf.write("\7E\2\2\u01df\u01e0\7q\2\2\u01e0\u01e1\7p\2\2\u01e1\u01e2")
@@ -368,7 +368,7 @@ class D96Lexer(Lexer):
             "'('", "')'", "'{'", "'}'", "'['", "']'", "';'", "':'", "'::'", 
             "','", "'Class'", "'Val'", "'Var'", "'Array'", "'Int'", "'Float'", 
             "'Boolean'", "'String'", "'Null'", "'Break'", "'Continue'", 
-            "'If'", "'Elseif'", "'Else'", "'Foreach'", "'Return'", "'self'", 
+            "'If'", "'Elseif'", "'Else'", "'Foreach'", "'Return'", "'Self'", 
             "'New'", "'Constructor'", "'Destructor'", "'In'", "'By'", "'.'", 
             "'..'", "'+'", "'-'", "'*'", "'/'", "'%'", "'!'", "'&&'", "'||'", 
             "'<='", "'>='", "'!='", "'='", "'=='", "'<'", "'>'", "'==.'", 

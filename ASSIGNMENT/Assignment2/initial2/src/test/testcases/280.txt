@@ -1,0 +1,22 @@
+
+                 Class Shape{
+                     Val height: Int;
+                      $getHeight(){
+
+                      }
+                }
+            Class Program{
+                Var a, b: Array[Int, 5] = Array(1,2,3,4,5), Array(5,6,7,8,9);
+                main(){
+
+                }
+                getRandom(){
+                    Foreach(i In 1 .. 100 By 2){
+                        If(i == 50 % 2) {
+                            Return i;
+                        }
+                    }
+                }
+            }
+
+            

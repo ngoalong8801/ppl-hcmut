@@ -1,0 +1,15 @@
+
+                Class Test{
+                    $staticFunc(){
+
+                    }
+
+                }
+                 Class MethodInvo{
+
+                      Test(){
+                        Test::$staticFunc();
+                      }
+                }
+
+            

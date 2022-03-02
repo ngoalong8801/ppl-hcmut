@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(TestMulImuAttr),[AttributeDecl(Instance,VarDecl(Id(abc),IntType)),AttributeDecl(Instance,VarDecl(Id(tes),IntType)),AttributeDecl(Static,VarDecl(Id($Immua),IntType))])])

@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(TestMutableValue),[AttributeDecl(Instance,ConstDecl(Id(a),BoolType,BooleanLit(False)))])])

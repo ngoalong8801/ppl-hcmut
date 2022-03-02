@@ -1,0 +1,12 @@
+
+                 Class Shape:People {
+
+                    $getWeight(a, c, d : Int ; b: Float){
+                        a = 4;
+                        b = 3.14592;
+                        c = a* b -d /2;
+                        Var s : String;
+                    }
+            }
+
+            

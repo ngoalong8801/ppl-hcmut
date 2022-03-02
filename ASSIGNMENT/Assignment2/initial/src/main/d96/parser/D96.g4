@@ -29,7 +29,7 @@ id_list_type: id_list COL data_type;
 id_list: iden_dol (COM iden_dol)*;
 iden_dol: IDEN | DOL_IDEN;
 expr_list: expr (COM expr)*;
-data_type: INT | FLOAT | STRING | BOOLEAN | array_type;
+data_type: INT | FLOAT | STRING | BOOLEAN | array_type | IDEN;
 /*** Method Declare ***/
 method_decl 
 			: constr_decl | destr_decl
@@ -63,14 +63,12 @@ array_operator: expr8 (LSB expr RSB)+;
 field_access: expr DOT IDEN | expr DCOL DOL_IDEN;
 
 
-if_stmt	: if_element (else_stmt)?;
+if_stmt	: IF LB expr RB block_stmt  (else_stmt)?;
 
-if_element: IF LB expr RB block_stmt;
-else_stmt : elif_element else_stmt
-		  | elif_element
-		  | else_element;
-elif_element: ELSEIF LB expr RB block_stmt;
-else_element: ELSE block_stmt;
+// if_element: IF LB expr RB block_stmt;
+else_stmt : ELSEIF LB expr RB block_stmt (else_stmt)? | ELSE block_stmt;
+// elif_element: ELSEIF LB expr RB block_stmt;
+// else_element: ELSE block_stmt;
 
 break_stmt: BREAK SEMI;
 
@@ -122,7 +120,8 @@ literal
 
 array: muldi_arr | indx_arr;
 muldi_arr: ARRAY LB array_list RB;
-array_list: indx_arr COM array_list | indx_arr;
+// array_list: indx_arr COM array_list | indx_arr;
+array_list: indx_arr (COM  indx_arr)*;
 indx_arr: ARRAY LB expr_list RB;
 
 array_type: ARRAY LSB data_type COM INTEGER_LITERAL RSB;
@@ -218,7 +217,7 @@ ELSEIF: 'Elseif';
 ELSE: 'Else';
 FOREACH: 'Foreach';
 RETURN: 'Return';
-SELF: 'self';
+SELF: 'Self';
 
 NEW: 'New';
 CONSTRUCTOR: 'Constructor';

@@ -1,0 +1,11 @@
+
+                 Class Shape:People {
+                     Val result: Boolean;
+                     getHeight(){
+                        If(!result){
+                    }
+                }
+
+            }
+
+            

@@ -1,0 +1,10 @@
+Class Geo{
+                  $location(x : Boolean; y: Boolean){
+                    
+                }
+            }
+            Class Program{
+                main(){
+                    a = geo::$location(False, True);
+                }
+            }
