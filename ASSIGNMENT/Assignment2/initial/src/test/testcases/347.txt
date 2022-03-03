@@ -1,15 +1,8 @@
-
-        Class ForIf{
-            forBlock(){
-                
-                    If(a == 4){
-                        sum = 0;
-                        Foreach(x In 1 .. 10 ){
-                            sum = sum + 8;
-                            }
+Class Shape {
+                    testFunc() {
+                        Var arr: Array[Int, 3] = Array(1, 2, 3);
+                        a = a[1];
+                        Return a;
                     }
-                    Else{
-                        suum = -999;
-                    }    }
-        }
-     
+                }
+            

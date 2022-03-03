@@ -1,6 +1,0 @@
-Class TestMethoddecl{
-                   
-                    $parammethod(a, b, c : Int){
-
-                    }
-              }

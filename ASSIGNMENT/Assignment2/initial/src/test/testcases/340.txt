@@ -1,9 +1,8 @@
-
-            Class Program{
-                main(){
-                    Foreach(i In 1 .. 100 By 3){
-
+Class Shape {
+                    testFunc() {
+                        Var a: String;
+                        a = a +. "hello";
+                        Return a;
                     }
                 }
-            }
-        
+            

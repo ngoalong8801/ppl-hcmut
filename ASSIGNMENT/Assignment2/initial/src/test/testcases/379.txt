@@ -1,8 +1,7 @@
-Class Res{
-            cal(a,b : Int){
-                Return a + b;
+Class A {
+            MyTest() {
+                Var yes, no: Boolean;
+                ## yes = (True && False) || (False || (3 != 2) || (5 >> 3)); ##
+                no = False;
             }
-            test(a, b : Int){
-                Return Self.cal(a, b);
-            }
-        } 
+        }

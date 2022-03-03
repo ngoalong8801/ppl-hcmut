@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(Color),[MethodDecl(Id(getColor),Instance,[param(Id(a),IntType),param(Id(b),FloatType)],Block([Call(Id(Out),Id(print),[StringLit(Black)])]))]),ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([Call(Id(Color),Id(getColor),[FloatLit(1.234),FloatLit(3.432)])]))])])

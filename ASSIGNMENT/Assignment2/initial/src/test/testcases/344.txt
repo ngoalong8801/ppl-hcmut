@@ -1,9 +1,10 @@
-
-        Class ForBlock{
-            forBlock(){
-                Foreach(x In 1 .. 100 By 3){
-                    Out.println("hello");
+Class Shape {
+                    testFunc() {
+                        Var a: Int;
+                        a = 1 * (2 / 3);
+                        a = 5 * 6 / 7;
+                        a = 12 % 4;
+                        Return a;
+                    }
                 }
-            }
-        }
-     
+            

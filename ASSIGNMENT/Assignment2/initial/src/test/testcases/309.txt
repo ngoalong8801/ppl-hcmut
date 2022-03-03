@@ -1,3 +1,5 @@
-Class TestMulImuAttr{
-                Var abc, tes, $Immua : Int;
-             }
+
+        Class Program {
+            Var a: Int = 5 + 3 * 2;
+        }
+        

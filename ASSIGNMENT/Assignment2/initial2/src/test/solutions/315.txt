@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(TestMethoddecl),[MethodDecl(Id($staticMethodTest),Static,[],Block([])),MethodDecl(Id(methodNormal),Instance,[],Block([]))])])

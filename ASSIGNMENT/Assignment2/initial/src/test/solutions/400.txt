@@ -1,1 +1,1 @@
-Undeclared Function: foo
+Program([ClassDecl(Id(Program),[MethodDecl(Id(getArea),Instance,[],Block([ConstDecl(Id(a),IntType,IntLit(10))]))])])

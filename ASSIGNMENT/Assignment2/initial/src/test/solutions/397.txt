@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([If(BinaryOp(==,Id(a),IntLit(1)),Block([If(BinaryOp(==,Id(a),IntLit(2)),Block([If(BinaryOp(==,Id(a),IntLit(3)),Block([]),Block([]))]))]))]))])])
+Program([ClassDecl(Id(A),[MethodDecl(Id(testFunc),Instance,[],Block([If(UnaryOp(!,BinaryOp(==,Id(a),Id(b))),Block([Return()]),Block([For(Id(i),IntLit(1),IntLit(10),IntLit(1),Block([If(BinaryOp(==,Id(i),IntLit(5)),Block([Return()]),Block([Continue]))])])])),Return(IntLit(5))]))])])

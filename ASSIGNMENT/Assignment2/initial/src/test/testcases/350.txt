@@ -1,5 +1,4 @@
-
-        Class TestArray{
-            Var a1 : Array[Array[Int,2], 2];
+Class Test {
+            Var myVar1: String = Self.name;
         }
-     
+            

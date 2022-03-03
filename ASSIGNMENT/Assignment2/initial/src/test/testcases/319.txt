@@ -1,6 +1,9 @@
-Class TestMethoddecl{
-                   
-                    Constructor(){
 
-                    }
-              }
+        Class Program {
+            testFun() {
+                c = a.b;
+                c = Self.b;
+                c = a::$b;
+            }
+        }
+        

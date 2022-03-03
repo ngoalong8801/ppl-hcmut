@@ -1,10 +1,13 @@
-
-                Class Bus{
-
-             }
-            Class TestClassType{
-                test(){
-                    Var typ : Bus;
-                }
-            }
-        
+Class Test {
+            testFunc() { }
+            main() { }
+        }
+        Class Program {
+            testFunc2() { }
+            main() { }
+        }
+        Class Program2 {
+            testFunc3() { }
+            main() { }
+        }
+            

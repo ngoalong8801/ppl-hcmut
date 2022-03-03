@@ -1,10 +1,6 @@
- Class Shape{}
-        Class Rectangle: Shape {
-                        getArea() {
-                        Return Self.length * Self.width;
-                        } 
-                        }
-                        Class Program {
-                        main() {
-                        Out.printInt(Shape::$numOfShape);
-                        } }
+Class A {
+            testFunc() {
+                a = b[1][2];
+                b[1][2] = c[3][4];
+            }
+        }

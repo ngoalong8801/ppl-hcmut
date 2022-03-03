@@ -1,9 +1,7 @@
-Class TestIf_Stmt{
-                If_stmt(){
-                    {
-                        If(ma == 0){
-                            ma = 9999;
-                        }
-                    }
+Class Program {
+            main() {
+                Foreach (var1 In 0 .. 10) {
+                    Val myStr: String = "Hello World";
                 }
-              }
+            }
+        }

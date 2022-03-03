@@ -1,1 +1,5 @@
-int main() {foo();}
+ Class Program {
+                        getArea() {
+                            Val a : Int = 012;
+                        }
+                    } 

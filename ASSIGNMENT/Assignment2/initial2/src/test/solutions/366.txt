@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(Geo),[MethodDecl(Id($location),Static,[param(Id(x),BoolType),param(Id(y),BoolType)],Block([]))]),ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([AssignStmt(Id(a),CallExpr(Id(geo),Id($location),[BooleanLit(False),BooleanLit(True)]))]))])])

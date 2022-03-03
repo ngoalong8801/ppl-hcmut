@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Geo),[AttributeDecl(Instance,VarDecl(Id(xAxis),BoolType))]),ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([AssignStmt(FieldAccess(Id(a),Id(xAxis)),BooleanLit(True))]))])])
+Program([ClassDecl(Id(Shape),[MethodDecl(Id(testFunc),Instance,[],Block([]))]),ClassDecl(Id(Circle),Id(Shape),[]),ClassDecl(Id(Rectangle),Id(Shape),[]),ClassDecl(Id(myChild),Id(Circle),[])])

@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Color),[MethodDecl(Id(getColor),Instance,[],Block([Call(Id(Out),Id(print),[StringLit(Black)])]))]),ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([Call(Id(Color),Id(getColor),[])]))])])
+Program([ClassDecl(Id(myClass),[AttributeDecl(Static,ConstDecl(Id($a),IntType,None)),AttributeDecl(Instance,ConstDecl(Id(b),IntType,None)),AttributeDecl(Instance,VarDecl(Id(c),StringType)),AttributeDecl(Static,VarDecl(Id($d),StringType)),MethodDecl(Id(testFunc),Instance,[],Block([AssignStmt(Id(c),Id(b)),AssignStmt(Id($a),Id($d))]))])])

@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([Block([])]))])])
+Program([ClassDecl(Id(myClass),[MethodDecl(Id(testFunc),Instance,[],Block([Call(Id(obj),Id(getA),[]),Call(Id(obj),Id(getB),[IntLit(1),IntLit(2),IntLit(3)]),Call(Id(obj),Id($getC),[])]))])])

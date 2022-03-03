@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(TestArray),[AttributeDecl(Instance,VarDecl(Id(arr),ArrayType(6,FloatType),[FloatLit(1.2),FloatLit(2.09),IntLit(4),IntLit(5),IntLit(5),IntLit(6)]))])])
+Program([ClassDecl(Id(Test),[AttributeDecl(Instance,VarDecl(Id(myVar1),StringType,BinaryOp(+,BinaryOp(+,StringLit(Hello ),FieldAccess(Self(),Id(name))),StringLit(!))))])])

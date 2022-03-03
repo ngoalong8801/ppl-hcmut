@@ -1,3 +1,0 @@
-Class TestMutableValue{
-                Val a : Boolean = False;
-             }

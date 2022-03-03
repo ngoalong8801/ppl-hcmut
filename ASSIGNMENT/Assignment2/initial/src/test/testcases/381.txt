@@ -1,6 +1,10 @@
- Class Car{}
-        Class Res{
-            test(){
-                Return ;
+
+        Class Program {
+            main() {
+                Return "main";
+            }
+            main(a: Int) {
+                Return "main fake";
             }
         }
+        

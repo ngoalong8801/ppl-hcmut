@@ -1,10 +1,10 @@
-Class Geo{
-                $location(){
-                    
-                }
+
+        Class Program {
+            Var a, b, c: Int = 0132, 0252 ,0375;
+            main() {
+                a = a + 04751;
+                b = b * 02242 + 07545;
+                Return c + b + a;
             }
-            Class Program{
-                main(){
-                    a = geo::$location();
-                }
-            }
+        }
+        

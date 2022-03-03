@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Shape),[MethodDecl(Id(getHeight),Instance,[],Block([For(Id(i),IntLit(1),IntLit(100),IntLit(1),Block([Continue,Continue])])]))])])
+Program([ClassDecl(Id(myClass),[]),ClassDecl(Id(myClass2),Id(myClass),[]),ClassDecl(Id(myClass3),Id(myClass2),[]),ClassDecl(Id(myClass4),Id(myClass3),[])])

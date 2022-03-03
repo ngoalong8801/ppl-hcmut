@@ -1,5 +1,0 @@
-Class Shape{
-             }
-             Class Test{
-                 }
-                Class Program{}

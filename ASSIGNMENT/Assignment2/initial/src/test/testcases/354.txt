@@ -1,9 +1,6 @@
-
-           Class Bus{
-
-             }
-            Class TestClassType{
-                test(){
-                    Var typ : Bus = New Bus();
-                }
+Class Test {
+            $getNumOfShape(My1stCons, My2ndCons: Int; MyFloat: Float) {
+                If(3 > 2) {My1stCons = 3 + 6;}
+                Else {My1stCons = 99;}
             }
+        }

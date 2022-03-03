@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(Shape),[AttributeDecl(Instance,ConstDecl(Id(height),IntType,None)),MethodDecl(Id($getHeight),Static,[],Block([]))]),ClassDecl(Id(Circle),Id(Shape),[]),ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([Call(Id(Out),Id(printString),[StringLit(Hello World \n \b \f)])]))])])

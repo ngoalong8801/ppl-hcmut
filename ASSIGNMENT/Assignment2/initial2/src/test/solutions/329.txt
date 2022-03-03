@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(TestBlock),[MethodDecl(Id(testAssign_stmt),Instance,[],Block([AssignStmt(FieldAccess(Self(),Id(height)),BinaryOp(/,BinaryOp(*,BinaryOp(%,BinaryOp(+,IntLit(4),IntLit(67)),IntLit(2)),IntLit(56)),IntLit(10))),AssignStmt(FieldAccess(Self(),Id(width)),BinaryOp(+,BinaryOp(%,IntLit(1254),IntLit(2)),BinaryOp(*,IntLit(5),IntLit(4))))]))])])

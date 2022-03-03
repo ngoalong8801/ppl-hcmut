@@ -1,8 +1,0 @@
-
-                 Class Shape{
-                      $getHeight(){
-                              return $height;
-                      }
-            }
-
-            

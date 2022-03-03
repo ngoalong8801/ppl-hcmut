@@ -1,9 +1,10 @@
-Class Color{getColor(){
-            Out.print("Black");
-        }}
-            Class Program{
-                main(){
-                    Color.getColor();
-                }
-                }
-                
+
+        Class myClass {
+            Val $a, b: Int;
+            Var c, $d: String;
+            testFunc() {
+                c = b;
+                $a = $d;
+            }
+        }
+        

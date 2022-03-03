@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(Shape),[]),ClassDecl(Id(Abstract),Id(Shape),[]),ClassDecl(Id(Orbit),[])])

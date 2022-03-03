@@ -1,7 +1,10 @@
- Class Area{
-            Var len, width : Float;
-            Constructor(len, width : Float){
-                Self.width = width;
-                Self.len = len;
+Class A {
+            Constructor() {var1 = 0;}
+            Destructor() {}
+            MyTest() {
+                    If(var1 > 12) { }
+                    Elseif(var1 < 4) { }
+                    Elseif(var1 == 4) { }
             }
         }
+        

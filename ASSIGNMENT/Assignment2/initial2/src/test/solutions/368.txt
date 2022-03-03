@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(Area),[AttributeDecl(Instance,VarDecl(Id(len),FloatType)),AttributeDecl(Instance,VarDecl(Id(width),FloatType)),MethodDecl(Id(calcuArea),Instance,[],Block([Call(Id(Out),Id(print),[BinaryOp(*,FieldAccess(Self(),Id(len)),FieldAccess(Self(),Id(width)))])]))])])

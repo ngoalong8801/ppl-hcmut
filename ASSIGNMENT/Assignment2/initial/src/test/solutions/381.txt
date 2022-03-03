@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Car),[]),ClassDecl(Id(Res),[MethodDecl(Id(test),Instance,[],Block([Return()]))])])
+Program([ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([Return(StringLit(main))])),MethodDecl(Id(main),Instance,[param(Id(a),IntType)],Block([Return(StringLit(main fake))]))])])

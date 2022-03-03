@@ -1,8 +1,9 @@
 
-        Class Brk{
-            test(){
-                Foreach(x In 1 .. 10){
-                    Break;
-                }
+        Class myClass {
+            $myFunc() {
+                Return 1;
+                Return 2;
+                Return 3;
             }
-        } 
+        }
+        

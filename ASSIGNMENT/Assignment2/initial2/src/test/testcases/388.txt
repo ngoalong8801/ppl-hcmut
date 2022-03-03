@@ -1,7 +1,0 @@
-Class Program{
-            ##Here is comment of language code  D96 of my University##
-                main(){
-                    {
-             
-                }
-                }}

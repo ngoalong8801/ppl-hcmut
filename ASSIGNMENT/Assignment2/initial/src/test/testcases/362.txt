@@ -1,11 +1,14 @@
-Class Geo{
-                Var xAxis: Boolean;
-                Val $yAxis: Boolean;
-               
-            }
-            Class Program{
-                main(){
-                    a::$yAxis = True;
-                    a.xAxis = True;
+
+        Class A {
+            func() {
+                Foreach (i In 0 .. 10) {
+                    If (i == 5) {
+                        Break;
+                    }
+                    Else {
+                        Continue;
+                    }
                 }
             }
+        }
+        

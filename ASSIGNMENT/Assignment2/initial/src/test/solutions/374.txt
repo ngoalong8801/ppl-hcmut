@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Brk),[MethodDecl(Id(test),Instance,[],Block([For(Id(x),IntLit(1),IntLit(10),IntLit(1),Block([If(BinaryOp(==,Id(x),IntLit(5)),Block([Break]),Block([AssignStmt(Id(re),BinaryOp(+,Id(re),IntLit(1)))]))])])]))])])
+Program([ClassDecl(Id(myClass),[MethodDecl(Id($myFunc),Static,[],Block([Return(BinaryOp(*,BinaryOp(+,IntLit(1),IntLit(2)),IntLit(3)))])),MethodDecl(Id(myFunc2),Instance,[],Block([Return(CallExpr(Id(myClass),Id($myFunc),[]))]))])])

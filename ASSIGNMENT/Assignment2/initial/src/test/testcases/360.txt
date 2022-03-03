@@ -1,11 +1,14 @@
 
-            Class Geo{
-                Var xAxis: Boolean;
-               
-            }
-            Class Program{
-                main(){
-                    a.xAxis = True;
-                }
-            }
+        Class Shape {
+            testFunc() { }
+        }
+        Class Circle: Shape {
+
+        }
+        Class Rectangle: Shape {
+        
+        }
+        Class myChild: Circle {
+
+        }
         

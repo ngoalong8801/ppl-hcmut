@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Car),[]),ClassDecl(Id(Res),[MethodDecl(Id(test),Instance,[],Block([Return(NewExpr(Id(Car),[]))]))])])
+Program([ClassDecl(Id(A),[MethodDecl(Id(MyTest),Instance,[],Block([If(BooleanLit(True),Block([If(BooleanLit(False),Block([If(BooleanLit(True),Block([]))]))]))]))])])

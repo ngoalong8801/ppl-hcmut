@@ -1,6 +1,0 @@
-{
-    "python.analysis.extraPaths": [
-        "./target",
-        "./src/main/d96/utils"
-    ]
-}

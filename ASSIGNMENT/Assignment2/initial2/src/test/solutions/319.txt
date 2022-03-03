@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(TestMethoddecl),[MethodDecl(Id(Constructor),Instance,[],Block([]))])])

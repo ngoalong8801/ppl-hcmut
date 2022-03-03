@@ -1,3 +1,5 @@
-Class TestMulImuAttr{
-                Val immuVa, $kalixianua, $Ukraina : Float = 1.134, 313.999, 2022.3254325;
-             }
+
+        Class Program {
+            Var a: Int = Self.b;
+        }
+        

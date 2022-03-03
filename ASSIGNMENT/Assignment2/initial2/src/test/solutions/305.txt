@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(TestValueAttr),[AttributeDecl(Instance,ConstDecl(Id(a),FloatType,FloatLit(123.0)))])])

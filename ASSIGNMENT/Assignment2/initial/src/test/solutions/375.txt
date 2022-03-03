@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Coun),[MethodDecl(Id(test),Instance,[],Block([For(Id(x),IntLit(1),IntLit(10),IntLit(1),Block([Continue])])]))])])
+Program([ClassDecl(Id(myClass),[MethodDecl(Id($myFunc),Static,[],Block([Block([VarDecl(Id(a),IntType),VarDecl(Id(b),ClassType(Id(FLoat)),FloatLit(12.3))]),Block([VarDecl(Id(c),StringType,StringLit(Hello))])]))])])

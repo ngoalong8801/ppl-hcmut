@@ -1,4 +1,0 @@
-Class Biology{}
-                    Class People : Biology{}
-                    Class Animal : Biology{}
-                    Class Geo : Biology{}

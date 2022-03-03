@@ -24,18 +24,13 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by D96Parser#attr_decls.
+    def visitAttr_decls(self, ctx:D96Parser.Attr_declsContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by D96Parser#attr_decl.
     def visitAttr_decl(self, ctx:D96Parser.Attr_declContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#immutable_attr.
-    def visitImmutable_attr(self, ctx:D96Parser.Immutable_attrContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#mutable_attr.
-    def visitMutable_attr(self, ctx:D96Parser.Mutable_attrContext):
         return self.visitChildren(ctx)
 
 
@@ -111,6 +106,11 @@ class D96Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by D96Parser#lhs.
     def visitLhs(self, ctx:D96Parser.LhsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#attr_stmt.
+    def visitAttr_stmt(self, ctx:D96Parser.Attr_stmtContext):
         return self.visitChildren(ctx)
 
 

@@ -1,7 +1,9 @@
-Class Program{
-            ##Here is comment of language code  D96 of my University##
-                main(){
-                    {
-             
-                }
-                }}
+
+        Class myClass {
+            testFunc() {
+                obj.getA();
+                obj.getB(1, 2, 3);
+                obj::$getC();
+            }
+        }
+        

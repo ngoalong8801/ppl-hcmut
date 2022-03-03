@@ -1,11 +1,12 @@
-Class Mix{
-            test(){
-                Foreach(x In 1 .. 10){
-                    If(x == 5){
-                        Continue;
-                    }Elseif(x == 9){
-                        Break;
-                    }
-                }
+
+        Class myClass {
+            $addFunc(a, b: Int) {
+                Return a + b;
             }
         }
+        Class myClass2 {
+            $subFunc(a, b: Int) {
+                Return a - myClass::$addFunc(a, b);
+            }
+        }
+        

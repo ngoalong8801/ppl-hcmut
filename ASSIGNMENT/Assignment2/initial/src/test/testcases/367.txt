@@ -1,16 +1,8 @@
-Class Geo{
-            Var xAxis, $yAxis: Boolean;
-                location(x : Boolean; y: Boolean){
-                    
-                }
-                $sky(){
-                }
+
+        Class TestClass {
+            myFunc() {
+                a = b * c + d / e - f;
+                z = "Hello" +. "World";
             }
-            Class Program{
-                main(){
-                    a.xAxis = True;
-                    a::$yAxis = False;
-                    b = geo.location(True, False);
-                    c = geo::$sky();
-                }
-            }
+        }
+        

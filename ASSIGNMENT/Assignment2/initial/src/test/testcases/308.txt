@@ -1,3 +1,5 @@
-Class TestMutableValue{
-                Val a : Boolean = False;
-             }
+
+        Class Program {
+            Var a: Int = 3 + 2;
+        }
+        

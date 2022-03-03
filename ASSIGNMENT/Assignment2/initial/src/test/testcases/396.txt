@@ -1,11 +1,6 @@
-Class Program{
-                main(){
-                    If(a == 1){
-                        If(a ==2 ){
-                            If(a == 3){
-                                
-                            }Elseif(a == 6){}
-                        }
-                    }
-                }
+Class A {
+            testFunc() {
+                Self.name = "hello";
+                Self.getName();
             }
+        }

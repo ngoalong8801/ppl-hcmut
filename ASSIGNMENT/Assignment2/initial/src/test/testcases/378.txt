@@ -1,6 +1,9 @@
 
-        Class Res{
-            test(a, b : Int){
-                Return a + b;
+        Class Program {
+            main() { }
+            testFunc() {
+                Self.name = "abc";
+                Self.age = "12";
             }
-        } 
+        }
+        

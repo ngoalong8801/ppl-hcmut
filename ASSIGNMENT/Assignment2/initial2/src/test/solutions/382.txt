@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(Color),[MethodDecl(Id(getColor),Instance,[],Block([Call(Id(Out),Id(print),[StringLit(Black)])]))]),ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([Call(Id(Color),Id(getColor),[])]))])])

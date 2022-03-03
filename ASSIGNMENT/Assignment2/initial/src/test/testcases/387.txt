@@ -1,11 +1,9 @@
-Class Program{
-                main(){
-                    {
-                    Var r, s: Int;
-                    r = 2.0;
-                    Var a, b: Array[Int, 5];
-                    s = r * r * Self.myPI;
-                    a[0] = s;
-                    }
-                }
-                }
+
+        Class myClass {
+            testFunc() {
+                obj.getA();
+                obj.getB(1, 2, 3);
+                obj::$getC();
+            }
+        }
+        

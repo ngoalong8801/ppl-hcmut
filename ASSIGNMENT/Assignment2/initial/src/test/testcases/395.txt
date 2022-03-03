@@ -1,14 +1,8 @@
- Class Shape{
-                     Val height: Int;
-                      $getHeight(){
-
-                      }
-                }
-            Class Circle:Shape{
-
+Class A {
+            Constructor(a, b: Int) { }
+            testFunc() { }
+            Destructor() {
+                obj.a = 0;
+                obj.b = 0;
             }
-            Class Program{
-                main(){
-                    Out.printString("Hello World \n \b \f");
-                }
-            }
+        }

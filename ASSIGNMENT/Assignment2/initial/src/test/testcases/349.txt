@@ -1,5 +1,4 @@
-
-        Class TestArray{
-            Var a : Array[Int, 6];
+Class Test {
+            Var myVar1: Shape = New Shape();
         }
-     
+            

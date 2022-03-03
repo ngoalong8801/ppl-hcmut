@@ -1,7 +1,7 @@
-Class Area{
-            Var len, $width : Float;
-            Constructor(len, width : Float){
-                Self.width = width;
-                Self::$len = len;
-            }
+
+        Class A {
+            $testStatic() { }
+            testInstance() { }
+            $testStatic2() { }
         }
+        

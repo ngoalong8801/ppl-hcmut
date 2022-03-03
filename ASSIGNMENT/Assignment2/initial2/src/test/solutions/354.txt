@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(Bus),[]),ClassDecl(Id(TestClassType),[MethodDecl(Id(test),Instance,[],Block([VarDecl(Id(typ),ClassType(Id(Bus)),NewExpr(Id(Bus),[]))]))])])

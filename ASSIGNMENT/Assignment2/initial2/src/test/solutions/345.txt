@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(ForAssign),[MethodDecl(Id(forBlock),Instance,[],Block([For(Id(x),IntLit(1),IntLit(100),IntLit(3),Block([AssignStmt(Id(gh),IntLit(9389)),AssignStmt(Id(bg),IntLit(156))])])]))])])

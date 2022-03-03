@@ -1,11 +1,14 @@
-Class Brk{
-            test(){
-                Foreach(x In 1 .. 10){
-                    If(x == 5){
-                        Continue;
-                    }Elseif(x == 9){
-                        re = 1;
-                    }
-                }
+
+        Class myClass {
+            $addFunc(a, b: Int) {
+                Return a + b;
+            }
+            $subFunc(a, b: Int) {
+                Return a - b;
+            }
+            printFunc()
+            {
+                Return myClass::$addFunc(1, 2);
             }
         }
+        

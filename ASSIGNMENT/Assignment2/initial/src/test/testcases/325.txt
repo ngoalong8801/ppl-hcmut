@@ -1,4 +1,4 @@
-Class TestMulImuAttr{
-                Var abc, tes, $Immua : Int = 34, 56, 90;
-                Val immuVa, $kalixianua, $Ukraina : Float = 1.23, 14.53, 0.01;
-              }
+Class Program {
+            Destructor() {}
+        }
+        

@@ -1,9 +1,0 @@
-
-        Class Area{
-            Var len, width : Float;
-            calcuArea(){
-                Out.print(Self.len * Self.width);
-            }
-        }
-        
-        

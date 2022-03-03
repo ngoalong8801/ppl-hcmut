@@ -1,5 +1,0 @@
-
-                 Class Shape {
-                     Val height : Int = 0;
-                 }
-            

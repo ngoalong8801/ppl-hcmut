@@ -1,10 +1,10 @@
-Class Geo{
-                location(x : Boolean; y: Boolean){
-                    
-                }
+
+        Class Program {
+            Var a, b, c: Float = 1.0, 2.0 ,3.0;
+            main() {
+                a = a + 0.527e-2;
+                b = b * (5.72 / 12e-6);
+                Return c + b + a;
             }
-            Class Program{
-                main(){
-                    a = geo.location(True, False);
-                }
-            }
+        }
+        

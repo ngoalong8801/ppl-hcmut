@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Res),[MethodDecl(Id(cal),Instance,[param(Id(a),IntType),param(Id(b),IntType)],Block([Return(BinaryOp(+,Id(a),Id(b)))])),MethodDecl(Id(test),Instance,[param(Id(a),IntType),param(Id(b),IntType)],Block([Return(CallExpr(Self(),Id(cal),[Id(a),Id(b)]))]))])])
+Program([ClassDecl(Id(A),[MethodDecl(Id(MyTest),Instance,[],Block([VarDecl(Id(yes),BoolType),VarDecl(Id(no),BoolType),AssignStmt(Id(no),BooleanLit(False))]))])])

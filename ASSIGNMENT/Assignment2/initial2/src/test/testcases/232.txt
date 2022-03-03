@@ -1,9 +1,0 @@
-
-                 Class Shape:People {
-                    Val height: Int ;
-                    Var str1 : String = "String 1";
-                    Var str2 : String = "String 2";
-                    Var result : Boolean;
-            }
-
-            

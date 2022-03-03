@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(Car),[]),ClassDecl(Id(Res),[MethodDecl(Id(test),Instance,[],Block([Return()]))])])

@@ -1,7 +1,11 @@
 
-        Class Car{}
-        Class Res{
-            test(){
-                Return New Car();
+        Class A {
+            MyTest() {
+                If (True) {
+                    If (False) {
+                        If (True) { }
+                    }
+                }
             }
         }
+        

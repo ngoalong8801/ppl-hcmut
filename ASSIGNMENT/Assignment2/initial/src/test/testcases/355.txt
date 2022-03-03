@@ -1,11 +1,9 @@
+Class Shape {
+            Val $numOfShape: Int = 0;
+            Val immutableAttribute: Int = 0;
+            Var length, width: Int;
+            $getNumOfShape() {
 
-        Class Bus{
-            Var speed: Float;
-
-             }
-            Class TestClassType{
-                test(){
-                    Var typ : Bus;
-                    typ = New Bus(78.1);
-                }
             }
+        }
+        

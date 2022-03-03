@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(ForIf),[MethodDecl(Id(forBlock),Instance,[],Block([For(Id(x),IntLit(1),IntLit(100),IntLit(3),Block([If(BinaryOp(==,Id(a),IntLit(4)),Block([AssignStmt(Id(re),IntLit(1))]),Block([AssignStmt(Id(re),IntLit(2))]))])])]))])])

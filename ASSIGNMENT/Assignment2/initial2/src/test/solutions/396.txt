@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(A),[MethodDecl(Id(testFunc),Instance,[],Block([AssignStmt(FieldAccess(Self(),Id(name)),StringLit(hello)),Call(Self(),Id(getName),[])]))])])

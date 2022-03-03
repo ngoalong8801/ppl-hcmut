@@ -1,10 +1,15 @@
 
-         Class Operator{
-                Var arr: Array[Int, 5];
-                test(){
-                    Foreach(i In 1 .. 5){
-                        arr[i] = i;
-                    }
+        Class Shape {
+            Var a, b, c: Int = 1, 2 ,3;
+            $testFunc() {
+                Foreach (i In 0 .. 12 By 3)
+                {
+                    x = i + 1;
+                    Break;
                 }
             }
+        }
+        ## Class Program {
+            main () { }
+        } ##
         

@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Shape),[]),ClassDecl(Id(Abstract),Id(Shape),[]),ClassDecl(Id(Orbit),[])])
+Program([ClassDecl(Id(Program),[MethodDecl(Id(testFunc),Instance,[param(Id(My1stCons),IntType),param(Id(My2ndCons),IntType),param(Id(MyFloat),FloatType)],Block([]))])])

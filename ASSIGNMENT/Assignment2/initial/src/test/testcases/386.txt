@@ -1,10 +1,12 @@
-Class Color{getColor(a : Int; b : Float){
-            Out.print("Black");
+
+        Class myClass {
+            testFunc() {
+                If (1) {
+                    Foreach (i In 0 .. 1000 By 10) {
+                    }
+                    Foreach (i In 0 .. 1000) {
+                    }
+                }
+            }
         }
-        $getPi(){}}
-            Class Program{
-                main(){
-                    Color.getColor(1.234,3.432);
-                    Color::$getPi();
-                }
-                }
+        

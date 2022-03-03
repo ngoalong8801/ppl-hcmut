@@ -1,11 +1,10 @@
-Class Brk{
-            test(){
-                Foreach(x In 1 .. 10){
-                    If(x == 5){
-                        Break;
-                    }Else{
-                        re = re + 1;
-                    }
-                }
+
+        Class myClass {
+            $myFunc() {
+                Return (1 + 2) * 3;
             }
-        } 
+            myFunc2() {
+                Return myClass::$myFunc();
+            }
+        }
+        

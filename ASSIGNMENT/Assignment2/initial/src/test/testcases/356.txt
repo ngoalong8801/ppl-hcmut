@@ -1,12 +1,15 @@
-Class Bus{
-            Var speed: Float;
-            Var color: String;
-
-             }
-            Class TestClassType{
-                test(){
-                    Var typ : Bus;
-                    typ = New Bus(78.1, "Blue");
+Class Shape {
+            Var a, b, c: Int = 1, 2, 3;
+            $testFunc() {
+                Foreach (a In 1 .. 100 By 2) {
+                    a = a + 3;
                 }
-                }
-            
+                b = a * 2;
+            }
+        }
+        Class Program {
+            main() {
+                Shape::$testFunc();
+            }
+        }
+        

@@ -1,3 +1,5 @@
-Class TestMulImuAttr{
-                Val a, b, c : String;
-             }
+
+        Class Program {
+            Val c, $d: Int;
+        }
+        

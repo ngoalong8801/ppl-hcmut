@@ -1,8 +1,16 @@
-Class Color{$getColor(a : Int; b : Float){
-            Out.print("Black");
-        }}
-            Class Program{
-                main(){
-                    Color::$getColor(1, 4.2);
+
+        Class myClass {
+            testFunc() {
+                Foreach (i In 0 .. 100) {
+                    Foreach (j In 0 .. 100) {
+                        If (i == j) {
+                            Continue;
+                        }
+                        Else {
+                            j = j + 3;
+                        }
+                    }
                 }
-                }
+            }
+        }
+        

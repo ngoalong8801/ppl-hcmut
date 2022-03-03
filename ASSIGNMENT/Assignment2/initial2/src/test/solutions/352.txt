@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(TestArray),[AttributeDecl(Instance,VarDecl(Id(arr),ArrayType(2,ArrayType(2,StringType)),[[StringLit(Vocka),StringLit(Strongbow)],[StringLit(333),StringLit(Heliken)]]))])])

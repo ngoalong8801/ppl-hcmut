@@ -1,7 +1,0 @@
-
-                 Class Shape {
-                     Val height : int = 0;
-                     Var weight : Float = 0;
-                     Var color, length: Int = 0, 0;
-                 }
-            

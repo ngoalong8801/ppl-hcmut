@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(TestArray),[AttributeDecl(Instance,VarDecl(Id(a1),ArrayType(2,ArrayType(2,IntType))))])])

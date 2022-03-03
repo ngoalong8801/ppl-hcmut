@@ -1,7 +1,12 @@
-Class Area{
-            Var len, width : Float;
-            Destructor(){
-                Self.width = 0;
-                Self.len = 0;
+
+        Class Shape {
+            $callMeNow() { }
+        }
+        Class Circle {
+            callMeLater() {
+                Var obj: Shape = New Shape();
+                obj.name = "Circle";
+                Return obj;
             }
         }
+        

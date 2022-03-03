@@ -1,9 +1,0 @@
-
-                     Class Program {
-            testFun() {
-                 If(helloword ==. ("Hello" +. "World")){
-                            result = True;
-                        }
-            }
-        }
-            

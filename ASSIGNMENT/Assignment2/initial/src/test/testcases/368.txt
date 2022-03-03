@@ -1,9 +1,15 @@
 
-        Class Area{
-            Var len, width : Float;
-            calcuArea(){
-                Out.print(Self.len * Self.width);
+        Class Shape {
+            $callMeNow() {
+                Return 123;
+            }
+            $callMeLater(a, b: Int) {
+                Return a * b;
             }
         }
-        
+        Class Program {
+            main() {
+                Out.printInt(Shape::$callMeLater(1, 2));
+            }
+        }
         

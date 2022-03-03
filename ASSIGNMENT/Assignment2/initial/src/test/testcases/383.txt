@@ -1,8 +1,9 @@
-Class Color{$getColor(){
-            Out.print("Black");
-        }}
-            Class Program{
-                main(){
-                    Color::$getColor();
-                }
-                }
+Class A {
+            MyTest() {
+                Var a, b, c: Int;
+                Val x, y, z: Float;
+                a = ((12 * 35) + 137/2 - -14)*(10 * (-16));
+                Return a;
+            }
+        }
+        

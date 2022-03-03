@@ -1,10 +1,10 @@
-Class Geo{
-                location(){
-                    
-                }
+
+        Class Program {
+            main(a, b: Int) {
+                Return;
             }
-            Class Program{
-                main(){
-                    a = geo.location();
-                }
-            }
+        }
+        Class A {
+            func() { }
+        }
+        

@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(Coun),[MethodDecl(Id(test),Instance,[],Block([For(Id(x),IntLit(1),IntLit(10),IntLit(1),Block([Continue])])]))])])

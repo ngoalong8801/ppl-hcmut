@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(Program),[MethodDecl(Id(getArea),Instance,[],Block([VarDecl(Id(a),ClassType(Id(Shape)),NullLiteral())]))])])

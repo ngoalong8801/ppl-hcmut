@@ -1,12 +1,12 @@
 
-        Class TestMain{
-            main(){
-
+        Class Program {
+            testFun() {
+                If (a > b) {
+                    a = a + 1;
+                }
+                Else {
+                    a = a - 1;
+                }
             }
         }
-        Class Program{
-                   main(){
-
-                   }
-                    
-              }
+        

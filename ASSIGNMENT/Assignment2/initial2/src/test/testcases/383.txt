@@ -1,8 +1,0 @@
-Class Color{$getColor(){
-            Out.print("Black");
-        }}
-            Class Program{
-                main(){
-                    Color::$getColor();
-                }
-                }

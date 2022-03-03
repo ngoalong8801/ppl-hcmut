@@ -1,7 +1,9 @@
-
-     Class TestArray{
-            Var arr : Array[Array[String,2], 2] = Array(
-                    Array("Vocka", "Strongbow"),
-                    Array("333", "Heliken")
-            );
+Class Test {
+            testFunc() { }
+            main() { }
         }
+        Class Program {
+            testFunc2() { }
+            main() { }
+        }
+            

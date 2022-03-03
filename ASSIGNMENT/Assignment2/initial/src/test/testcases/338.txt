@@ -1,16 +1,17 @@
-Class TestIf_Stmt{
-                TestIf_Nested(){
-                        If(Today == "0203"){
-                            If(Tomorow ==. "None"){
-                                If(a == 2){ }
-                            }
-                            Elseif(Yesterday == 4){}
-                            Else{ }
+Class Shape {
+                    testFunc() {
+                        If (a > b) {
+                            a = b;
                         }
-                        Elseif(b == 7){
-                            If(g == 9.81){}
+                        Elseif (a < b) {
+                            c = d;
                         }
-                        Else{  ma = 123; }
-                    
+                        Elseif (a == b) {
+                            e = f;
+                        }
+                        Else {
+                            g = h;
+                        }
+                    }
                 }
-              }
+            

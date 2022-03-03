@@ -1,7 +1,14 @@
- Class Coun{
-            test(){
-                Foreach(x In 1 .. 10){
-                    Continue;
+
+        Class myClass {
+            $myFunc() {
+                {
+                    Var a: Int;
+                    Var b: FLoat = 12.3;
+                }
+                {
+                    Var c: String = "Hello";
                 }
             }
+            
         }
+        

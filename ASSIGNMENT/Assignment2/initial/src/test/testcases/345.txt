@@ -1,10 +1,8 @@
-
-     Class ForAssign{
-            forBlock(){
-                Foreach(x In 1 .. 100 By 3){
-                    gh = 123;
-                    bg = 900;
+Class Shape {
+                    testFunc() {
+                        Var a: Boolean;
+                        a = !(1 == 2);
+                        Return a;
+                    }
                 }
-            }
-        }
-     
+            

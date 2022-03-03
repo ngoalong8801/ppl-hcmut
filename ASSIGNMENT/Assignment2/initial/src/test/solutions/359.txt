@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Operator),[AttributeDecl(Instance,VarDecl(Id(arr),ArrayType(5,ArrayType(2,IntType)))),MethodDecl(Id(test),Instance,[],Block([Call(Id(Out),Id(print),[ArrayCell(Id(arr),[IntLit(0),IntLit(1)])])]))])])
+Program([ClassDecl(Id(Shape),[MethodDecl(Id(testFunc),Instance,[],Block([AssignStmt(Id(str),BinaryOp(+.,StringLit($ $ $ @@ ***),StringLit((0)_(0))))]))])])

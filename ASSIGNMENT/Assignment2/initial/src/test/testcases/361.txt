@@ -1,12 +1,20 @@
 
-        Class Geo{
-                Var xAxis: Boolean;
-                Val $yAxis: Boolean;
-               
-            }
-            Class Program{
-                main(){
-                    a::$yAxis = True;
-       
+        Class A {
+            func() {
+                If (a > b) {
+
+                }
+                Elseif (c <= d)
+                {
+
+                }
+                Elseif (e >= f)
+                {
+
+                }
+                Else {
+
                 }
             }
+        }
+        

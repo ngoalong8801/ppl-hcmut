@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(Area),[AttributeDecl(Instance,VarDecl(Id(len),FloatType)),AttributeDecl(Static,VarDecl(Id($width),FloatType)),MethodDecl(Id(Destructor),Instance,[],Block([AssignStmt(FieldAccess(Self(),Id(width)),IntLit(0)),AssignStmt(FieldAccess(Self(),Id($len)),IntLit(0))]))])])

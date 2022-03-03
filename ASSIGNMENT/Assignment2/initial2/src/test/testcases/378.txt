@@ -1,6 +1,0 @@
-
-        Class Res{
-            test(a, b : Int){
-                Return a + b;
-            }
-        } 

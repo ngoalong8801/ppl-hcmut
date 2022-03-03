@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(Geo),[AttributeDecl(Instance,VarDecl(Id(xAxis),BoolType))]),ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([AssignStmt(FieldAccess(Id(a),Id(xAxis)),BooleanLit(True))]))])])

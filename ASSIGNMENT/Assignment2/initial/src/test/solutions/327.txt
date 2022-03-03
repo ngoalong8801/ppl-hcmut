@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(TestBlock),[MethodDecl(Id(testAssign_stmt),Instance,[],Block([AssignStmt(Id(lhs),BinaryOp(-,BinaryOp(+,Id(expr),Id(expr2)),BinaryOp(*,Id(expr3),Id(expr4))))]))])])
+Program([ClassDecl(Id(A),[MethodDecl(Id(MyTest),Instance,[],Block([VarDecl(Id(a),IntType),VarDecl(Id(b),FloatType,FloatLit(0.2))])),MethodDecl(Id(Destructor),Instance,[],Block([]))])])

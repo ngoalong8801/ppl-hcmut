@@ -1,1 +1,0 @@
-Program([ClassDecl(Id(TestIf_Stmt),[MethodDecl(Id(If_stmt),Instance,[],Block([If(BinaryOp(==,Id(ma),IntLit(0)),Block([AssignStmt(Id(ma),IntLit(9999))])),If(BinaryOp(==.,Id(helloword),BinaryOp(+.,StringLit(Hello),StringLit(World))),Block([AssignStmt(Id(result),BooleanLit(True))]))]))])])

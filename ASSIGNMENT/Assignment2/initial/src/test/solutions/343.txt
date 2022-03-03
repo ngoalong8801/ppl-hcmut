@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(ForNested),[MethodDecl(Id(forPro),Instance,[],Block([For(Id(x),IntLit(1),IntLit(100),IntLit(3),Block([For(Id(sad),IntLit(1),IntLit(10),IntLit(2),Block([])])])])]))])])
+Program([ClassDecl(Id(Shape),[MethodDecl(Id(testFunc),Instance,[],Block([VarDecl(Id(a),IntType),AssignStmt(Id(a),BinaryOp(+,IntLit(1),BinaryOp(-,IntLit(2),IntLit(3)))),AssignStmt(Id(a),BinaryOp(-,BinaryOp(+,IntLit(5),IntLit(6)),IntLit(7))),Return(Id(a))]))])])

@@ -1,8 +1,0 @@
-
-            Class Operator{
-                Var arr: Array[Int, 5];
-                test(){
-                    a[0] = 12;
-                }
-            }
-        

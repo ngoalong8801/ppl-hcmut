@@ -1,16 +1,8 @@
-Class Shape{
-                     Val height: Int;
-                      $getHeight(){
 
-                      }
+        Class myClass {
+            testFunc() {
+                Foreach (i In (3-2) .. (10 * 100)) {
                 }
-            Class Program{
-                Var a: Array[Int, 5] = Array(1,2,3,4,5);
-                getRandom(){
-
-                }
-                main(){
-
-                }
-
             }
+        }
+        

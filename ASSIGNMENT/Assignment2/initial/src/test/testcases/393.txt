@@ -1,4 +1,9 @@
-Class Biology{}
-                    Class People : Biology{}
-                    Class Animal : Biology{}
-                    Class Geo : Biology{}
+Class A {
+            MyTest() {
+                Var a, b, c: Int;
+                Val x, y, z: Float;
+                a = -12 + 9;
+                b = -3 -5 -7;
+                c = 127 *-12 + (-3);
+            }
+        }
