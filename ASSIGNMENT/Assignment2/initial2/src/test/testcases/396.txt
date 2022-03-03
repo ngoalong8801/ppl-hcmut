@@ -1,0 +1,6 @@
+Class A {
+            testFunc() {
+                Self.name = "hello";
+                Self.getName();
+            }
+        }

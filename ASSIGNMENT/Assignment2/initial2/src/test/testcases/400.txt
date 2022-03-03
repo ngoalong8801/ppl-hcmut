@@ -1,1 +1,5 @@
-int main() {foo();}
+ Class Program {
+                        getArea() {
+                            Var a : Shape;
+                        }
+                    } 

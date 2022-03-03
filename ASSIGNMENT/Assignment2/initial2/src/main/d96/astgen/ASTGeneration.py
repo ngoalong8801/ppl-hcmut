@@ -23,36 +23,28 @@ class ASTGeneration(D96Visitor):
         
 
     def visitMem_decl(self, ctx: D96Parser.Mem_declContext):
-        if ctx.attr_decl():
-            return self.visit(ctx.attr_decl())
+        if ctx.attr_decls():
+            return self.visit(ctx.attr_decls())
         if ctx.method_decl():
             return self.visit(ctx.method_decl())
 
-    def visitAttr_decl(self, ctx: D96Parser.Attr_declContext):
-        if ctx.immutable_attr():
-            return self.visit(ctx.immutable_attr())
-        return self.visit(ctx.mutable_attr())
+    def visitAttr_decls(self, ctx: D96Parser.Attr_declsContext):
+        Kind_value = self.visit(ctx.attr_decl());
+        return [AttributeDecl(kind, storeDecl) for (kind, storeDecl) in Kind_value];
     
-    def visitImmutable_attr(self, ctx: D96Parser.Immutable_attrContext):
-        IdListType = self.visit(ctx.id_list_type())
-        IdListTypeKind = list(map(lambda x: x + (Static(), ) if x[0].name[0] == "$" else x + (Instance(),), IdListType))
-        if ctx.expr_list():
-            exprList = self.visit(ctx.expr_list())
-            compList = list(map(lambda x, y : x + (y , ), IdListTypeKind, exprList))
-            return [AttributeDecl(kind, ConstDecl(id, dataType, expr)) for (id, dataType, kind, expr) in compList]
-        return [AttributeDecl(kind, ConstDecl(id, dataType)) for (id, dataType, kind) in IdListTypeKind]
-
-    def visitMutable_attr(self, ctx: D96Parser.Mutable_attrContext):
+    def visitAttr_decl(self, ctx: D96Parser.Attr_declContext):
         IdListType = self.visit(ctx.id_list_type())
         IdListTypeKind = list(map(lambda x: x + (Static(), )
                               if x[0].name[0] == "$" else x + (Instance(),), IdListType))
         if ctx.expr_list():
             exprList = self.visit(ctx.expr_list())
-            compList = list(map(lambda x, y: x + (y, ),
-                            IdListTypeKind, exprList))
-            return [AttributeDecl(kind, VarDecl(id, dataType, expr)) for (id, dataType, kind, expr) in compList]
-        return [AttributeDecl(kind, VarDecl(id, dataType)) for (id, dataType, kind) in IdListTypeKind]
-    
+            compList = list(map(lambda x, y: x + (y, ), IdListTypeKind, exprList))
+            if ctx.VAL():
+                return [(kind, ConstDecl(id, dataType, expr)) for (id, dataType, kind, expr) in compList]
+            return [(kind, VarDecl(id, dataType, expr)) for (id, dataType, kind, expr) in compList]
+        if ctx.VAL():
+            return [(kind, ConstDecl(id, dataType) if not isinstance(dataType, ClassType) else ConstDecl(id, dataType, NullLiteral())) for (id, dataType, kind) in IdListTypeKind]
+        return [(kind, VarDecl(id, dataType)if not isinstance(dataType, ClassType) else VarDecl(id, dataType, NullLiteral()) ) for (id, dataType, kind) in IdListTypeKind]
 
         
     def visitId_list_type(self, ctx: D96Parser.Id_list_typeContext):
@@ -81,7 +73,7 @@ class ASTGeneration(D96Visitor):
         elif ctx.BOOLEAN():
             return BoolType()
         elif ctx.IDEN():
-            return ctx.IDEN().getText()
+            return ClassType(Id(ctx.IDEN().getText()))
         else:
             return self.visit(ctx.getChild(0))
     
@@ -133,14 +125,20 @@ class ASTGeneration(D96Visitor):
     def visitLhs(self, ctx: D96Parser.LhsContext):
         if ctx.IDEN():
             return Id(ctx.IDEN().getText())
-        else:
-            return self.visit(ctx.getChild(0))
+        elif ctx.DOL_IDEN():
+            return Id(ctx.DOL_IDEN().getText())
+        return self.visit(ctx.getChild(0))
     
     def visitArray_operator(self, ctx: D96Parser.Array_operatorContext):
         return ArrayCell(self.visit(ctx.expr8()), [self.visit(x) for x in ctx.expr()])
     
     def visitField_access(self, ctx: D96Parser.Field_accessContext):
         return FieldAccess(self.visit(ctx.expr()), Id(ctx.getChild(2).getText()))
+
+    def visitAttr_stmt(self, ctx: D96Parser.Attr_stmtContext):
+        kindStore= self.visit(ctx.attr_decl())
+        listStore = list(map(lambda x : x[1], kindStore))
+        return listStore
 
     """                  If Statement                      """
     def visitIf_stmt(self, ctx: D96Parser.If_stmtContext):
@@ -149,8 +147,6 @@ class ASTGeneration(D96Visitor):
         else:
             return If(self.visit(ctx.expr()), self.visit(ctx.block_stmt()))
 
-    # def visitIf_element(self, ctx: D96Parser.If_elementContext):
-    #     return (self.visit(ctx.expr()), self.visit(ctx.block_stmt()))
     
     def visitElse_stmt(self, ctx: D96Parser.Else_stmtContext):
         if ctx.ELSEIF():
@@ -159,11 +155,6 @@ class ASTGeneration(D96Visitor):
             return If(self.visit(ctx.expr()), self.visit(ctx.block_stmt()))
         return self.visit(ctx.block_stmt())
     
-    # def visitElif_element(self, ctx: D96Parser.Elif_elementContext):
-    #     return (self.visit(ctx.expr()), self.visit(ctx.block_stmt()))
-    
-    # def visitElse_element(self, ctx: D96Parser.Else_elementContext):
-    #     return self.visit(ctx.block_stmt())
  
     """                  Break Statement                      """
     def visitBreak_stmt(self, ctx: D96Parser.Break_stmtContext):
@@ -174,9 +165,9 @@ class ASTGeneration(D96Visitor):
     
     def visitForin_stmt(self, ctx: D96Parser.Forin_stmtContext):
         if ctx.BY():
-            return For(Id(ctx.IDEN().getText()), IntLiteral(int(ctx.INTEGER_LITERAL(0).getText())), IntLiteral(int(ctx.INTEGER_LITERAL(1).getText())), self.visit(ctx.block_stmt()), IntLiteral(int(ctx.INTEGER_LITERAL(2).getText())))
+            return For(Id(ctx.IDEN().getText()), self.visit(ctx.expr(0)), self.visit(ctx.expr(1)), self.visit(ctx.block_stmt()), self.visit(ctx.expr(2)))
         else:
-            return For(Id(ctx.IDEN().getText()), IntLiteral(int(ctx.INTEGER_LITERAL(0).getText())), IntLiteral(int(ctx.INTEGER_LITERAL(1).getText())), self.visit(ctx.block_stmt()), IntLiteral(1))
+            return For(Id(ctx.IDEN().getText()), self.visit(ctx.expr(0)),  self.visit(ctx.expr(1)), self.visit(ctx.block_stmt()), IntLiteral(1))
 
     def visitReturn_stmt(self, ctx: D96Parser.Return_stmtContext):
         if ctx.expr():
@@ -274,6 +265,8 @@ class ASTGeneration(D96Visitor):
     def visitOperands(self, ctx: D96Parser.OperandsContext):
         if ctx.IDEN():
             return Id(ctx.IDEN().getText())
+        elif ctx.DOL_IDEN():
+            return Id(ctx.DOL_IDEN().getText())
         elif ctx.literal():
             return self.visit(ctx.getChild(0))
         elif ctx.SELF():
@@ -285,9 +278,15 @@ class ASTGeneration(D96Visitor):
 
     def visitLiteral(self, ctx: D96Parser.LiteralContext):
         if ctx.INTEGER_LITERAL():
+            preFix = ctx.INTEGER_LITERAL().getText()[:2]
+            if(preFix == '0b' or preFix == '0B'):
+                return IntLiteral(int(ctx.INTEGER_LITERAL().getText(), 2))
+            elif(preFix == '0x' or preFix == '0X'):
+                return IntLiteral(int(ctx.INTEGER_LITERAL().getText(), 16))
+            elif(preFix[0] == '0' or preFix[0] == '0'):
+                return IntLiteral(int(ctx.INTEGER_LITERAL().getText(), 8))
             return IntLiteral(int(ctx.INTEGER_LITERAL().getText()))
         elif ctx.FLOAT_LITERAL():
-            
             return FloatLiteral(float(ctx.FLOAT_LITERAL().getText()))
         elif ctx.BOOLEAN_LITERAL():
             return BooleanLiteral(ctx.BOOLEAN_LITERAL().getText() == 'True')
@@ -310,7 +309,4 @@ class ASTGeneration(D96Visitor):
     def visitArray_type(self, ctx: D96Parser.Array_typeContext):
         return ArrayType(ctx.INTEGER_LITERAL().getText(), self.visit(ctx.data_type()))
         
-    
-
-    
     

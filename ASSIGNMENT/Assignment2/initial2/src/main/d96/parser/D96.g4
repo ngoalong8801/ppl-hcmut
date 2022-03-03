@@ -13,18 +13,11 @@ program: class_decl+ EOF;
 class_decl:
 	CLASS IDEN LP mem_decl* RP
 	| CLASS IDEN COL IDEN LP mem_decl* RP;
-mem_decl: attr_decl | method_decl;
+mem_decl: attr_decls | method_decl;
 
 /*** Attribute Declare ***/
-// att_decl: ATTR (para_list_eq | para_list_nor) SEMI; //val $a, b, c : Int = 4,5,6;
-attr_decl: immutable_attr SEMI | mutable_attr SEMI;
-
-immutable_attr:
-	VAL id_list_type OP_AS expr_list
-	| VAL id_list_type;
-mutable_attr:
-	VAR id_list_type OP_AS expr_list
-	| VAR id_list_type;
+attr_decls: attr_decl SEMI;
+attr_decl: (VAL | VAR) id_list_type (OP_AS expr_list)?;
 
 id_list_type: id_list COL data_type;
 id_list: iden_dol (COM iden_dol)*;
@@ -46,7 +39,7 @@ param_decl: id_list_type;
 block_stmt: LP block_item* RP;
 block_item:
 	assign_stmt
-	| attr_decl
+	| attr_stmt
 	| if_stmt
 	| break_stmt
 	| continue_stmt
@@ -57,18 +50,17 @@ block_item:
 
 assign_stmt: assign_lhs SEMI;
 assign_lhs: lhs OP_AS expr;
-lhs: IDEN | array_operator | field_access;
+lhs: (IDEN | DOL_IDEN) | array_operator | field_access;
+attr_stmt: attr_decl SEMI;
 array_operator: expr8 (LSB expr RSB)+;
 
 field_access: expr DOT IDEN | expr DCOL DOL_IDEN;
 
 if_stmt: IF LB expr RB block_stmt (else_stmt)?;
 
-// if_element: IF LB expr RB block_stmt;
 else_stmt:
 	ELSEIF LB expr RB block_stmt (else_stmt)?
 	| ELSE block_stmt;
-// elif_element: ELSEIF LB expr RB block_stmt; else_element: ELSE block_stmt;
 
 break_stmt: BREAK SEMI;
 
@@ -76,8 +68,8 @@ continue_stmt: CONTINUE SEMI;
 
 //Declare Foreach/In
 forin_stmt:
-	FOREACH LB IDEN IN INTEGER_LITERAL DDOT INTEGER_LITERAL (
-		BY INTEGER_LITERAL
+	FOREACH LB IDEN IN expr DDOT expr (
+		BY expr
 	)? RB block_stmt;
 
 return_stmt: RETURN expr? SEMI;
@@ -102,7 +94,7 @@ expr8: expr8 DOT IDEN (LB expr_list? RB)? | expr9;
 expr9: expr9 DCOL DOL_IDEN (LB expr_list? RB)? | expr10;
 expr10: NEW IDEN LB expr_list? RB | expr11;
 expr11: LB expr RB | operands;
-operands: IDEN | literal | SELF | NULL;
+operands: (IDEN | DOL_IDEN) | literal | SELF | NULL;
 list_literal: literal (COM literal)*;
 literal:
 	INTEGER_LITERAL
