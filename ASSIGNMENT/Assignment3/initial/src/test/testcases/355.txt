@@ -1,0 +1,11 @@
+
+        Class Bus{
+            Var speed: Float;
+
+             }
+            Class TestClassType{
+                test(){
+                    Var typ : Bus;
+                    typ = New Bus(78.1);
+                }
+            }

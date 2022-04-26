@@ -1,0 +1,7 @@
+
+        function _main()
+        {
+            $arr1 = array(array(array(1.1)), array(array(1.1, 2.3)));
+            $arr2 = array(array(array(1.1)), array(array(1 => 1.1)));
+        }
+        

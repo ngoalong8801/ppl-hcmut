@@ -1,0 +1,9 @@
+
+        function _main()
+        {
+            while(1 + 1)
+            {
+                _echo("loop");
+            }
+        }
+        

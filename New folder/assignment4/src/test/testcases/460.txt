@@ -1,0 +1,6 @@
+
+        function _main($arg)
+        {
+            $x = true / false;
+        }
+        

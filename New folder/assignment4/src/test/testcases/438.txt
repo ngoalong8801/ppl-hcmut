@@ -1,0 +1,10 @@
+
+        define(A, 1);
+        function _main()
+        {
+            foreach(A as $key=>$value)
+            {
+                _echo("loop");
+            }
+        }
+        

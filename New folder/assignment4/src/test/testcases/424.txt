@@ -1,0 +1,6 @@
+
+        function _main()
+        {
+            $x = str2int(1);
+        }
+        

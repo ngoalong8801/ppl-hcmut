@@ -1,0 +1,1 @@
+TypeMismatchInExpr(BinExp(%,IntLit(10000),Id(A)))

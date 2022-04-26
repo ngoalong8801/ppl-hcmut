@@ -1,0 +1,11 @@
+
+        function _foo($a)
+        {
+            $a = 1;
+            return $a;
+        }
+        function _main()
+        {
+            $x = _foo(_foo(1));
+        }
+        

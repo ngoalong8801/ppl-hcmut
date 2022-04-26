@@ -1,0 +1,12 @@
+Class Bus{
+            Var speed: Float;
+            Var color: String;
+
+             }
+            Class TestClassType{
+                test(){
+                    Var typ : Bus;
+                    typ = New Bus(78.1, "Blue");
+                }
+                }
+            

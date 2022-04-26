@@ -1,0 +1,9 @@
+
+        define(A, 1.2345);
+        function _f($a){return $a+1;}
+        function _g($a){return _f($a) * _f($a+5);}
+        function _main()
+        {
+            $x = _g(1.1) * 2;
+        }
+        

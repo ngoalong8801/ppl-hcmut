@@ -1,0 +1,10 @@
+
+         Class Operator{
+                Var arr: Array[Int, 5];
+                test(){
+                    Foreach(i In 1 .. 5){
+                        arr[i] = i;
+                    }
+                }
+            }
+        

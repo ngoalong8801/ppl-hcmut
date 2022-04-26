@@ -1,0 +1,4 @@
+Class TestMulImuAttr{
+                Var abc, tes, $Immua : Int;
+                Val immuVa, $kalixianua, $Ukraina : Float;
+              }

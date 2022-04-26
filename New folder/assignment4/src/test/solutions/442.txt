@@ -1,0 +1,1 @@
+TypeMismatchInStmt(While(BinExp(+,ArrayAccess(Id(A),[Id($i)]),IntLit(3)),[Call(Id(_echo),[Call(Id(int2str),[ArrayAccess(Id(A),[Id($i)])])]),Assign(Id($i),BinExp(+,Id($i),IntLit(1)))]))

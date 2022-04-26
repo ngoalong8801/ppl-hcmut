@@ -1,0 +1,7 @@
+
+        function _main()
+        {
+            $arr = array("one" => 1.0, "two" => 2.0);
+            $x = $arr["one"] * 1;
+        }
+        

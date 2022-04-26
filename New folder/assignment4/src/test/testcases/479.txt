@@ -1,0 +1,6 @@
+
+        function _main()
+        {
+            $a = false; $b =  bool2str($a + 1);
+        }
+        

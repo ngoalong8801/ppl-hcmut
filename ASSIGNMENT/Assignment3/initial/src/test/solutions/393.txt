@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Biology),[]),ClassDecl(Id(People),Id(Biology),[]),ClassDecl(Id(Animal),Id(Biology),[]),ClassDecl(Id(Geo),Id(Biology),[])])

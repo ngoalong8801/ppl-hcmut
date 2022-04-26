@@ -1,0 +1,11 @@
+
+        function _foo($x)
+        {
+            if ($x == 1){return 1;}
+            return _foo($x -1);
+        }
+        function _main()
+        {
+            _foo(5.0, 6.0);
+        }
+        

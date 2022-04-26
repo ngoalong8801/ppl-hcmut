@@ -1,0 +1,7 @@
+
+        function _main()
+        {
+            foreach ($arr as $k => $v) { if ($v % 2 == 0) {$n = $n + $v;} }
+            _echo(int2str($n));
+        }
+        

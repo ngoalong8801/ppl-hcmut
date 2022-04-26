@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(TestMethoddecl),[MethodDecl(Id($staticMethodTest),Static,[],Block([]))])])

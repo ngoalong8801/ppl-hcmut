@@ -1,0 +1,5 @@
+Class Program{
+            Val a : Int;
+            Var a: Int;
+        }
+       

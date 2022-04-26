@@ -1,0 +1,5 @@
+
+        Class TestArray{
+            Var arr : Array[Float, 6] = Array(1.2, 2.09, 4, 5, 5, 6);
+        }
+     

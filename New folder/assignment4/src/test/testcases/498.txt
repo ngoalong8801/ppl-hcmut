@@ -1,0 +1,7 @@
+
+        define(A, -1.1 / 2.2 + 3.3 * 4.4);
+        function _main()
+        {
+            bool2str(A);
+        }
+        

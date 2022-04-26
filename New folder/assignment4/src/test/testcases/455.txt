@@ -1,0 +1,8 @@
+
+        function _main()
+        {
+            $arr = array(array("one" => 1.0, "two" => 2.0), array("three" => 3.0, "four" => 4.0));
+            $x = $arr[1];
+            $y = $arr[0]["two"];
+        }
+        

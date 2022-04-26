@@ -1,0 +1,1 @@
+TypeMismatchInStmt(Call(Id(int2str),[FloatLit(1.1)]))

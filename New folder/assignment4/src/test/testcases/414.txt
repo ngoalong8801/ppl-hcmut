@@ -1,0 +1,11 @@
+
+        function _main()
+        {
+            while(true)
+            {
+                $a = 0;
+                if ($a > 10) {break;}
+                else {$a = $a + 1;}
+            }
+        }
+        

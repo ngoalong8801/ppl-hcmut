@@ -1,0 +1,11 @@
+
+        define(A, array(1,2,3));
+        function _main()
+        {
+            foreach(A as $key=>$value)
+            {
+                if ($value < 2) {continue;}
+                else {break;}
+            }
+        }
+        

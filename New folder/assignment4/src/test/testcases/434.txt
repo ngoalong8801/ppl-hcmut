@@ -1,0 +1,7 @@
+
+        function _foo($x, $x){}
+        function _main()
+        {
+            $a = 1;
+        }
+        

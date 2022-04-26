@@ -1,0 +1,7 @@
+
+        function _main()
+        {
+            $x = str2bool("false");
+            $y = $x || true;
+        }
+        

@@ -1,0 +1,8 @@
+
+        function _main()
+        {
+            $arr = array(array("a", "b"), array("c", "d"));
+            $x = $arr[1][1];
+            $y = $x / 2;
+        }
+        

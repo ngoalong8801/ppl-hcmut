@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Bus),[AttributeDecl(Instance,VarDecl(Id(speed),FloatType))]),ClassDecl(Id(TestClassType),[MethodDecl(Id(test),Instance,[],Block([VarDecl(Id(typ),ClassType(Id(Bus)),NullLiteral()),AssignStmt(Id(typ),NewExpr(Id(Bus),[FloatLit(78.1)]))]))])])

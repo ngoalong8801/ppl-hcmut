@@ -1,0 +1,9 @@
+
+           Class Bus{
+
+             }
+            Class TestClassType{
+                test(){
+                    Var typ : Bus = New Bus();
+                }
+            }

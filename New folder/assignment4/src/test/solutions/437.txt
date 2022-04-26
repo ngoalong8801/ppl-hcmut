@@ -1,0 +1,1 @@
+TypeMismatchInStmt(Call(Id(_foo),[IntLit(1),FloatLit(1.1)]))

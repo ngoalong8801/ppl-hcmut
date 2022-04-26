@@ -1,0 +1,6 @@
+
+        function _main()
+        {
+            $arr = array(1, true, "one", 1.1);
+        }
+        

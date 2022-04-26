@@ -1,0 +1,10 @@
+
+        Class Program{
+             test(paramm: Int){
+                        
+                    }
+                   main(){
+
+                   }
+                    
+              }

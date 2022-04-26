@@ -1,0 +1,6 @@
+
+        function _main()
+        {
+            $x = $y + 1;
+        }
+        

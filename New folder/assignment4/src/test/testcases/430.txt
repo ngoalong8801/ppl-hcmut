@@ -1,0 +1,7 @@
+
+        $arr = array(1,2,3);
+        function _main()
+        {
+            $arr[1] = 1;
+        }
+        

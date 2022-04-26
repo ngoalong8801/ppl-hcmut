@@ -1,0 +1,6 @@
+Class TestMethoddecl{
+                   
+                    $parammethod(a, b, c : Int ; mulPa, Tripba: Float){
+
+                    }
+              }

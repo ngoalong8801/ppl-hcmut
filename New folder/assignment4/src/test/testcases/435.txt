@@ -1,0 +1,8 @@
+
+        function _foo($x, $y){}
+        function _foo($x, $y){}
+        function _main()
+        {
+            $a = 1;
+        }
+        

@@ -1,0 +1,5 @@
+Class TestBlock{
+                testAssign_stmt(){
+                        lhs = expr + expr2 - expr3 * expr4;
+                }
+              }

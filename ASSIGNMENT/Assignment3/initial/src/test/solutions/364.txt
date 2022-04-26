@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Geo),[MethodDecl(Id(location),Instance,[param(Id(x),BoolType),param(Id(y),BoolType)],Block([]))]),ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([AssignStmt(Id(a),CallExpr(Id(geo),Id(location),[BooleanLit(True),BooleanLit(False)]))]))])])

@@ -1,0 +1,7 @@
+
+        function _main($arg)
+        {
+            $x = 2 > 3;
+            $y = $x && true;
+        }
+        

@@ -1,0 +1,7 @@
+
+        function _main()
+        {
+            $a = true;
+            $x = $a + 1;
+        }
+        

@@ -1,0 +1,17 @@
+
+     Class ForIf{
+            forBlock(){
+                
+                    If(a == 4){
+                        sum = 0;
+                        Foreach(x In 1 .. 10 ){
+                            Foreach(y In 1 .. 9 By 3){
+                                If(sum == 0){
+                                    sum = sum + 1;
+                                }
+                            }
+                            sum = sum + 8;
+                            }
+                    }
+                    }
+        }

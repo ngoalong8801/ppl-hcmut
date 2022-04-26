@@ -1,0 +1,6 @@
+
+        function _main()
+        {
+            $arr = array(array(1, 2), array("one", "two"));
+        }
+        

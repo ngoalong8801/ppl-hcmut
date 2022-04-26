@@ -1,0 +1,1 @@
+InvalidArrayLiteral(ArrayLit([IntLit(1),BoolLit(True),StringLit(one),FloatLit(1.1)]))

@@ -1,0 +1,11 @@
+
+        define(A, 1);
+        function _main()
+        {
+            $x = false;
+            if (A)
+            {
+                $x = false;
+            }
+        }
+        

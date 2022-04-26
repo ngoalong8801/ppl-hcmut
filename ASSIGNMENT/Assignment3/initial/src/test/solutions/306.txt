@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(TestMulImuAttr),[AttributeDecl(Instance,ConstDecl(Id(a),StringType,None)),AttributeDecl(Instance,ConstDecl(Id(b),StringType,None)),AttributeDecl(Instance,ConstDecl(Id(c),StringType,None))])])

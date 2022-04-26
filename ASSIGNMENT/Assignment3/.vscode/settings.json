@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./initial/src/main/d96/utils"
+    ]
+}

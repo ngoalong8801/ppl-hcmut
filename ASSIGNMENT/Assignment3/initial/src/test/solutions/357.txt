@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Operator),[AttributeDecl(Instance,VarDecl(Id(arr),ArrayType(5,IntType))),MethodDecl(Id(test),Instance,[],Block([AssignStmt(ArrayCell(Id(a),[IntLit(0)]),IntLit(12))]))])])

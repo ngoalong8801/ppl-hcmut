@@ -1,0 +1,7 @@
+
+        define(A, "1234");
+        function _main()
+        {
+            $a = 10000 % A;
+        }
+        

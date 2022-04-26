@@ -1,0 +1,6 @@
+Class TestMethoddecl{
+                   
+                    Constructor(){
+
+                    }
+              }

@@ -1,0 +1,7 @@
+
+        function _main()
+        {
+            $a = 1.11 + 4.5 * 3.1;
+            _echo(int2str($a));
+        }
+        

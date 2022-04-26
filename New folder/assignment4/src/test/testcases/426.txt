@@ -1,0 +1,6 @@
+
+        function _main()
+        {
+            $x = str2float(1.1);
+        }
+        

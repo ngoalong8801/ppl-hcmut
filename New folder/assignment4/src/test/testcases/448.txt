@@ -1,0 +1,8 @@
+
+        function _main()
+        {
+            $arr = array(1, 2, 3,4);
+            $x = $arr[true];
+            $arr[2] = 5;
+        }
+        

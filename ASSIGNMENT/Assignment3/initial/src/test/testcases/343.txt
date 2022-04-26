@@ -1,0 +1,11 @@
+
+        Class ForNested{
+            forPro(){
+                Foreach(x In 1 .. 100 By 3){
+                    Foreach(sad In 1 .. 10 By 2){
+
+                    }
+                }
+            }
+        }
+     

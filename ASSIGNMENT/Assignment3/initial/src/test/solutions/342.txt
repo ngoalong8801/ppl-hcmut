@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([For(Id(i),IntLit(1),IntLit(100),IntLit(1),Block([])]),For(Id(xx),IntLit(99),IntLit(999),IntLit(3),Block([])])]))])])

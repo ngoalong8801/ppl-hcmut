@@ -1,0 +1,9 @@
+
+        $a = 7;
+        function _main()
+        {
+            if($a > 5) { _echo(int2str($a)); }
+            elseif ($a == 5) { _echo(bool2str($a == 5));}
+            else { _echo(int2str($a) +. "abc");}
+        }
+        

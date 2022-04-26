@@ -1,0 +1,7 @@
+
+        function _main()
+        {
+            $arr = array(array(array(1)), array(array(1,2)));
+            $a = $arr[0][0][0] + 1;
+        }
+        

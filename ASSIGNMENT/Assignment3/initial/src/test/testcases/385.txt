@@ -1,0 +1,9 @@
+Class Color{getColor(a : Int; b : Float){
+            Out.print("Black");
+        }}
+            Class Program{
+                main(){
+                    Color.getColor(1.234,3.432);
+                }
+                }
+                

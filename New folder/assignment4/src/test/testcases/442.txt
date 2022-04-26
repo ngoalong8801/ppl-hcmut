@@ -1,0 +1,12 @@
+
+        define(A, array(1,2,3,4));
+        function _main()
+        {
+            $i = 0;
+            while(A[$i] + 3)
+            {
+                _echo(int2str(A[$i]));
+                $i = $i + 1;
+            }
+        }
+        

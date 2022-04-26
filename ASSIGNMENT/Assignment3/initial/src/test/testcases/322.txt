@@ -1,0 +1,12 @@
+
+        Class TestMain{
+            main(){
+
+            }
+        }
+        Class Program{
+                   main(){
+
+                   }
+                    
+              }

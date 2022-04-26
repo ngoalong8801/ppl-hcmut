@@ -1,0 +1,8 @@
+
+        function _main($arg)
+        {
+            $a = true;
+            $b = !$a;
+            $x = !1;
+        }
+        

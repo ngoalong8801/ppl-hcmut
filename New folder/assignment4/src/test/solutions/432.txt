@@ -1,0 +1,1 @@
+TypeMismatchInStmt(Assign(Id($a),FloatLit(1.1)))

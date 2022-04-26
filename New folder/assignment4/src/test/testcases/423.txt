@@ -1,0 +1,6 @@
+
+        function _main()
+        {
+            $x = int2str(1.1);
+        }
+        

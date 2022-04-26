@@ -1,0 +1,1 @@
+TypeMismatchInStmt(ForEach(Id(A),Id($key),Id($value),[Call(Id(_echo),[StringLit(loop)])]))

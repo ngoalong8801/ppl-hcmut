@@ -1,0 +1,6 @@
+
+        function _main()
+        {
+            $x = bool2str(1);
+        }
+        

@@ -1,0 +1,8 @@
+
+        function _main()
+        {
+            $x = 5.5;
+            $x = true;
+            $x = "str";
+        }
+        
