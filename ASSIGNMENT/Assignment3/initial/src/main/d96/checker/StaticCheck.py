@@ -83,7 +83,7 @@ class StaticChecker(BaseVisitor, Utils):
         global_envi = global_envi[:]
         for x in ast.decl:
             global_envi += [self.visit(x, global_envi)]
-        self.printSym(global_envi)
+
         return []
 
     def visitClassDecl(self, ast, global_envi):
@@ -136,8 +136,8 @@ class StaticChecker(BaseVisitor, Utils):
         if res is not None:
             raise Redeclared(Method(), sym.name)
         sym = self.convertToSymbol(ast, returnType)
-        print(returnType)
-        print(sym)
+        # print(returnType)
+        # print(sym)
         return sym
 
     def visitVarDecl(self, ast, c):
@@ -145,6 +145,7 @@ class StaticChecker(BaseVisitor, Utils):
         if c[1] == 'para':
             kind = c[1]
             local_envi = c[0]
+            global_envi = []
         else:
             kind = None
             global_class = c[0]
@@ -204,10 +205,14 @@ class StaticChecker(BaseVisitor, Utils):
                 if type(decl[0]) is Symbol:
                     local_envi.extend(decl)
             elif type(x) is Return:
-                if(returnType is not decl and (returnType or decl) is FloatType):
+                # print(decl, returnType)
+                # print()
+
+                if((returnType is not decl) and ((type(returnType) is FloatType)
+                                                 or (type(decl) is FloatType))):
                     decl = FloatType()
-                elif returnType is not decl:
-                    raise TypeMismatchInStatement(ast)
+                elif returnType is not decl and returnType is not None:
+                    raise TypeMismatchInStatement(x)
                 returnType = decl
 
         # return voidtype if not return any
@@ -390,7 +395,7 @@ class StaticChecker(BaseVisitor, Utils):
             if not sym:
                 raise Undeclared(Class(), ast.obj.name)
             elif (sym and type(sym.mtype) is not ClassType):
-                print(sym)
+
                 raise TypeMismatchInStatement(ast)
             else:
                 checked = self.checkAttClass(
@@ -398,6 +403,8 @@ class StaticChecker(BaseVisitor, Utils):
 
         if not checked:
             raise Undeclared(Method(), ast.method.name)
+        elif(type(checked.mtype.rettype) is not VoidType):
+            raise TypeMismatchInStatement(ast)
 
         return
 

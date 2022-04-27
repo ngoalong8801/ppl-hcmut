@@ -1,7 +1,14 @@
 
+        Class Proa{
+            method(){
+                Return 5;
+            }
+        }
         Class Pro{
             method(){
-
+                Var a : Proa = New Proa();
+                a.method();
+                
             }
         }
              

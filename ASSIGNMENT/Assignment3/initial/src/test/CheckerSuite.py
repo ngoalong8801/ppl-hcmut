@@ -275,18 +275,40 @@ class CheckerSuite(unittest.TestCase):
     #     expect = "Type Mismatch In Statement: For(Id(i),FloatLit(1.3),IntLit(100),IntLit(1),Block([])])"
     #     self.assertTrue(TestChecker.test(input, expect, 403))
 
+    # def test_redeclared_method(self):
+    #     """Simple program: int main() {} """
+    #     input = """
+    #     Class Pro{
+    #         method(a, b: Int){
+    #             Return a;
+    #             Val c : Boolean;
+    #             Return c;
+    #         }
+    #     }
+
+    #            """
+    #     expect = "Type Mismatch In Statement: Return(Id(c))"
+    #     self.assertTrue(TestChecker.test(input, expect, 403))
+
     def test_redeclared_method(self):
         """Simple program: int main() {} """
         input = """
+        Class Proa{
+            method(){
+                Return 5;
+            }
+        }
         Class Pro{
             method(){
-
+                Var a : Proa = New Proa();
+                a.method();
+                
             }
         }
              
 
                """
-        expect = "Type Mismatch In Expression: For(Id(i),FloatLit(1.3),IntLit(100),IntLit(1),Block([])])"
+        expect = "Type Mismatch In Statement: Return(Id(c))"
         self.assertTrue(TestChecker.test(input, expect, 403))
 
     # def test_undeclared_function(self):
