@@ -1,12 +1,9 @@
-Class Program{
-                 Val methodOne: Int;
-                  methodOne(a: Int){
-                  
-                    }
 
-             }
-             Class Program1{
-                  Val methodOne: Int;
+        Class Pro{
+            method(){
 
-              }
-            
+            }
+        }
+             
+
+               
