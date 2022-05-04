@@ -1,0 +1,9 @@
+
+        Class Program1{
+            method_re1(re_const, a: Float){
+                Val re_const: Float = 1.4;
+              
+            }
+            }
+
+            

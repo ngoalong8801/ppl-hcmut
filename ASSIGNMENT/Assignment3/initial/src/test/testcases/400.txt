@@ -1,7 +1,9 @@
 Class Program{
+
+                test(){
+                    Var a: Int;
+                    Var a: Int = 4;
+                }
             }
-            Class Program1{
-            }
-            Class Program{
-            }
+            
             

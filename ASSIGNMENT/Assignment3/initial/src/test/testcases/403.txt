@@ -1,16 +1,12 @@
+Class Program{
 
-        Class Proa{
-            method(){
-                Return 5;
+                test(){
+                    
+                    If(5 > 4){
+                        Val a: Int = 5;
+                        Val a: Int = 4;
+                    }
+                }
             }
-        }
-        Class Pro{
-            method(){
-                Var a : Proa = New Proa();
-                a.method();
-                
-            }
-        }
-             
-
-               
+            
+            

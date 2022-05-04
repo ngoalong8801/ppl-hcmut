@@ -1,0 +1,10 @@
+
+        Class Program1{
+            
+            method(){
+               Foreach(i In 4.6 .. 100 By 2){
+
+                }
+            }
+        }
+            

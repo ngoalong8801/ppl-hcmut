@@ -1,0 +1,9 @@
+
+        Class Program1{
+            
+            method(){
+               Val cons : Float = 4.5;
+               cons = 4.6;
+            }
+        }
+            

@@ -88,6 +88,7 @@ class StaticChecker(BaseVisitor, Utils):
 
     def visitClassDecl(self, ast, global_envi):
         res = self.lookup(ast.classname.name, global_envi, lambda x: x.name)
+
         if res is not None:
             raise Redeclared(Class(), ast.classname.name)
 
@@ -105,6 +106,7 @@ class StaticChecker(BaseVisitor, Utils):
         res = self.lookup(sym.name, local_envi, lambda x: x.name)
 
         if res is None:
+            self.visit(ast.decl, (c[0], c[1], [], []))
             return sym
         else:
             raise Redeclared(Attribute(), sym.name)
@@ -120,6 +122,7 @@ class StaticChecker(BaseVisitor, Utils):
     def visitMethodDecl(self, ast, c):
         global_class = c[0]
         global_envi = c[1]
+        is_in_loop = False
 
         res = self.lookup(ast.name.name, global_envi,
                           lambda x: x.name if type(x.mtype) is MType else None)
@@ -131,10 +134,10 @@ class StaticChecker(BaseVisitor, Utils):
 
         # check body of method
         returnType = self.visit(
-            ast.body, (global_class, global_envi, list_param))
+            ast.body, (global_class, global_envi, [], list_param, is_in_loop))
 
         if res is not None:
-            raise Redeclared(Method(), sym.name)
+            raise Redeclared(Method(), ast.name.name)
         sym = self.convertToSymbol(ast, returnType)
         # print(returnType)
         # print(sym)
@@ -144,18 +147,18 @@ class StaticChecker(BaseVisitor, Utils):
         kind = global_class = global_envi = local_envi = None
         if c[1] == 'para':
             kind = c[1]
-            local_envi = c[0]
-            global_envi = []
+            block_scope = c[0]
         else:
             kind = None
             global_class = c[0]
             global_envi = c[1]
             local_envi = c[2]
+            block_scope = c[3]
 
         sym = self.convertToSymbol(ast)
 
         # check declared variable
-        res = self.lookup(sym.name, global_envi + local_envi,
+        res = self.lookup(sym.name,  block_scope,
                           lambda x: x.name if type(x.mtype) is not MType else None)
 
         if type(ast.varType) is ClassType:
@@ -176,10 +179,11 @@ class StaticChecker(BaseVisitor, Utils):
         global_class = c[0]
         global_envi = c[1]
         local_envi = c[2]
+        block_scope = c[3]
         sym = self.convertToSymbol(ast)
 
         # check declared variable
-        res = self.lookup(sym.name, global_envi + local_envi,
+        res = self.lookup(sym.name, block_scope,
                           lambda x: x.name if type(x.mtype) is not MType else None)
 
         if type(ast.constType) is ClassType:
@@ -190,23 +194,36 @@ class StaticChecker(BaseVisitor, Utils):
                 raise Undeclared(Class(), nameClass)
 
         if res is not None:
-            raise Redeclared(Variable(), sym.name)
+            raise Redeclared(Constant(), sym.name)
+
+        # Check TypeMismatchInConstant
+        if ast.value:
+            typExpr = self.visit(ast.value, c)
+            if type(typExpr) is not type(ast.constType):
+                raise TypeMismatchInConstant(ast)
+        else:
+            raise IllegalConstantExpression(None)
+
         return [sym]
 
     def visitBlock(self, ast, c):
         global_class = c[0]
         global_envi = c[1]
         local_envi = c[2]
+        block_scope = c[3]
+        is_in_loop = c[4]
         returnType = None
+
         # check redecl
         for x in ast.inst:
-            decl = self.visit(x, (global_class, global_envi, local_envi))
+            decl = self.visit(
+                x, (global_class, global_envi, local_envi, block_scope, is_in_loop))
             if type(decl) is list:
                 if type(decl[0]) is Symbol:
-                    local_envi.extend(decl)
+                    block_scope.extend(decl)
             elif type(x) is Return:
-                # print(decl, returnType)
-                # print()
+
+                # check break, continue
 
                 if((returnType is not decl) and ((type(returnType) is FloatType)
                                                  or (type(decl) is FloatType))):
@@ -218,24 +235,27 @@ class StaticChecker(BaseVisitor, Utils):
         # return voidtype if not return any
         if returnType is None:
             returnType = VoidType()
+        local_envi.extend(block_scope)
         return returnType
 
     def visitAssign(self, ast, c):
 
-        is_constant = self.visit(ast.lhs, c)
+        lhs = self.visit(ast.lhs, c)
         typeExp = self.visit(ast.exp, c)
 
         # check assign constant for Iden
         if type(ast.lhs) is Id:
-            list_decl = c[1] + c[2]
+            list_decl = c[1] + c[2] + c[3]
             res = self.lookup(ast.lhs.name, list_decl, lambda x: x.name if type(
                 x.mtype) is not MType else None)
             if res is not None:
                 if type(res.value) is Constant:
                     raise CannotAssignToConstant(ast)
         elif type(ast.lhs) is FieldAccess:
-            if is_constant:
+            if type(lhs.value) is Constant:
                 raise CannotAssignToConstant(ast)
+
+        # check miss match
 
         return
 
@@ -243,28 +263,34 @@ class StaticChecker(BaseVisitor, Utils):
         global_class = c[0]
         global_envi = c[1]
         local_envi = c[2]
+        block_scope = c[3]
         checked = None
         is_constant = False
         if type(ast.obj) is SelfLiteral:
             checked = self.lookup(ast.fieldname.name, global_envi, lambda x: x.name if type(
                 x.mtype) is not MType else None)
         else:
-            sym = self.lookup(ast.obj.name, local_envi, lambda x: x.name)
-
-            checked = self.checkAttClass(
-                global_class, sym.mtype.classname.name, ast.fieldname.name, Attribute())
+            sym = self.lookup(ast.obj.name, local_envi +
+                              block_scope, lambda x: x.name)
+            if sym is not None:
+                checked = self.checkAttClass(
+                    global_class, sym.mtype.classname.name, ast.fieldname.name, Attribute())
 
         # For an attribute access E.id, E must be in class type.
         if not checked:
-            raise TypeMismatchInExpression(ast)
+            raise Undeclared(Attribute(), ast.fieldname.name)
 
         if isinstance(checked.value, Constant):
             is_constant = True
 
-        return is_constant
+        return checked
 
     def visitIf(self, ast, c):
         is_boolean = self.visit(ast.expr, c)
+        then_stmt = self.visit(ast.thenStmt, c)
+
+        if ast.elseStmt:
+            elseStmt = self.visit(ast.elseStmt, c)
 
         if type(is_boolean) is not BoolType:
             raise TypeMismatchInStatement(ast)
@@ -273,9 +299,12 @@ class StaticChecker(BaseVisitor, Utils):
     def visitFor(self, ast, c):
         typeExpr1 = self.visit(ast.expr1, c)
         typeExpr2 = self.visit(ast.expr2, c)
+        is_in_loop = True
 
         if not(isinstance(typeExpr1, IntType) and isinstance(typeExpr2, IntType)):
             raise TypeMismatchInStatement(ast)
+
+        loop = self.visit(ast.loop, (c[0], c[1], c[2], c[3], is_in_loop))
         return
 
     def visitBinaryOp(self, ast, c):
@@ -335,7 +364,7 @@ class StaticChecker(BaseVisitor, Utils):
 
     def visitId(self, ast, c):
         # all decl to check declared or not
-        list_decl = c[1] + c[2]
+        list_decl = c[1] + c[2] + c[3]
         res = self.lookup(ast.name, list_decl, lambda x: x.name if type(
             x.mtype) is not MType else None)
 
@@ -365,7 +394,7 @@ class StaticChecker(BaseVisitor, Utils):
     def visitFloatLiteral(self, ast, c):
         return FloatType()
 
-    def visitBoolLiteral(self, ast, c):
+    def visitBooleanLiteral(self, ast, c):
         return BoolType()
 
     def visitStringLiteral(self, ast, c):
@@ -378,20 +407,49 @@ class StaticChecker(BaseVisitor, Utils):
         return
 
     def visitCallExpr(self, ast, c):
-        pass
-
-    def visitCallStmt(self, ast, c):
         global_class = c[0]
         global_envi = c[1]
         local_envi = c[2]
+        block_scope = c[3]
         checked = None
         if type(ast.obj) is SelfLiteral:
             checked = self.lookup(ast.method.name, global_envi, lambda x: x.name if type(
                 x.mtype) is MType else None)
         else:
-         # Check method of class
+            # Check method of class
 
-            sym = self.lookup(ast.obj.name, local_envi, lambda x: x.name)
+            sym = self.lookup(ast.obj.name, local_envi +
+                              block_scope, lambda x: x.name)
+            if not sym:
+                raise Undeclared(Class(), ast.obj.name)
+            elif (sym and type(sym.mtype) is not ClassType):
+
+                raise TypeMismatchInStatement(ast)
+            else:
+                checked = self.checkAttClass(
+                    global_class, sym.mtype.classname.name, ast.method.name, Method())
+
+        if not checked:
+            raise Undeclared(Method(), ast.method.name)
+        elif(type(checked.mtype.rettype) is VoidType):
+            raise TypeMismatchInStatement(ast)
+
+        return checked.mtype.rettype
+
+    def visitCallStmt(self, ast, c):
+        global_class = c[0]
+        global_envi = c[1]
+        local_envi = c[2]
+        block_scope = c[3]
+        checked = None
+        if type(ast.obj) is SelfLiteral:
+            checked = self.lookup(ast.method.name, global_envi, lambda x: x.name if type(
+                x.mtype) is MType else None)
+        else:
+            # Check method of class
+
+            sym = self.lookup(ast.obj.name, local_envi +
+                              block_scope, lambda x: x.name)
             if not sym:
                 raise Undeclared(Class(), ast.obj.name)
             elif (sym and type(sym.mtype) is not ClassType):
@@ -413,6 +471,21 @@ class StaticChecker(BaseVisitor, Utils):
         if not returnType:
             return VoidType()
         return returnType
+
+    def visitBreak(self, ast, c):
+        is_in_loop = c[3]
+        print(is_in_loop)
+        if is_in_loop == False:
+            raise MustInLoop(ast)
+
+    def visitContinue(self, ast, c):
+        is_in_loop = c[3]
+        print(is_in_loop)
+        if is_in_loop == False:
+            raise MustInLoop(ast)
+
+    def visitNewExpr(self, ast, c):
+        pass
         # def visitFuncDecl(self, ast, c):
         #     return list(map(lambda x: self.visit(x, (c, True)), ast.body.stmt))
 

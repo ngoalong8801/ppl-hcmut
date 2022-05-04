@@ -1,0 +1,12 @@
+
+        Class Program1{
+            }
+        Class Program2{
+            method_re1(){
+                Var pro: Program1 = New Program1();
+                pro.un_dec = 5;
+              
+            }
+            }
+
+            

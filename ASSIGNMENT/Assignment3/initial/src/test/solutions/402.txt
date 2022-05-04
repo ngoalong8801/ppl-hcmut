@@ -1,1 +1,1 @@
-Redeclared Method: methodOne
+Redeclared Constant: a

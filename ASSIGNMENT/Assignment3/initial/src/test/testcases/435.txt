@@ -1,0 +1,12 @@
+
+         Class Program1{
+            Val a: Int = 4;
+            }
+       Class Program2{
+            method_re1(){
+                Var pro: Program1 = New Program1();
+                pro.a = 4;
+              
+            }
+            }
+            
