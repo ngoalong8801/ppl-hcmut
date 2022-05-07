@@ -1,0 +1,10 @@
+
+
+       Class TestArray{
+            method_re1(){
+                Var a: Array[Int, 4];
+                a[3.6] = 2;
+
+            }
+            }
+            

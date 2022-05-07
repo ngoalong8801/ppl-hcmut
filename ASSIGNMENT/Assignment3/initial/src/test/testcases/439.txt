@@ -1,0 +1,15 @@
+
+         Class Program1{
+            test_meth(){
+
+            }
+            }
+       Class Program2{
+            method_re1(){
+                Var pro: Program1 = New Program1();
+                Var b: Float;
+                b.test_meth();
+
+            }
+            }
+            

@@ -1,10 +1,8 @@
 
         Class Program1{
             method(){
-               Self.metho(); 
+               Self.metho();
             }
             }
-       
-            
 
             

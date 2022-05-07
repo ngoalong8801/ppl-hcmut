@@ -1,12 +1,12 @@
 Class Program{
 
                 test(){
-                    
+
                     If(5 > 4){
                         Var a: Int;
                         Var a: Int = 4;
                     }
                 }
             }
-            
+
             

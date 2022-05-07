@@ -2,10 +2,8 @@
         Class Program1{
             method(){
                 Var a: Int;
-               a = Self.metho(); 
+               a = Self.metho();
             }
             }
-       
-            
 
             

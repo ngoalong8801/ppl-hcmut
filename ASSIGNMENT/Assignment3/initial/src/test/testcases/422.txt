@@ -8,9 +8,8 @@
                 Var pro: Program1 = New Program1();
                 Var var_1 : Int;
                 var_1 = pro.meth();
-              
+
             }
             }
-            
 
             

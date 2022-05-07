@@ -4,15 +4,14 @@
 
             }
             }
-            
+
         Class Program{
             method_re(){
-                
+
             }
             method_re(){
-                
+
             }
             }
-            
-            
+
             

@@ -1,6 +1,6 @@
 
         Class Program1{
-            
+
             method(){
                Foreach(i In 4 .. 10.01 By 2){
 

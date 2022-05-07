@@ -7,10 +7,8 @@
        Class Program2{
             method_re1(){
                 Val pro: Program3 = New Program1();
-              
-              
+
             }
             }
-            
 
             

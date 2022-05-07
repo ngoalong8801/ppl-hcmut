@@ -10,9 +10,8 @@
                 Var var_1 : Int;
                 var_1 = pro.method();
                 Self.method();
-              
+
             }
             }
-            
 
             

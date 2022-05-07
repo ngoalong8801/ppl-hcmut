@@ -2,7 +2,7 @@
         Class Program1{
             method_re1(re_var, a: Float){
                 Var re_var: Float;
-                
+
             }
             }
 
