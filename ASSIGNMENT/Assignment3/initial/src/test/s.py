@@ -979,20 +979,34 @@ class CheckerSuite(unittest.TestCase):
     def test_illegal_member_access_1(self):
         """ its operands must be a literal or an immutable attribute"""
         input = """
-        Class Member{
-            Var mem1: Int;
-            Var mem2: Float;
+       Class A{
+        test(a,b : Float){Return 0;}
+        Var a: Int = Self.test(1, 2); ## *2 ##
         }
-       Class Program{
-
+        Class Program{
             main(){
-                
-
+                Var a : Int= A.a;
             }
             }
             """
-        expect = "Type Mismatch In Statement: AssignStmt(Id(a),[BooleanLit(True),BooleanLit(False)])"
-        self.assertTrue(TestChecker.test(input, expect, 463))
+        expect = "Illegal Member Access: FieldAccess(Id(A),Id(a))"
+        self.assertTrue(TestChecker.test(input, expect, 464))
+
+    def test_new_expr_1(self):
+        """ its operands must be a literal or an immutable attribute"""
+        input = """
+       Class A{
+        test(a,b : Float){Return 0;}
+        Var a: Int = Self.test(1, 2); ## *2 ##
+        }
+        Class Program{
+            main(){
+                Var a :A= New A();
+            }
+            }
+            """
+        expect = "Illegal Member Access: FieldAccess(Id(A),Id(a))"
+        self.assertTrue(TestChecker.test(input, expect, 464))
 
     # def test_undeclared_function1(self):
     #     """Simple program: int main() {} """

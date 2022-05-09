@@ -1,7 +1,5 @@
 
-"""
- * @author nhphung
-"""
+
 from AST import *
 from Visitor import *
 # from Utils import Utils
@@ -35,23 +33,11 @@ class ExpUtils:
 
     @staticmethod
     def checkCoerce(lhsType, expType):
-
         if(type(lhsType) is not type(expType)):
             if(not(not(ExpUtils.isNaNType(expType)) and (type(lhsType) is FloatType))):
                 return False
 
         return True
-
-
-class AccessUtils:
-    @staticmethod
-    def checkAttribute(op, attr):
-        if(op == '.'):
-            pass
-
-    @staticmethod
-    def checkMethod():
-        pass
 
 
 class StaticChecker(BaseVisitor):
@@ -118,13 +104,34 @@ class StaticChecker(BaseVisitor):
                     return x
         return None
 
-    def checkCoerce(self, lhs, expr):
-        pass
+    def checkEntryPoint(self, global_class):
+        res = self.lookup("Program", global_class, lambda x: x.name)
+        if res is not None:
+            for x in res.mtype:
+                if x.name == 'main' and (type(x.mtype) is MType):
+                    if x.mtype.partype == []:
+                        return True
+        return False
+
+    def checkParamArgu(self, ast,  checked, c):
+        listType = []
+        for x in ast.param:
+            listType += [self.visit(x, c)[1]]
+        if len(listType) is not len(checked.mtype.partype):
+            raise TypeMismatchInStatement(ast)
+        for i in range(0, max(len(listType), len(checked.mtype.partype))):
+            if not ExpUtils.checkCoerce(checked.mtype.partype[i], listType[i]):
+                raise TypeMismatchInStatement(ast)
+        return
 
     def visitProgram(self, ast, global_envi):
         global_envi = global_envi[:]
         for x in ast.decl:
             global_envi += [self.visit(x, global_envi)]
+
+        # check Entry Point
+        if(not self.checkEntryPoint(global_envi)):
+            raise NoEntryPoint()
 
         return []
 
@@ -215,13 +222,14 @@ class StaticChecker(BaseVisitor):
                 raise Redeclared(Parameter(), sym.name)
             else:
                 raise Redeclared(Variable(), sym.name)
+
+        if ast.varInit:
+            self.visit(ast.varInit, c)
+
         return [sym]
 
     def visitConstDecl(self, ast, c):
-        global_class = c[0]
-        global_envi = c[1]
-        local_envi = c[2]
-        block_scope = c[3]
+        global_class, global_envi, local_envi, block_scope = c[0], c[1], c[2], c[3]
         sym = self.convertToSymbol(ast)
 
         # check declared variable
@@ -230,6 +238,7 @@ class StaticChecker(BaseVisitor):
 
         if type(ast.constType) is ClassType:
             nameClass = self.visit(ast.constType, local_envi)
+
             checked = self.checkClassDefined(
                 global_class, nameClass)
             if not checked:
@@ -251,6 +260,10 @@ class StaticChecker(BaseVisitor):
             # check size arr
             if(type(typExpr[1]) is ArrayType):
                 if int(typExpr[1].size) is not int(ast.constType.size):
+                    raise TypeMismatchInConstant(ast)
+            elif type(typExpr[1]) is ClassType and type(ast.constType) is ClassType:
+                if(typExpr[1].classname.name is not
+                   ast.constType.classname.name):
                     raise TypeMismatchInConstant(ast)
 
             if typExpr[2] is not True:
@@ -335,6 +348,11 @@ class StaticChecker(BaseVisitor):
             sym = self.lookup(ast.obj.name, local_envi +
                               block_scope, lambda x: x.name)
             if not sym:
+                # check Illegal Member Access
+                symClass = self.lookup(
+                    ast.obj.name, global_class, lambda x: x.name)
+                if symClass:
+                    raise IllegalMemberAccess(ast)
                 raise Undeclared(Class(), ast.obj.name)
             elif (sym and type(sym.mtype) is not ClassType):
                 raise TypeMismatchInExpression(ast)
@@ -430,10 +448,10 @@ class StaticChecker(BaseVisitor):
     def visitUnaryOp(self, ast, c):
         typeBody = self.visit(ast.body, c)
         if ast.op == '-':
-            if not(isinstance(typeBody, IntType) or isinstance(typeBody, FloatType)):
+            if not(isinstance(typeBody[1], IntType) or isinstance(typeBody, FloatType)):
                 raise TypeMismatchInExpression(ast)
         elif ast.op == '!':
-            if not isinstance(typeBody, BoolType):
+            if not isinstance(typeBody[1], BoolType):
                 raise TypeMismatchInExpression(ast)
         return typeBody
 
@@ -484,6 +502,7 @@ class StaticChecker(BaseVisitor):
         return
 
     def visitCallExpr(self, ast, c):
+
         global_class, global_envi, local_envi, block_scope = c[0], c[1], c[2], c[3]
         checked = None
         if type(ast.obj) is SelfLiteral:
@@ -495,6 +514,12 @@ class StaticChecker(BaseVisitor):
             sym = self.lookup(ast.obj.name, local_envi +
                               block_scope, lambda x: x.name)
             if not sym:
+                # check Illegal Member Access
+                symClass = self.lookup(
+                    ast.obj.name, global_class, lambda x: x.name)
+                if symClass:
+                    raise IllegalMemberAccess(ast)
+                raise Undeclared(Class(), ast.obj.name)
                 raise Undeclared(Class(), ast.obj.name)
             elif (sym and type(sym.mtype) is not ClassType):
 
@@ -505,8 +530,13 @@ class StaticChecker(BaseVisitor):
 
         if not checked:
             raise Undeclared(Method(), ast.method.name)
-        elif(type(checked.mtype.rettype) is VoidType):
-            raise TypeMismatchInStatement(ast)
+        else:
+            # check parameter and argument
+            self.checkParamArgu(ast, checked, c)
+
+            # check Return Type
+            if(type(checked.mtype.rettype) is VoidType):
+                raise TypeMismatchInStatement(ast)
 
         return checked.mtype.rettype
 
@@ -525,6 +555,12 @@ class StaticChecker(BaseVisitor):
             sym = self.lookup(ast.obj.name, local_envi +
                               block_scope, lambda x: x.name)
             if not sym:
+                # check Illegal Member Access
+                symClass = self.lookup(
+                    ast.obj.name, global_class, lambda x: x.name)
+                if symClass:
+                    raise IllegalMemberAccess(ast)
+                raise Undeclared(Class(), ast.obj.name)
                 raise Undeclared(Class(), ast.obj.name)
             elif (sym and type(sym.mtype) is not ClassType):
 
@@ -535,8 +571,13 @@ class StaticChecker(BaseVisitor):
 
         if not checked:
             raise Undeclared(Method(), ast.method.name)
-        elif(type(checked.mtype.rettype) is not VoidType):
-            raise TypeMismatchInStatement(ast)
+        else:
+            # check parameter and argument
+            self.checkParamArgu(ast, checked, c)
+
+            # check return Type
+            if (type(checked.mtype.rettype) is not VoidType):
+                raise TypeMismatchInStatement(ast)
 
         return
 
@@ -557,7 +598,16 @@ class StaticChecker(BaseVisitor):
             raise MustInLoop(ast)
 
     def visitNewExpr(self, ast, c):
-        pass
+        checked = self.checkAttClass(
+            c[0], ast.classname.name, "Constructor", Method())
+        if checked is None:
+            checked = Symbol("Constructor", MType([], VoidType()), None)
+
+        # check parameter and argument
+        self.checkParamArgu(ast, checked, c)
+
+        return (None, ClassType(Id(ast.classname.name)), True)
+        # return (ast.classname.name, ClassType(), True)
 
     def visitArrayLiteral(self, ast, c):
         size = len(ast.value)
@@ -569,22 +619,3 @@ class StaticChecker(BaseVisitor):
                 raise IllegalArrayLiteral(ast)
 
         return (None, ArrayType(size, typeEle[1]), True)
-        # def visitFuncDecl(self, ast, c):
-        #     return list(map(lambda x: self.visit(x, (c, True)), ast.body.stmt))
-
-        # def visitCallExpr(self, ast, c):
-        #     at = [self.visit(x, (c[0], False)) for x in ast.param]
-
-        #     res = self.lookup(ast.method.name, c[0], lambda x: x.name)
-        #     if res is None or not type(res.mtype) is MType:
-        #         raise Undeclared(Function(), ast.method.name)
-        #     elif len(res.mtype.partype) != len(at):
-        #         if c[1]:
-        #             raise TypeMismatchInStatement(ast)
-        #         else:
-        #             raise TypeMismatchInExpression(ast)
-        #     else:
-        #         return res.mtype.rettype
-
-        # def visitIntLiteral(self, ast, c):
-        #     return IntType()

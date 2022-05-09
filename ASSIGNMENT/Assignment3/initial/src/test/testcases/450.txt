@@ -1,0 +1,11 @@
+
+
+       Class Program{
+           method(){
+               Return 0;
+           }
+           main(){
+               Var a : Int = Self.method(1,2);
+           }
+       }
+            

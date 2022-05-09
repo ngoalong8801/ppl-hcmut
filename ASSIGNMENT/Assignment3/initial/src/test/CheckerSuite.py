@@ -730,7 +730,126 @@ class CheckerSuite(unittest.TestCase):
         expect = "Type Mismatch In Expression: BinaryOp(||,BinaryOp(&&,BooleanLit(False),BooleanLit(True)),FloatLit(4.5))"
         self.assertTrue(TestChecker.test(input, expect, 444))
 
+    def test_type_mismatch_in_expr_binary_3(self):
+        """Test 40: ; the callee must have void as return type;"""
+        input = """
+
+       Class TestArray{
+            method_re1(){
+                Var a: Float;
+                a = "string " != "string2";
+
+            }
+            }
+            """
+        expect = "Type Mismatch In Expression: BinaryOp(!=,StringLit(string ),StringLit(string2))"
+        self.assertTrue(TestChecker.test(input, expect, 445))
+
+    def test_type_mismatch_in_expr_binary_4(self):
+        """Test 40: ; the callee must have void as return type;"""
+        input = """
+
+       Class TestArray{
+            method_re1(){
+                Var a: Float;
+                If( ("a" +. "b" > "da")){}
+
+            }
+            }
+            """
+        expect = "Type Mismatch In Expression: BinaryOp(>,StringLit(b),StringLit(da))"
+        self.assertTrue(TestChecker.test(input, expect, 446))
+
+    def test_type_mismatch_in_expr_unary_1(self):
+        """Test 40: ; the callee must have void as return type;"""
+        input = """
+
+       Class TestArray{
+            method_re1(){
+                Var a: Float;
+                a = !(1.23);
+
+            }
+            }
+            """
+        expect = "Type Mismatch In Expression: UnaryOp(!,FloatLit(1.23))"
+        self.assertTrue(TestChecker.test(input, expect, 446))
+
+    def test_type_mismatch_in_expr_unary_2(self):
+        """Test 40: ; the callee must have void as return type;"""
+        input = """
+
+       Class TestArray{
+            method_re1(){
+                Var a: Float;
+                Var b: String;
+                If(!(b +. "sda")){}
+
+            }
+            }
+        Class Program{
+            main(){
+
+            }
+        }
+            """
+        expect = "Type Mismatch In Expression: UnaryOp(!,BinaryOp(+.,Id(b),StringLit(sda)))"
+        self.assertTrue(TestChecker.test(input, expect, 447))
+
+    def test_type_mismatch_in_expr_unary_3(self):
+        """Test 40: ; the callee must have void as return type;"""
+        input = """
+
+       Class TestArray{
+            method_re1(){
+                Var a: Float;
+                Var b: String;
+                If(-(b +. "sda")){}
+
+            }
+            }
+        Class Program{
+            main(){
+
+            }
+        }
+            """
+        expect = "Type Mismatch In Expression: UnaryOp(-,BinaryOp(+.,Id(b),StringLit(sda)))"
+        self.assertTrue(TestChecker.test(input, expect, 448))
+
+    def test_type_mismatch_in_expr_unary_4(self):
+        """Test 40: ; the callee must have void as return type;"""
+        input = """
+
+       Class TestArray{
+            method_re1(){
+                Var a: Float;
+                a = -((True || False) && False);
+
+            }
+            }
+            """
+        expect = "Type Mismatch In Expression: UnaryOp(-,BinaryOp(&&,BinaryOp(||,BooleanLit(True),BooleanLit(False)),BooleanLit(False)))"
+        self.assertTrue(TestChecker.test(input, expect, 449))
+
+    def test_type_mismatch_in_call_method_4(self):
+        """Test 40: ; the callee must have void as return type;"""
+        input = """
+
+       Class Program{
+           method(){
+               Return 0;
+           }
+           main(){
+               Var a : Int = Self.method(1,2);
+           }
+       }
+            """
+        expect = "Type Mismatch In Statement: CallExpr(Self(),Id(method),[IntLit(1),IntLit(2)])"
+        self.assertTrue(TestChecker.test(input, expect, 450))
+
     # key 45 - 50
+
     def test_type_mismatch_in_expr_fildaccess_2(self):
         """Test 51: ; For an attribute access E.id, E must be in class type."""
         input = """
@@ -979,20 +1098,183 @@ class CheckerSuite(unittest.TestCase):
     def test_illegal_member_access_1(self):
         """ its operands must be a literal or an immutable attribute"""
         input = """
-        Class Member{
-            Var mem1: Int;
-            Var mem2: Float;
+       Class A{
+        test(a,b : Float){Return 0;}
+        Var a: Int = Self.test(1, 2); ## *2 ##
         }
-       Class Program{
-
+        Class Program{
             main(){
-                
-
+                Var a : Int= A.a;
             }
             }
             """
-        expect = "Type Mismatch In Statement: AssignStmt(Id(a),[BooleanLit(True),BooleanLit(False)])"
-        self.assertTrue(TestChecker.test(input, expect, 463))
+        expect = "Illegal Member Access: FieldAccess(Id(A),Id(a))"
+        self.assertTrue(TestChecker.test(input, expect, 464))
+
+    def test_new_expr_1(self):
+        """ its operands must be a literal or an immutable attribute"""
+        input = """
+       Class A{
+        test(a,b : Float){Return 0;}
+        Var a: Int = Self.test(1, 2); ## *2 ##
+        }
+        Class Program{
+            main(){
+                Var a :A= New A(1,2);
+            }
+            }
+            """
+        expect = "Type Mismatch In Statement: NewExpr(Id(A),[IntLit(1),IntLit(2)])"
+        self.assertTrue(TestChecker.test(input, expect, 464))
+
+    def test_new_expr_2(self):
+        """ its operands must be a literal or an immutable attribute"""
+        input = """
+       Class A{
+        test(a,b : Float){Return 0;}
+        Var a: Int = Self.test(1, 2); ## *2 ##
+        Constructor(){ }
+        }
+        Class Program{
+            main(){
+                Var a :A= New A(1,2);
+            }
+            }
+            """
+        expect = "Type Mismatch In Statement: NewExpr(Id(A),[IntLit(1),IntLit(2)])"
+        self.assertTrue(TestChecker.test(input, expect, 465))
+
+    def test_new_expr_3(self):
+        """ its operands must be a literal or an immutable attribute"""
+        input = """
+       Class A{
+        test(a,b : Float){Return 0;}
+        Var a: Int = Self.test(1, 2); ## *2 ##
+        Constructor(a, b: Int){ }
+        }
+        Class Program{
+            main(){
+                Var a :A= New A(1,2.5);
+            }
+            }
+            """
+        expect = "Type Mismatch In Statement: NewExpr(Id(A),[IntLit(1),FloatLit(2.5)])"
+        self.assertTrue(TestChecker.test(input, expect, 466))
+
+    def test_new_expr_4(self):
+        """ its operands must be a literal or an immutable attribute"""
+        input = """
+       Class A{
+        test(a,b : Float){Return 0;}
+        Var a: Int = Self.test(1, 2); ## *2 ##
+        Constructor(a, b: Int){ }
+        }
+        Class Program{
+            main(){
+                Var a :A= New A(1,2, 3);
+            }
+            }
+            """
+        expect = "Type Mismatch In Statement: NewExpr(Id(A),[IntLit(1),IntLit(2),IntLit(3)])"
+        self.assertTrue(TestChecker.test(input, expect, 467))
+
+    def test_no_entry_point_1(self):
+        """ its operands must be a literal or an immutable attribute"""
+        input = """
+       Class A{
+        test(a,b : Float){Return 0;}
+        Var a: Int = Self.test(1, 2); ## *2 ##
+        Constructor(a, b: Int){ }
+        }
+            """
+        expect = "No Entry Point"
+        self.assertTrue(TestChecker.test(input, expect, 468))
+
+    def test_no_entry_point_2(self):
+        """ its operands must be a literal or an immutable attribute"""
+        input = """
+       Class A{
+        test(a,b : Float){Return 0;}
+        Var a: Int = Self.test(1, 2); ## *2 ##
+        Constructor(a, b: Int){ }
+        }
+        Class Program{
+            main1(){
+
+            }
+        }
+            """
+        expect = "No Entry Point"
+        self.assertTrue(TestChecker.test(input, expect, 469))
+
+    def test_no_entry_point_3(self):
+        """ its operands must be a literal or an immutable attribute"""
+        input = """
+       Class A{
+        test(a,b : Float){Return 0;}
+        Var a: Int = Self.test(1, 2); ## *2 ##
+        Constructor(a, b: Int){ }
+        }
+        Class Program{
+            main(a, b: Int){
+
+            }
+        }
+            """
+        expect = "No Entry Point"
+        self.assertTrue(TestChecker.test(input, expect, 470))
+
+    def test_type_mis_match_para_argu_stmt_1(self):
+        """ its operands must be a literal or an immutable attribute"""
+        input = """
+       Class A{
+        test(a,b : Float){}
+        Var a: Int = Self.test(1, 2); ## *2 ##
+        }
+        Class Program{
+            main(){
+                Var a : A = New A();
+                a.test();
+            }
+        }
+            """
+        expect = "Type Mismatch In Statement: CallExpr(Self(),Id(test),[IntLit(1),IntLit(2)])"
+        self.assertTrue(TestChecker.test(input, expect, 471))
+
+    def test_type_mis_match_para_argu_stmt_2(self):
+        """ its operands must be a literal or an immutable attribute"""
+        input = """
+       Class A{
+        test(){}
+
+        }
+        Class Program{
+            main(){
+                Var a : A = New A();
+                a.test(1,2);
+            }
+        }
+            """
+        expect = "Type Mismatch In Statement: Call(Id(a),Id(test),[IntLit(1),IntLit(2)])"
+        self.assertTrue(TestChecker.test(input, expect, 472))
+
+    def test_type_mis_match_para_argu_stmt_3(self):
+        """ its operands must be a literal or an immutable attribute"""
+        input = """
+       Class A{
+        test(a, b: Int; c: Boolean){}
+
+        }
+        Class Program{
+            main(){
+                Var a : A = New A();
+                a.test(1,2,True);
+                a.test(1,2, 3);
+            }
+        }
+            """
+        expect = "Type Mismatch In Statement: Call(Id(a),Id(test),[IntLit(1),IntLit(2),IntLit(3)])"
+        self.assertTrue(TestChecker.test(input, expect, 473))
 
     # def test_undeclared_function1(self):
     #     """Simple program: int main() {} """
