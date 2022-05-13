@@ -1,8 +1,0 @@
-
-        define(A, 1);
-        define(A, true);
-        function _main()
-        {
-            $x = A;
-        }
-        

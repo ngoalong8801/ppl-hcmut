@@ -1,0 +1,1 @@
+Type Mismatch In Statement: Call(Id(pro),Id($static_method),[IntLit(1),IntLit(3),IntLit(5)])

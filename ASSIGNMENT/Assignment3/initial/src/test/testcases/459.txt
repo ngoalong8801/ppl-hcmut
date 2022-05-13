@@ -2,8 +2,9 @@
        Class Program{
 
             main(){
-                Var a: Array[Int, 3];
-                a = Array("123", 2, True);
+                Val x: Float = 4.6;
+                Var a: Int;
+                Val ax : Float = 1 + a;
 
             }
             }

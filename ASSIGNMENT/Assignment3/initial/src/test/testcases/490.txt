@@ -1,0 +1,21 @@
+
+        Class Pro {
+        }
+        Class Program {
+            main() {
+                If(True){
+                    Var a : Int = 6;
+                    Foreach(a In 1 .. 10){
+                        {
+                            Break;
+                        }
+                    }
+                    Continue;
+                }
+                Else{
+
+                }
+
+            }
+        }
+        

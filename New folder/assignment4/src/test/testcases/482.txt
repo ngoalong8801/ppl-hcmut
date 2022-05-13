@@ -1,7 +1,0 @@
-
-        $a = 1; $b = 2;
-        function _main()
-        {
-            _swap($a, $b);
-        }
-        

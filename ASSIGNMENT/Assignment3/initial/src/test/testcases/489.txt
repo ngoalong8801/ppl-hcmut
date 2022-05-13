@@ -1,0 +1,15 @@
+
+        Class Pro {
+        }
+        Class Program {
+            main() {
+                If(True){
+                    Var a : Int = 6;
+                }
+                Else{
+                    a = 8;
+                }
+
+            }
+        }
+        

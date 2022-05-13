@@ -1,1 +1,0 @@
-TypeMismatchInExpr(BinExp(/,BoolLit(True),BoolLit(False)))

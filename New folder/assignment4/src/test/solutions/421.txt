@@ -1,1 +1,0 @@
-TypeMismatchInStmt(If([(Id(A),[Assign(Id($x),BoolLit(False))])],[]))

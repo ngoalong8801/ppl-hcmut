@@ -1,12 +1,10 @@
 
-       Class A{
-        test(a,b : Float){Return 0;}
-        Var a: Int = Self.test(1, 2); ## *2 ##
-        Constructor(){ }
-        }
-        Class Program{
+       Class Program{
+
             main(){
-                Var a :A= New A(1,2);
+                Var a: Array[String, 2];
+                a = Array(True, False);
+
             }
             }
             

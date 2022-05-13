@@ -1,1 +1,1 @@
-Type Mismatch In Statement: AssignStmt(Id(a),[IntLit(1),IntLit(2)])
+Illegal Array Literal: [StringLit(123),IntLit(2),BooleanLit(True)]

@@ -1,8 +1,0 @@
-
-        function _foo(){}
-        function _main()
-        {
-            $a = 1;
-            $a = 1.1;
-        }
-        

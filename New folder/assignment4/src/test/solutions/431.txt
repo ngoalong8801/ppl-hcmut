@@ -1,1 +1,0 @@
-TypeMismatchInStmt(Assign(Id($a),Call(Id(_foo),[])))

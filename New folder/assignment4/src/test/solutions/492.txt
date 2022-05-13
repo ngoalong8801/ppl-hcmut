@@ -1,1 +1,0 @@
-TypeMismatchInExpr(BinExp(&&,BinExp(+.,StringLit(hcmut),StringLit(HCMUT)),BoolLit(True)))

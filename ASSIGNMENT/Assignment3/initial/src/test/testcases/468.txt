@@ -2,6 +2,11 @@
        Class A{
         test(a,b : Float){Return 0;}
         Var a: Int = Self.test(1, 2); ## *2 ##
-        Constructor(a, b: Int){ }
+        Constructor(){ }
         }
+        Class Program{
+            main(){
+                Var a :A= New A(1,2);
+            }
+            }
             

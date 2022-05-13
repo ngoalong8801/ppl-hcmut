@@ -1,1 +1,0 @@
-TypeMismatchInStmt(While(BinExp(+,IntLit(1),IntLit(1)),[Call(Id(_echo),[StringLit(loop)])]))

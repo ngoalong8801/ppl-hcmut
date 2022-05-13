@@ -1,9 +1,0 @@
-
-        function _main()
-        {
-            $a = array(1, 2, 3);
-            foreach ($a as $key => $value) {
-                _echo((("Element " +. int2str($key)) +. ": ") +. int2str($value));
-            }
-        }
-        

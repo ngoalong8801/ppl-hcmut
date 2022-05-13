@@ -2,8 +2,8 @@
        Class Program{
 
             main(){
-                Var a: Array[Float, 3];
-                a = Array(1,2);
+                Var a: Array[Int, 3];
+                a = Array("123", 2, True);
 
             }
             }

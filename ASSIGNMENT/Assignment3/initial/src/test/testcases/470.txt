@@ -5,8 +5,8 @@
         Constructor(a, b: Int){ }
         }
         Class Program{
-            main(a, b: Int){
-
+            main(){
+                Var a :A= New A(1,2, 3);
             }
-        }
+            }
             

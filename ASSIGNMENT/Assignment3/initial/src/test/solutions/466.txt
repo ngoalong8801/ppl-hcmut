@@ -1,1 +1,1 @@
-Type Mismatch In Statement: NewExpr(Id(A),[IntLit(1),FloatLit(2.5)])
+Illegal Member Access: FieldAccess(Id(A),Id(a))

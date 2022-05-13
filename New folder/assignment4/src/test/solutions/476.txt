@@ -1,1 +1,0 @@
-TypeMismatchInExpr(ArrayAccess(Id($arr),[IntLit(1),IntLit(2)]))

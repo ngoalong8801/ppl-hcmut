@@ -1,0 +1,1 @@
+Illegal Member Access: CallExpr(Id(Pro),Id($special),[IntLit(4),IntLit(5),FloatLit(5.67)])

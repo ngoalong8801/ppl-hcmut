@@ -1,0 +1,12 @@
+
+       Class A{
+        test(){}
+
+        }
+        Class Program{
+            main(){
+                Var a : A = New A();
+                a.test(1,2);
+            }
+        }
+            

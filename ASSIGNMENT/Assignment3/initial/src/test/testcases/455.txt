@@ -1,6 +1,6 @@
 
        Class Program{
-           Val abc: Int;
+           Var abc: Float;
             main(){
                 Continue;
 

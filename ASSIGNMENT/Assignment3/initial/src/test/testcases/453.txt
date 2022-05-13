@@ -2,7 +2,7 @@
        Class Program{
            Var abc: Float;
             main(){
-                Continue;
+                Break;
 
             }
             }

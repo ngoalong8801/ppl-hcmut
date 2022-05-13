@@ -1,0 +1,21 @@
+
+         
+       Class Program2{
+            method_re1(){
+                Var i: Int;
+                Var j: String;
+                Foreach(i In 1 .. 10 ){
+                    Foreach(j In 1 .. 10){
+
+                    }
+                }
+
+            }
+            }
+
+            Class Program{
+                main(){
+
+                }
+            }
+            

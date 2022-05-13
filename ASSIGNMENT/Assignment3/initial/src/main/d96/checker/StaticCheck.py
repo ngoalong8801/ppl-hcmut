@@ -1,8 +1,7 @@
 
-
+#ID: 1914659
 from AST import *
 from Visitor import *
-# from Utils import Utils
 from StaticError import *
 
 
@@ -33,6 +32,7 @@ class ExpUtils:
 
     @staticmethod
     def checkCoerce(lhsType, expType):
+
         if(type(lhsType) is not type(expType)):
             if(not(not(ExpUtils.isNaNType(expType)) and (type(lhsType) is FloatType))):
                 return False
@@ -65,6 +65,14 @@ class StaticChecker(BaseVisitor):
                 exp.value) is Constant else False)
 
         return (typeLhs, typeExp)
+
+    def returnTypeOne(self, lhs):
+        typeLhs = lhs
+        if type(lhs) is Symbol:
+            typeLhs = (None, lhs.mtype, True if type(
+                lhs.value) is Constant else False)
+
+        return typeLhs
 
     def lookup(self, name, lst, func):
         for x in lst:
@@ -141,6 +149,11 @@ class StaticChecker(BaseVisitor):
         if res is not None:
             raise Redeclared(Class(), ast.classname.name)
 
+        if ast.parentname:
+            parent = self.lookup(
+                ast.parentname.name, global_envi, lambda x: x.name)
+            if parent is None:
+                raise Undeclared(Class(), ast.parentname.name)
         local_evi = []
         # self.toListSym(ast.memlist, local_evi)
 
@@ -210,6 +223,27 @@ class StaticChecker(BaseVisitor):
         res = self.lookup(sym.name,  block_scope,
                           lambda x: x.name if type(x.mtype) is not MType else None)
 
+        if ast.varInit:
+            # Check TypeMismatchInConstant
+            c1 = c
+            if type(ast.varInit) is ArrayLiteral:
+                if type(ast.varType) is not ArrayType:
+                    raise TypeMismatchInConstant(ast)
+                c1 = c + (ast.varType,)
+
+            typExpr = self.returnTypeOne(self.visit(ast.varInit, c1))
+            if not ExpUtils.checkCoerce(ast.varType, typExpr[1]) and (typExpr[1] is not None):
+                raise TypeMismatchInConstant(ast)
+
+            # check size arr
+            if(type(typExpr[1]) is ArrayType):
+                if int(typExpr[1].size) is not int(ast.varType.size) or not ExpUtils.checkCoerce(ast.varType.eleType, typExpr[1].eleType):
+                    raise TypeMismatchInConstant(ast)
+            elif type(typExpr[1]) is ClassType and type(ast.varType) is ClassType:
+                if(typExpr[1].classname.name !=
+                   ast.varType.classname.name):
+                    raise TypeMismatchInConstant(ast)
+
         if type(ast.varType) is ClassType:
             nameClass = self.visit(ast.varType, local_envi)
             checked = self.checkClassDefined(
@@ -223,8 +257,24 @@ class StaticChecker(BaseVisitor):
             else:
                 raise Redeclared(Variable(), sym.name)
 
-        if ast.varInit:
-            self.visit(ast.varInit, c)
+        # if ast.varInit:
+        #     # Check TypeMismatchInConstant
+        #     c1 = c
+        #     if type(ast.varInit) is ArrayLiteral:
+        #         c1 = c + (ast.varType,)
+
+        #     typExpr = self.returnTypeOne(self.visit(ast.varInit, c1))
+        #     if not ExpUtils.checkCoerce(ast.varType, typExpr[1]):
+        #         raise TypeMismatchInConstant(ast)
+
+        #     # check size arr
+        #     if(type(typExpr[1]) is ArrayType):
+        #         if int(typExpr[1].size) is not int(ast.varType.size):
+        #             raise TypeMismatchInConstant(ast)
+        #     elif type(typExpr[1]) is ClassType and type(ast.varType) is ClassType:
+        #         if(typExpr[1].classname.name !=
+        #            ast.varType.classname.name):
+        #             raise TypeMismatchInConstant(ast)
 
         return [sym]
 
@@ -251,18 +301,18 @@ class StaticChecker(BaseVisitor):
         if ast.value:
             c1 = c
             if type(ast.value) is ArrayLiteral:
-                c1 = c + (ast.constType,)
-            typExpr = self.visit(ast.value, c1)
-
-            if not ExpUtils.checkCoerce(ast.constType, typExpr[1]):
+                if type(ast.constType) is not ArrayType:
+                    c1 = c + (ast.constType,)
+            typExpr = self.returnTypeOne(self.visit(ast.value, c1))
+            if not ExpUtils.checkCoerce(ast.constType, typExpr[1]) and (typExpr[1] is not None):
                 raise TypeMismatchInConstant(ast)
 
             # check size arr
             if(type(typExpr[1]) is ArrayType):
-                if int(typExpr[1].size) is not int(ast.constType.size):
+                if int(typExpr[1].size) is not int(ast.constType.size) or not ExpUtils.checkCoerce(ast.varType.eleType, typExpr[1].eleType):
                     raise TypeMismatchInConstant(ast)
             elif type(typExpr[1]) is ClassType and type(ast.constType) is ClassType:
-                if(typExpr[1].classname.name is not
+                if(typExpr[1].classname.name !=
                    ast.constType.classname.name):
                     raise TypeMismatchInConstant(ast)
 
@@ -283,26 +333,30 @@ class StaticChecker(BaseVisitor):
 
         # check redecl
         for x in ast.inst:
-            decl = self.visit(
-                x, (global_class, global_envi, local_envi, block_scope, is_in_loop))
-            if type(decl) is list:
-                if type(decl[0]) is Symbol:
-                    block_scope.extend(decl)
-            elif type(x) is Return:
+            if type(x) is Block:
+                self.visit(x, (global_class, global_envi,
+                           local_envi + block_scope, [], is_in_loop))
+            else:
+                decl = self.visit(
+                    x, (global_class, global_envi, local_envi, block_scope, is_in_loop))
+                if type(decl) is list:
+                    if type(decl[0]) is Symbol:
+                        block_scope.extend(decl)
+                elif type(x) is Return:
 
-                # check break, continue
+                    # check break, continue
 
-                if((returnType is not decl) and ((type(returnType) is FloatType)
-                                                 or (type(decl) is FloatType))):
-                    decl = FloatType()
-                elif returnType is not decl and returnType is not None:
-                    raise TypeMismatchInStatement(x)
-                returnType = decl
+                    if((returnType is not decl) and ((type(returnType) is FloatType)
+                                                     or (type(decl) is FloatType))):
+                        decl = FloatType()
+                    elif returnType is not decl and returnType is not None:
+                        raise TypeMismatchInStatement(x)
+                    returnType = decl
 
         # return voidtype if not return any
         if returnType is None:
             returnType = VoidType()
-        local_envi.extend(block_scope)
+        # local_envi.extend(block_scope)
         return returnType
 
     def visitAssign(self, ast, c):
@@ -370,26 +424,38 @@ class StaticChecker(BaseVisitor):
         return checked
 
     def visitIf(self, ast, c):
-        is_boolean = self.visit(ast.expr, c)
-        then_stmt = self.visit(ast.thenStmt, c)
+        global_class, global_envi, local_envi, block_scope, is_in_loop = c
+
+        is_boolean = self.visit(
+            ast.expr, c)
+        then_stmt = self.visit(
+            ast.thenStmt, (global_class, global_envi, local_envi + block_scope, [], is_in_loop))
 
         if ast.elseStmt:
-            elseStmt = self.visit(ast.elseStmt, c)
+            elseStmt = self.visit(
+                ast.elseStmt, (global_class, global_envi, local_envi + block_scope, [], is_in_loop))
         if type(is_boolean[1]) is not BoolType:
             raise TypeMismatchInStatement(ast)
         return
 
     def visitFor(self, ast, c):
+        id = self.visit(ast.id, c)
+        if type(id.value) is Constant:
+            raise CannotAssignToConstant(Assign(ast.id, ast.expr1))
+        elif type(id.mtype) is not IntType:
+            raise TypeMismatchInStatement(Assign(ast.id, ast.expr1))
+
         expr1 = self.visit(ast.expr1, c)
         expr2 = self.visit(ast.expr2, c)
-
+        expr3 = self.visit(ast.expr3, c)
         typeExpr1, typeExpr2 = self.returnType(expr1, expr2)
+        typeExpr3 = self.returnTypeOne(expr3)
         is_in_loop = True
 
-        if not(isinstance(typeExpr1[1], IntType) and isinstance(typeExpr2[1], IntType)):
+        if not(isinstance(typeExpr1[1], IntType) and isinstance(typeExpr2[1], IntType) and isinstance(typeExpr3[1], IntType)):
             raise TypeMismatchInStatement(ast)
 
-        loop = self.visit(ast.loop, (c[0], c[1], c[2], c[3], is_in_loop))
+        loop = self.visit(ast.loop, (c[0], c[1], c[2] + c[3], [], is_in_loop))
         return
 
     def visitBinaryOp(self, ast, c):
@@ -405,7 +471,10 @@ class StaticChecker(BaseVisitor):
             elif isinstance(typeLeft[1], FloatType) or isinstance(typeRight[1], FloatType):
                 typBi = FloatType()
             else:
-                typBi = IntType()
+                if ast.op == '/':
+                    typBi = FloatType
+                else:
+                    typBi = IntType()
 
         elif ast.op == '%':
             if not isinstance(typeLeft[1], IntType) or not isinstance(typeRight[1], IntType):
@@ -419,7 +488,7 @@ class StaticChecker(BaseVisitor):
                 raise TypeMismatchInExpression(ast)
             typBi = BoolType()
         elif ast.op == '==.':
-            if not(isinstance(typeLeft[1], StringType) or isinstance(typeRight[1], StringType)):
+            if not(isinstance(typeLeft[1], StringType) and isinstance(typeRight[1], StringType)):
                 raise TypeMismatchInExpression(ast)
             typBi = BoolType()
 
@@ -446,7 +515,7 @@ class StaticChecker(BaseVisitor):
         return (None, typBi, is_constant)
 
     def visitUnaryOp(self, ast, c):
-        typeBody = self.visit(ast.body, c)
+        typeBody = self.returnTypeOne(self.visit(ast.body, c))
         if ast.op == '-':
             if not(isinstance(typeBody[1], IntType) or isinstance(typeBody, FloatType)):
                 raise TypeMismatchInExpression(ast)
@@ -473,9 +542,9 @@ class StaticChecker(BaseVisitor):
         typeArr = arr.mtype
 
         for x in ast.idx:
-            typeIdx = self.visit(x, c)
+            typeIdx = self.returnTypeOne(self.visit(x, c))
 
-            if type(typeIdx) is not IntType:
+            if type(typeIdx[1]) is not IntType:
                 raise TypeMismatchInExpression(ast)
 
         if type(typeArr) is not ArrayType:
@@ -598,6 +667,9 @@ class StaticChecker(BaseVisitor):
             raise MustInLoop(ast)
 
     def visitNewExpr(self, ast, c):
+        res = self.lookup(ast.classname.name, c[0], lambda x: x.name)
+        if res is None:
+            raise Undeclared(Class(), ast.classname.name)
         checked = self.checkAttClass(
             c[0], ast.classname.name, "Constructor", Method())
         if checked is None:
@@ -612,10 +684,13 @@ class StaticChecker(BaseVisitor):
     def visitArrayLiteral(self, ast, c):
         size = len(ast.value)
         typeArr = c[-1].eleType
-        typeEle = self.visit(ast.value[1], c[:-1])
+        typeEle = self.visit(ast.value[0], c[:-1])
         for x in ast.value[1:]:
             typeX = self.visit(x, c[:-1])
             if type(typeEle[1]) is not type(typeX[1]):
                 raise IllegalArrayLiteral(ast)
 
         return (None, ArrayType(size, typeEle[1]), True)
+
+    def visitNullLiteral(self, ast, c):
+        return (None, None, None)

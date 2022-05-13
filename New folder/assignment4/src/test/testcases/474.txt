@@ -1,7 +1,0 @@
-
-        $a = 7;
-        function _foo()
-        {
-            return true;
-        }
-        

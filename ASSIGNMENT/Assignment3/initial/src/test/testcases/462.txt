@@ -3,7 +3,7 @@
 
             main(){
                 Var a: Array[Int, 3];
-                a = Array(1.5,2.8, 3.9);
+                a = Array(1,2,3,4);
 
             }
             }

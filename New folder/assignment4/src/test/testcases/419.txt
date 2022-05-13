@@ -1,8 +1,0 @@
-
-        $a = 1;
-        function _main()
-        {
-            $arr = array(1,2,3);
-            $x = $arr[$arr[1]];
-        }
-        

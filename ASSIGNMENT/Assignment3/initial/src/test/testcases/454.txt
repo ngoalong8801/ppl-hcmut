@@ -2,16 +2,16 @@
        Class Program{
            Var abc: Float;
             main(){
-
+                Var i: Int = 0;
                 Foreach(i In 1 .. 100 ){
                     {
                         {
-                            Continue;
+                            Break;
                         }
                     }
                 }
                 If(4 > 5){
-                   Continue;
+                   Break;
                 }
 
             }

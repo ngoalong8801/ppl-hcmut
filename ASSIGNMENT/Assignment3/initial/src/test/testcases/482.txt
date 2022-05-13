@@ -1,0 +1,14 @@
+
+        Class Pro {
+            $static_method(){
+
+            }
+
+        }
+        Class Program {
+            main() {
+                Var pro: Pro = New Pro();
+                pro::$static_met();
+            }
+        }
+        

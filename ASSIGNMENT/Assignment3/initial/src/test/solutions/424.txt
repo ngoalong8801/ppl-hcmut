@@ -1,1 +1,1 @@
-Undeclared Class: Program3
+Type Mismatch In Constant Declaration: VarDecl(Id(pro),ClassType(Id(Program3)),NewExpr(Id(Program1),[]))
