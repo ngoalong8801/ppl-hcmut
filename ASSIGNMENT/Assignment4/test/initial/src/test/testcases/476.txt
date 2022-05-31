@@ -1,0 +1,13 @@
+
+       Class A{
+        test(a, b: Int; c: Boolean){}
+
+        }
+        Class Program{
+            main(){
+                Var a : A = New A();
+                a.test(1,2,True);
+                a.test(1,2, 3);
+            }
+        }
+            

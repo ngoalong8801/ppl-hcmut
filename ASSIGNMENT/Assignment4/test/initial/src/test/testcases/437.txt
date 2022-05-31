@@ -1,0 +1,18 @@
+
+         
+       Class Program2{
+            method_re1(){
+                Var i: Boolean;
+                Foreach(i In 1 .. 10 ){
+
+                }
+
+            }
+            }
+
+            Class Program{
+                main(){
+
+                }
+            }
+            

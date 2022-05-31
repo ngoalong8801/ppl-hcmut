@@ -1,0 +1,12 @@
+
+        Class Test{
+            Val attr: Float = True;
+        }
+       Class TestAccess{
+           Var abc: Float;
+            method_re1(){
+                Self.ac = 5+ 5.6 * 7.9;
+
+            }
+            }
+            

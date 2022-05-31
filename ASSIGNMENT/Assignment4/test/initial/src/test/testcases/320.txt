@@ -1,0 +1,6 @@
+Class TestMethoddecl{
+                   
+                    Constructor(par: Int; floatLi, floatLi2: Float){
+
+                    }
+              }

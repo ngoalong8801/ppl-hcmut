@@ -1,0 +1,10 @@
+
+     Class ForAssign{
+            forBlock(){
+                Foreach(x In 1 .. 100 By 3){
+                    gh = 0X24AD;
+                    bg = 0234;
+                }
+            }
+        }
+     

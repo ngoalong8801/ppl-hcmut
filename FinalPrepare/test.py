@@ -1,4 +1,7 @@
 
+from xmlrpc.client import Boolean, boolean
+
+
 def visitContinue(self, ast, o):
     ctxt = o
     frame = ctxt
@@ -65,3 +68,78 @@ def visitBinary(self, ast, o):
         returnType = BoolType()
 
     return rs, returnType
+
+
+int mul_exception(Node root){
+    try{
+        return mul(root)
+    }
+    catch(int x){
+        return 0
+    }
+}
+
+int mul(Node root){
+    if (root == null) return 1
+    else if (root.val == 0)  throw 0
+    return root.val * roo
+}
+
+
+def visitIf(self, ast, o):
+    ctxt = o
+    frame = ctxt.frame
+    loop_label = frame.getNewLabel()
+    end_label = frame.getNewLabel()
+    frame.enterLoop()
+
+    self.visit(stmt, o)
+    self.emit.printout(self.visit(exp, Access(frame, o.sym, False)))
+    self.emit.printout(self.emitIFTRUE(end_label, frame))
+
+    self.visit(stmt2, o)
+    self.emit.printout(self.emitContinue(frame.getContinueLabel(), frame))
+    self.emit.printout(self.emit.emitGOTO(loop_label, frame))
+
+    self.emit.printout(self.emit.emitLABEL(end_label, frame))
+    self.emit.printout(self.emit.emitLABEL(frame.getBreakLabel(), frame))
+
+
+def visitFuncDecl(self, ast, o):
+    o = []
+    list_param = []
+    for i in params:
+        list_param += self.visit(i, list_param)
+
+    check_list = []
+    for i in ast.body:
+        check_list += self.visit(i, (list_param, check_list))
+
+
+def visitParamDecl(self, ast, o):
+    typeFirst = self.visit(ast.first, o)
+    if typeFirst:
+        return [ast.name.name]
+    return []
+
+
+def visitBoolLit(self, ast, o):
+    return ast.value
+
+
+def visitAssign(self, ast, o):
+    name = ast.lhs.name
+    if name in o[1] and name in o[0]:
+        raise FirstParamReassignment(ast)
+    return [name]
+
+
+def visitDoWhile(self, ast, o):
+    ctxt = o
+    frame = ctxt.frame
+    s_label = frame.getNewLabel()
+    e_label = frame.getNewLabel()
+    frame.enterLoop()
+
+    self.visit(ast.stmt1, o)
+    self.emit.printout(self.visit(ast.expr, Access(frame, o.sym, False)))

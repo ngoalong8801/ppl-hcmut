@@ -1,0 +1,8 @@
+
+        Class Program1{
+            Var a: NoCla;
+            method(){
+                Return 1;
+            }
+            }
+            

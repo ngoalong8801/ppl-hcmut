@@ -1,0 +1,6 @@
+Class Program{
+            main(){
+                Var check: String =("Hello" +. " World");
+                io.putString(check);
+                }
+                }

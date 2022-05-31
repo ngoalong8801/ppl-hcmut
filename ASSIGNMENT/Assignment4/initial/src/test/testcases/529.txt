@@ -1,0 +1,7 @@
+Class Program{
+            main(){
+                Var check: Int = 0;
+                check = check + 1;
+                io.putInt(check);
+                }
+                }

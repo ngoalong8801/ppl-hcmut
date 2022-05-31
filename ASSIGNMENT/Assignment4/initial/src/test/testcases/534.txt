@@ -1,0 +1,10 @@
+Class Program{
+            Var a: Int = 5;
+            Var b: Float = 5.67;
+
+            main(){
+                io.putInt(Self.a);
+                io.putFloat(Self.b / Self.a);
+
+                }
+                }

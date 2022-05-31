@@ -1,0 +1,8 @@
+
+        Class Operator{
+                Var arr: Array[Array[Int, 2], 5];
+                test(){
+                    Out.print(arr[0][1]);
+                }
+            }
+        

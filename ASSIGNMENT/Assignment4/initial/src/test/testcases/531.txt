@@ -1,0 +1,6 @@
+Class Program{
+            Var a: Int = 5;
+            main(){
+                io.putInt(Self.a);
+                }
+                }

@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([Call(Id(io),Id(putIntLn),[IntLit(4)])]))])])

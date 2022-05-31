@@ -1,0 +1,16 @@
+
+
+       Class TestArray{
+            method_re1(){
+                Var a: Float;
+                Var b: String;
+                If(!(b +. "sda")){}
+
+            }
+            }
+        Class Program{
+            main(){
+
+            }
+        }
+            

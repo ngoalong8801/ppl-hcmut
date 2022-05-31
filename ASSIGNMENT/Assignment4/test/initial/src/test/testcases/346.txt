@@ -1,0 +1,14 @@
+
+        Class ForIf{
+            forBlock(){
+                Foreach(x In 1 .. 100 By 3){
+                    If(a == 4){
+                        re = 1;
+                    }
+                    Else{
+                        re = 2;
+                    }
+                }
+            }
+        }
+     

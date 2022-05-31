@@ -1,0 +1,13 @@
+
+        Class Test{
+            Var attr: Int;
+        }
+       Class TestAccess{
+            method_re1(){
+                Var test : Test = New Test();
+                Var tet: Int;
+                tet.attr = 4 + 6;
+
+            }
+            }
+            

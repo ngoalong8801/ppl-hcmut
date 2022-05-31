@@ -1,0 +1,9 @@
+Class Program{
+
+                test(){
+                    Val a: Int = 5;
+                    Val a: Int = 4;
+                }
+            }
+
+            

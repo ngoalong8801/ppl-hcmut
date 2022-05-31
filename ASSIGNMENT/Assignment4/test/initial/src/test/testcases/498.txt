@@ -1,0 +1,22 @@
+
+        Class Pro {
+            $special(a, b: Float; c: Int){
+                Return True;
+
+            }
+        }
+        Class Program {
+            main(i, i1: Int) {
+       
+                Foreach(i In 1 .. 10){
+                    Var a: Int = 4 + 6;
+                    Var c : Float = 1.35+ a*6;
+                    If(c > 0){
+                     
+                    }
+                }
+                }
+         
+            }
+        
+        

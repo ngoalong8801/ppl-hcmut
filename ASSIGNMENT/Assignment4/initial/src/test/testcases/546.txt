@@ -1,0 +1,13 @@
+Class Program{
+        
+            main(){
+            Var i : Int = 0;
+             Var j: Int = 1;
+             Foreach(i In 0 .. 2){
+                
+                 Foreach(j In 1 .. 2){
+                     io.putString("Hello World");
+                 }
+             }
+                }
+                }

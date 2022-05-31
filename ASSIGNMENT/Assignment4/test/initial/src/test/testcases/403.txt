@@ -1,0 +1,12 @@
+Class Program{
+
+                test(){
+
+                    If(5 > 4){
+                        Val a: Int = 5;
+                        Val a: Int = 4;
+                    }
+                }
+            }
+
+            

@@ -1,0 +1,9 @@
+
+       Class Program{
+
+            main(){
+                Val x: Float;
+
+            }
+            }
+            

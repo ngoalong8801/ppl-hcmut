@@ -1,0 +1,10 @@
+
+                Class Bus{
+
+             }
+            Class TestClassType{
+                test(){
+                    Var typ : Bus;
+                }
+            }
+        

@@ -1,0 +1,8 @@
+Class Program{
+            main(){
+                Var a: Boolean = True;
+                Var str: String = "I hope that one day  there wont have any assignment anymore !!";
+                io.putString(str);
+                io.putBool(a);
+                }
+                }

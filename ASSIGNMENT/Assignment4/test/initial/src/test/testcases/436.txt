@@ -1,0 +1,13 @@
+
+         Class Program1{
+            Var a: Int;
+            }
+       Class Program2{
+            method_re1(){
+                Var pro: Program1 = New Program1();
+                Var b: Float;
+                pro.a = 4 +  b;
+
+            }
+            }
+            

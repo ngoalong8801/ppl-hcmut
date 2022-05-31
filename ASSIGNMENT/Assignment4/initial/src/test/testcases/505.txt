@@ -1,0 +1,7 @@
+Class Program{
+            main(){
+                io.putBool(False);
+                io.putInt(2);
+                io.putFloat(2.36);
+                }
+                }

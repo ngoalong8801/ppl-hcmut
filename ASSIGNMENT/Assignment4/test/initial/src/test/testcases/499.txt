@@ -1,0 +1,24 @@
+
+        Class Pro {
+            $special(a, b: Float; c: Int){
+                Return True;
+
+            }
+        }
+        Class Program {
+            mainn() {
+                    Var i : Int  = 0;
+                Foreach(i In 1 .. 10){
+                    Var a: Int = 4 + 6;
+                    Var c : Float = 1.35+ a*6;
+                    If(c > 0){
+                        Var pro : Pro = New Pro();
+                        Var a: Boolean = True;
+                   
+                    }
+                }
+                }
+         
+            }
+        
+        

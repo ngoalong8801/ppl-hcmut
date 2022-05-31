@@ -1,0 +1,9 @@
+Class Program{
+            main(){
+                Var num1: Float = 2022.2021;
+                Val str: String = "I hope that one day  there wont have any assignment anymore !!";
+                io.putFloat(num1);
+                io.putString(str);
+
+                }
+                }

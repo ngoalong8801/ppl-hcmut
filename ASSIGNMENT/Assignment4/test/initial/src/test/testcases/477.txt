@@ -1,0 +1,10 @@
+
+        Class Program {
+            main() {
+                {
+                    Var inLopp : Int = 78;
+                }
+                inLopp = 40;
+            }
+        }
+        

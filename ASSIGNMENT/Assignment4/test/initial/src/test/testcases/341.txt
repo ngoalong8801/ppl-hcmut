@@ -1,0 +1,9 @@
+
+        Class Program{
+                main(){
+                    Foreach(i In 1 .. 100 ){
+
+                    }
+                }
+            }
+     

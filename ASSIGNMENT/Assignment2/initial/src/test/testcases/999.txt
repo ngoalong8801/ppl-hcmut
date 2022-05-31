@@ -1,0 +1,8 @@
+
+        Class Program{
+            main(){
+                io.putIntLn(4);
+            }
+        }
+            
+        

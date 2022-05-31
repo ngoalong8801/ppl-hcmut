@@ -1,0 +1,5 @@
+
+        Class TestArray{
+            Var a : Array[Int, 6];
+        }
+     

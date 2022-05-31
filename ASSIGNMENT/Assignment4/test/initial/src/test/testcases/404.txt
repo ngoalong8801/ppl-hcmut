@@ -1,0 +1,10 @@
+Class Program{
+                Var redecl: Int;
+                Var redecl: Int;
+
+                test(){
+
+                }
+            }
+
+            

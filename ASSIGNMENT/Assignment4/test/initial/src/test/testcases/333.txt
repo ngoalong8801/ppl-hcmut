@@ -1,0 +1,18 @@
+Class TestIf_Stmt{
+                If_stmt(){
+                    
+                        If(ma == 0){
+                            ma = 9999;
+                        }
+                        Elseif(ma == 456){
+                            ma = 67.43524;
+                        }
+                        Elseif(ma == (1.234 + 234 * 54 % 2)/ 53){
+                            ma = -1 *9999;
+                        }
+                        Else{
+                            ma = 87;
+                        }
+                    
+                }
+              }

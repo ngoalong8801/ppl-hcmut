@@ -1,0 +1,10 @@
+Class Geo{
+                $location(){
+                    
+                }
+            }
+            Class Program{
+                main(){
+                    a = geo::$location();
+                }
+            }

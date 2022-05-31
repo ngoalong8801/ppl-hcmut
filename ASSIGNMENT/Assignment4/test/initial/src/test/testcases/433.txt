@@ -1,0 +1,11 @@
+
+        Class Program1{
+
+            method(){
+                Var i : Int =0;
+               Foreach(i In 4.6 .. 100 By 2){
+
+                }
+            }
+        }
+            

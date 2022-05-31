@@ -1,0 +1,6 @@
+Class Program{
+            main(){
+                Var check: Boolean =(("Hello" +. " World ")==. "Hello World ");
+                io.putBool(check);
+                }
+                }

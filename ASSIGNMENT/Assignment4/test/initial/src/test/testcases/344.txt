@@ -1,0 +1,9 @@
+
+        Class ForBlock{
+            forBlock(){
+                Foreach(x In 1 .. 100 By 3){
+                    Out.println("hello");
+                }
+            }
+        }
+     

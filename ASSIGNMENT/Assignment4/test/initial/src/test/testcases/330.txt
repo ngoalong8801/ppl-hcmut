@@ -1,0 +1,9 @@
+Class TestIf_Stmt{
+                If_stmt(){
+                    {
+                        If(ma == 0){
+                            ma = 9999;
+                        }
+                    }
+                }
+              }

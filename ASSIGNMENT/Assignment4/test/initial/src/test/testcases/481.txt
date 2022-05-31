@@ -1,0 +1,12 @@
+
+        Class Pro {
+
+        }
+        Class Program {
+            main() {
+                Foreach(i In 1 .. 10){
+
+                }
+            }
+        }
+        

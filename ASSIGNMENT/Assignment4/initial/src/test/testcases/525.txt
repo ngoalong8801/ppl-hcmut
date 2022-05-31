@@ -1,0 +1,7 @@
+Class Program{
+            main(){
+                Var num: Int;
+                num = 2;
+                io.putInt(num);
+                }
+                }

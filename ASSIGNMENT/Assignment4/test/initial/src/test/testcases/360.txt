@@ -1,0 +1,11 @@
+
+            Class Geo{
+                Var xAxis: Boolean;
+               
+            }
+            Class Program{
+                main(){
+                    a.xAxis = True;
+                }
+            }
+        

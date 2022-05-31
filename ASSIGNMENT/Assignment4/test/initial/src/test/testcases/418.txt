@@ -1,0 +1,9 @@
+
+        Class Program1{
+            method_re1(){
+                Self.a = 4;
+
+            }
+            }
+
+            

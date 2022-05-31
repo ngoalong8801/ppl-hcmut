@@ -1,0 +1,16 @@
+Class Geo{
+            Var xAxis, $yAxis: Boolean;
+                location(x : Boolean; y: Boolean){
+                    
+                }
+                $sky(){
+                }
+            }
+            Class Program{
+                main(){
+                    a.xAxis = True;
+                    a::$yAxis = False;
+                    b = geo.location(True, False);
+                    c = geo::$sky();
+                }
+            }

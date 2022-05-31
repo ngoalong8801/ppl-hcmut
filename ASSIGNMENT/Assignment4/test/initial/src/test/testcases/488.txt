@@ -1,0 +1,19 @@
+
+        Class Pro {
+            Var ab, $a: Int = 14, 15;
+            $static_method(a, b: Int; c: Boolean){
+
+            }
+
+            $static_method(){
+                
+            }
+
+        }
+        Class Program {
+            main() {
+                Var pro: Pro = New Pro();
+               
+            }
+        }
+        

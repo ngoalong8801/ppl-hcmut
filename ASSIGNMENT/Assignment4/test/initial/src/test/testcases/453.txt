@@ -1,0 +1,9 @@
+
+       Class Program{
+           Var abc: Float;
+            main(){
+                Break;
+
+            }
+            }
+            

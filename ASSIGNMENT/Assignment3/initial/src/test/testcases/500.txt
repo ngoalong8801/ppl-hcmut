@@ -1,1 +1,13 @@
-void main() {putInt(100);}
+
+        Class Hasagi{
+            full(){
+                Return 1+2;
+            }
+        }
+        
+        Class Program{
+            main(){
+           
+            }
+            
+            }

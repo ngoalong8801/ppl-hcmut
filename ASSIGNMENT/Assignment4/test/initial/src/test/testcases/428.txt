@@ -1,0 +1,12 @@
+
+        Class Program1{
+
+            method(){
+                Var i: Int = 0;
+                Foreach( i In 2 .. 100 ){
+                    Val cons : Float = 4.5;
+                    cons = 4.6;
+                  }
+            }
+        }
+            

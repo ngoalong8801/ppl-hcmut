@@ -1,0 +1,9 @@
+Class Program{
+        
+            main(){
+            Var i : Int = 4;
+             Foreach(i In 0 .. 3){
+                 io.putInt(i);
+             }
+                }
+                }

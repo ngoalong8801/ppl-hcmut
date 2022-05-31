@@ -1,0 +1,8 @@
+Class Program{
+            main(){
+                Val a: Boolean = True;
+                Val str: String = "I hope that one day  there wont have any assignment anymore !!";
+                io.putString(str);
+                io.putBool(a);
+                }
+                }

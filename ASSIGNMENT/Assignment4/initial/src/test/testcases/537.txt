@@ -1,0 +1,14 @@
+Class Program{
+
+            main(){
+               If(False){
+                   io.putString("Yes");
+               }
+               Elseif(True){
+                     io.putString("In Scope Else if");
+               }
+               Else{
+                   io.putString("No");
+               }
+                }
+                }

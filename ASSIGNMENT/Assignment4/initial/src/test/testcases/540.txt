@@ -1,0 +1,18 @@
+Class Program{
+
+            main(){
+                Var a: Int = 4;
+                Var b: Int = 5;
+               If(a < 0){
+                   io.putString("Yes");
+               }
+               Elseif((4 < b) && (b >0)){
+                     io.putString("In Scope Else if");
+               }
+               Else{
+                   io.putString("No");
+               }
+
+               io.putString("EndIF");
+                }
+                }

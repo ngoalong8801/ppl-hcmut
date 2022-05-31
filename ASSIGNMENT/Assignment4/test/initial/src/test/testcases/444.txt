@@ -1,0 +1,10 @@
+
+
+       Class TestArray{
+            method_re1(){
+                Var a: Float;
+                a = False && True || 4.5;
+
+            }
+            }
+            

@@ -1,0 +1,14 @@
+
+        Class Program1{
+            method(){
+                Return 1;
+            }
+            }
+       Class Program2{
+            method_re1(){
+                Var pro: Program3 = New Program1();
+
+            }
+            }
+
+            

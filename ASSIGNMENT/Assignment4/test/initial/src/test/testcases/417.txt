@@ -1,0 +1,10 @@
+
+        Class Program1{
+            method_re1(a: Int){
+                a = 4;
+                ano_iden = 1.4;
+
+            }
+            }
+
+            

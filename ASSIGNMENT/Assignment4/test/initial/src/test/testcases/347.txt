@@ -1,0 +1,15 @@
+
+        Class ForIf{
+            forBlock(){
+                
+                    If(a == 4){
+                        sum = 0;
+                        Foreach(x In 1 .. 10 ){
+                            sum = sum + 8;
+                            }
+                    }
+                    Else{
+                        suum = -999;
+                    }    }
+        }
+     

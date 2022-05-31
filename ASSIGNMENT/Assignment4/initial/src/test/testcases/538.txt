@@ -1,0 +1,17 @@
+Class Program{
+
+            main(){
+                Var check: Boolean = True;
+               If(!check){
+                   io.putString("Yes");
+               }
+               Elseif(check){
+                     io.putString("In Scope Else if");
+               }
+               Else{
+                   io.putString("No");
+               }
+
+               io.putString("EndIF");
+                }
+                }

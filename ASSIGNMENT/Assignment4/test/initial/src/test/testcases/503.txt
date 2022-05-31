@@ -1,0 +1,7 @@
+  
+        Class Progrm{
+            main(){
+                io.putIntLn(2);
+            }
+            
+            }

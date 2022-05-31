@@ -1,0 +1,6 @@
+Class Program{
+            main(){
+                Var a: Boolean = True;
+                io.putBool(a);
+                }
+                }

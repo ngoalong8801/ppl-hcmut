@@ -1,0 +1,8 @@
+Class Program{
+
+            main(){
+               If(True){
+                   io.putString("Yes");
+               }
+                }
+                }
